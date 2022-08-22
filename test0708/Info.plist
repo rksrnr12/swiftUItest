@@ -2,10 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
+	<key>CFBundleURLTypes</key>
 	<array>
-		<string>kakaotalk</string>
-		<string>naversearchapp:</string>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>test1.test0708</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>test0708</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

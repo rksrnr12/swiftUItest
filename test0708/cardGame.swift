@@ -10,7 +10,6 @@ import Foundation
 
 struct cardGame: View {
     
-    @Environment(\.openURL) var openURL
     
     @State private var colorAry = [Color.purple,Color.green,Color.blue,Color.orange,Color.black,Color.orange,
                                    Color.blue,Color.gray,Color.purple,Color.green,Color.gray,Color.black]
@@ -37,11 +36,6 @@ struct cardGame: View {
                 Text("카드 재정렬")
                     .padding(.top,20)
             }
-            
-            Text("지도")
-                .onTapGesture {
-                    openURL(URL(string: "map:")!)
-                }
             
         }
     }
