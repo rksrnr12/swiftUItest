@@ -7,18 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BD51528AF85C7002800F9 /* cardGame.swift */; };
+		5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AE12A28AE356E00DA4173 /* cardFlip.swift */; };
+		5F885E9D2887C5B8005744F3 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F885E9C2887C5B8005744F3 /* BarChart.swift */; };
+		5F8DD9702890D28300A1DCF2 /* floatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */; };
+		5FBD49192887DE3C00E4698B /* calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD49182887DE3C00E4698B /* calendar.swift */; };
 		5FC21F1A2877CE240099381C /* test0708App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC21F192877CE240099381C /* test0708App.swift */; };
 		5FC21F1C2877CE240099381C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC21F1B2877CE240099381C /* ContentView.swift */; };
 		5FC21F1E2877CE250099381C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FC21F1D2877CE250099381C /* Assets.xcassets */; };
 		5FC21F212877CE250099381C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FC21F202877CE250099381C /* Preview Assets.xcassets */; };
+		5FC43A432888EA2D00CA39B8 /* tabVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC43A422888EA2D00CA39B8 /* tabVIew.swift */; };
+		5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB0AD928B36F9300E9B9FC /* URLTest.swift */; };
+		5FF0D3292893A62800D6FA7C /* datePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0D3282893A62800D6FA7C /* datePicker.swift */; };
+		5FFC80CF28ACCDE100272E67 /* MapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC80CE28ACCDE100272E67 /* MapTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F1BD51528AF85C7002800F9 /* cardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardGame.swift; sourceTree = "<group>"; };
+		5F7AE12A28AE356E00DA4173 /* cardFlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardFlip.swift; sourceTree = "<group>"; };
+		5F885E9C2887C5B8005744F3 /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
+		5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = floatingButton.swift; sourceTree = "<group>"; };
+		5FBD49182887DE3C00E4698B /* calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendar.swift; sourceTree = "<group>"; };
 		5FC21F162877CE240099381C /* test0708.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test0708.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC21F192877CE240099381C /* test0708App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test0708App.swift; sourceTree = "<group>"; };
 		5FC21F1B2877CE240099381C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5FC21F1D2877CE250099381C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FC21F202877CE250099381C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5FC43A422888EA2D00CA39B8 /* tabVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabVIew.swift; sourceTree = "<group>"; };
+		5FCB0AD928B36F9300E9B9FC /* URLTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTest.swift; sourceTree = "<group>"; };
+		5FCB0ADB28B3744600E9B9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5FF0D3282893A62800D6FA7C /* datePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = datePicker.swift; sourceTree = "<group>"; };
+		5FFC80CE28ACCDE100272E67 /* MapTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +70,18 @@
 		5FC21F182877CE240099381C /* test0708 */ = {
 			isa = PBXGroup;
 			children = (
+				5FCB0ADB28B3744600E9B9FC /* Info.plist */,
 				5FC21F192877CE240099381C /* test0708App.swift */,
 				5FC21F1B2877CE240099381C /* ContentView.swift */,
+				5F885E9C2887C5B8005744F3 /* BarChart.swift */,
+				5FBD49182887DE3C00E4698B /* calendar.swift */,
+				5FC43A422888EA2D00CA39B8 /* tabVIew.swift */,
+				5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */,
+				5FF0D3282893A62800D6FA7C /* datePicker.swift */,
+				5FFC80CE28ACCDE100272E67 /* MapTest.swift */,
+				5F7AE12A28AE356E00DA4173 /* cardFlip.swift */,
+				5F1BD51528AF85C7002800F9 /* cardGame.swift */,
+				5FCB0AD928B36F9300E9B9FC /* URLTest.swift */,
 				5FC21F1D2877CE250099381C /* Assets.xcassets */,
 				5FC21F1F2877CE250099381C /* Preview Content */,
 			);
@@ -138,7 +167,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC21F1C2877CE240099381C /* ContentView.swift in Sources */,
+				5F885E9D2887C5B8005744F3 /* BarChart.swift in Sources */,
+				5FC43A432888EA2D00CA39B8 /* tabVIew.swift in Sources */,
+				5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */,
+				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
 				5FC21F1A2877CE240099381C /* test0708App.swift in Sources */,
+				5FBD49192887DE3C00E4698B /* calendar.swift in Sources */,
+				5FF0D3292893A62800D6FA7C /* datePicker.swift in Sources */,
+				5FFC80CF28ACCDE100272E67 /* MapTest.swift in Sources */,
+				5F8DD9702890D28300A1DCF2 /* floatingButton.swift in Sources */,
+				5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +308,7 @@
 				DEVELOPMENT_TEAM = G898HPRNW4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = test0708/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +338,7 @@
 				DEVELOPMENT_TEAM = G898HPRNW4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = test0708/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

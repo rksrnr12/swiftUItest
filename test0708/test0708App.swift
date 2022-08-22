@@ -11,7 +11,11 @@ import SwiftUI
 struct test0708App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView{
+                ContentView()
+                    .navigationBarTitleDisplayMode(.inline)
+            }
+            
         }
     }
 }
