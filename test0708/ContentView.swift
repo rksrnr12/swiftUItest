@@ -50,6 +50,8 @@ struct ContentView: View {
                     URLTest()
                 }
             }
+        }.onOpenURL { url in
+            isShowingSheet = true
         }
     }
 }

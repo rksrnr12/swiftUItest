@@ -20,7 +20,7 @@ struct URLTest: View {
                 }
             Text("문자")
                 .onTapGesture {
-                    openURL(URL(string: "sms:yonghk1233@naver.com")!)
+                    openURL(URL(string: "sms:01027085060")!)
                 }
             Text("카카오톡")
                 .onTapGesture {
@@ -30,6 +30,14 @@ struct URLTest: View {
                 .onTapGesture {
                     openURL(URL(string: "naversearchapp::")!)
                 }
+            Link(destination: URL(string: "tel:01027085060")!) {
+                Text("전화")
+            }
+            Text("yonghk1233@naver.com")
+                .tint(.green)
+            Link(destination: URL(string: "testApp://?testApp")!) {
+                Text("앱 전환")
+            }
         }
     }
 }
