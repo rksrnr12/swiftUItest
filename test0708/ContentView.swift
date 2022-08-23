@@ -40,9 +40,9 @@ struct ContentView: View {
                 NavigationLink("MapTest") {
                     MapTest()
                 }
-                NavigationLink("cardFlip") {
-                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white))
-                }
+//                NavigationLink("cardFlip") {
+//                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white),)
+//                }
                 NavigationLink("cardGame") {
                     cardGame()
                 }

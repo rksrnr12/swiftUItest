@@ -12,6 +12,7 @@ struct cardFlip: View {
     @Binding var cardColor:Color
     @Binding var isShuffle:Bool
     @Binding var selectedColor:Color
+    @Binding var forCheck:Bool
     
     @State var backDegree = 0.0
     @State var frontDegree = -90.0
@@ -45,6 +46,7 @@ struct cardFlip: View {
     var body: some View {
         Button {
             flipCard()
+            forCheck.toggle()
         } label: {
             ZStack{
                 cardFront()
