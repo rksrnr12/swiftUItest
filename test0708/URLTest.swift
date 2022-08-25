@@ -47,13 +47,6 @@ struct URLTest: View {
             Link(destination: URL(string: "testApp://?testtesttest")!) {
                 Text("앱 전환")
             }
-            NavigationLink(isActive: $isPush) {
-                Text("이동")
-            } label: {
-                Text("카드게임")
-            }
-        }.onOpenURL { url in
-            print("페이지 이동 실행")
         }
     }
 }

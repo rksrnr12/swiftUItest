@@ -49,16 +49,13 @@ struct ContentView: View {
                     NavigationLink("cardGame") {
                         cardGame()
                     }
-                    NavigationLink("URLTest") {
-                        URLTest()
-                    }
                     NavigationLink(isActive: $isPush) {
                         URLTest()
                     } label: {
                         Text("url 오픈")
                     }
                 }
-                NavigationLink("URLTest") {
+                NavigationLink("HapticTest") {
                     HapticTest()
                 }
                 
