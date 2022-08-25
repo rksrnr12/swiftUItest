@@ -6,52 +6,69 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
     
     @State private var isShowingSheet = false
+    @State private var isPush = false
     
     
     var body: some View {
         
         ScrollView{
             VStack(spacing:20){
-                Button("Show sheet", action: {
-                    isShowingSheet.toggle()
-                })
-                .sheet(isPresented: $isShowingSheet, content: {
-                    ViewOne(showParentSheet: $isShowingSheet)
-                })
-                NavigationLink("barChart") {
-                    BarChart()
-                }
-                NavigationLink("calendar") {
-                    calendar()
-                }
-                NavigationLink("tabView") {
-                    tabVIew()
-                }
-                NavigationLink("floationgButton") {
-                    floatingButton()
-                }
-                NavigationLink("datePicker") {
-                    datePicker()
-                }
-                NavigationLink("MapTest") {
-                    MapTest()
-                }
-//                NavigationLink("cardFlip") {
-//                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white),)
-//                }
-                NavigationLink("cardGame") {
-                    cardGame()
+                Group{
+                    Button("Show sheet", action: {
+                        isShowingSheet.toggle()
+                    })
+                    .sheet(isPresented: $isShowingSheet, content: {
+                        ViewOne(showParentSheet: $isShowingSheet)
+                    })
+                    NavigationLink("barChart") {
+                        BarChart()
+                    }
+                    NavigationLink("calendar") {
+                        calendar()
+                    }
+                    NavigationLink("tabView") {
+                        tabVIew()
+                    }
+                    NavigationLink("floationgButton") {
+                        floatingButton()
+                    }
+                    NavigationLink("datePicker") {
+                        datePicker()
+                    }
+                    NavigationLink("MapTest") {
+                        MapTest()
+                    }
+                    //                NavigationLink("cardFlip") {
+                    //                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white),)
+                    //                }
+                    NavigationLink("cardGame") {
+                        cardGame()
+                    }
+                    NavigationLink("URLTest") {
+                        URLTest()
+                    }
+                    NavigationLink(isActive: $isPush) {
+                        URLTest()
+                    } label: {
+                        Text("url 오픈")
+                    }
                 }
                 NavigationLink("URLTest") {
-                    URLTest()
+                    HapticTest()
                 }
+                
+                
             }
         }.onOpenURL { url in
-            isShowingSheet = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                isPush = true
+            }
+            
         }
     }
 }

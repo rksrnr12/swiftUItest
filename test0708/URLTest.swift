@@ -11,6 +11,7 @@ import Foundation
 struct URLTest: View {
     
     @Environment(\.openURL) var openURL
+    @State private var isPush = false
     
     var body: some View {
         VStack(spacing:10){
@@ -24,20 +25,35 @@ struct URLTest: View {
                 }
             Text("카카오톡")
                 .onTapGesture {
-                    openURL(URL(string: "kakaotalk:")!)
+                    openURL(URL(string: "kakaotalk://")!) { accepted in
+                        if !accepted {
+                            openURL(URL(string: "http://apps.apple.com/kr/app/id362057947")!)
+                        }
+                    }
+                    
+                    
+                    //openURL(URL(string: "http://apps.apple.com/kr/app/id362057947")!)
+                
                 }
             Text("네이버")
                 .onTapGesture {
-                    openURL(URL(string: "naversearchapp::")!)
+                    openURL(URL(string: "naversearchapp:")!)
                 }
             Link(destination: URL(string: "tel:01027085060")!) {
                 Text("전화")
             }
             Text("yonghk1233@naver.com")
                 .tint(.green)
-            Link(destination: URL(string: "testApp://?testApp")!) {
+            Link(destination: URL(string: "testApp://?testtesttest")!) {
                 Text("앱 전환")
             }
+            NavigationLink(isActive: $isPush) {
+                Text("이동")
+            } label: {
+                Text("카드게임")
+            }
+        }.onOpenURL { url in
+            print("페이지 이동 실행")
         }
     }
 }
