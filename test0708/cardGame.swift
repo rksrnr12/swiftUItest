@@ -63,7 +63,10 @@ struct cardGame: View {
                 secondCard = selectedColor
                 if firstCard == secondCard {
                     count += 1
-                    selectedColorAry.append(selectedColor)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        HapticManager.manager.notification(type: .success)
+                        selectedColorAry.append(selectedColor)
+                    }
                 }else{
                     count -= 1
                     secondCard = .white
