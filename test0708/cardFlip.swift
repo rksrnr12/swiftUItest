@@ -13,6 +13,7 @@ struct cardFlip: View {
     @Binding var isShuffle:Bool
     @Binding var selectedColor:Color
     @Binding var forCheck:Bool
+    @Binding var isThirdCard:Bool
     
     @State var backDegree = 0.0
     @State var frontDegree = -90.0
@@ -25,6 +26,7 @@ struct cardFlip: View {
     func flipCard() {
         isFlipped.toggle()
         if isFlipped {
+            print("1")
             isShuffle = false
             selectedColor = cardColor
             withAnimation(.linear(duration: durationAndDelay).speed(2)) {
@@ -34,6 +36,7 @@ struct cardFlip: View {
                 frontDegree = 0
             }
         }else{
+            print("2")
             withAnimation(.linear(duration: durationAndDelay).speed(2)) {
                 frontDegree = -90
             }
@@ -42,11 +45,15 @@ struct cardFlip: View {
             }
         }
     }
-    
+      
     var body: some View {
         Button {
-            flipCard()
-            forCheck.toggle()
+            if isThirdCard || isFlipped{
+                HapticManager.manager.notification(type: .error)
+            }else{
+                flipCard()
+                forCheck.toggle()
+            }
         } label: {
             ZStack{
                 cardFront()

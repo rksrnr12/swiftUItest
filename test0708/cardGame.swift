@@ -22,6 +22,8 @@ struct cardGame: View {
     @State private var forCheck = false
     @State private var count = 0
     @State private var isSecondCard = false
+    @State private var isThirdCard = false
+    @State private var isEnd = false
     
     let columns = [GridItem(),GridItem(),GridItem()]
     
@@ -34,10 +36,10 @@ struct cardGame: View {
             LazyVGrid(columns: columns) {
                 ForEach(0...maxNum,id:\.self) { num in
                     if selectedColorAry.contains(colorAry[num])  {
-                        cardFlip(cardColor: $colorAry[num],isShuffle: $isShuffle,selectedColor: $selectedColor,forCheck:$forCheck)
+                        cardFlip(cardColor: $colorAry[num],isShuffle: $isShuffle,selectedColor: $selectedColor,forCheck:$forCheck,isThirdCard:$isThirdCard)
                             .hidden()
                     }else{
-                        cardFlip(cardColor: $colorAry[num],isShuffle: $isShuffle,selectedColor: $selectedColor,forCheck:$forCheck)
+                        cardFlip(cardColor: $colorAry[num],isShuffle: $isShuffle,selectedColor: $selectedColor,forCheck:$forCheck,isThirdCard:$isThirdCard)
                     }
                     
                 }
@@ -59,6 +61,7 @@ struct cardGame: View {
                 isSecondCard = true
                 firstCard = selectedColor
             }else {
+                isThirdCard = true
                 isSecondCard = false
                 secondCard = selectedColor
                 if firstCard == secondCard {
@@ -66,18 +69,44 @@ struct cardGame: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         HapticManager.manager.notification(type: .success)
                         selectedColorAry.append(selectedColor)
+                        isThirdCard = false
+                        if selectedColorAry.count == 6 {
+                            isEnd = true
+                        }
                     }
                 }else{
                     count -= 1
                     secondCard = .white
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(450)) {
                         isShuffle = true
+                        isThirdCard = false
                     }
                 }
             }
             
             print("1 = \(firstCard), 2 = \(secondCard), issecond = \(isSecondCard)")
         }
+        .alert("축하합니다!!", isPresented: $isEnd, actions: {
+            Button {
+                count = 0
+                isShuffle = true
+                selectedColorAry = []
+                secondCard = .white
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                    colorAry.shuffle()
+                }
+            } label: {
+                Text("다시하기")
+            }
+        }, message: {
+            Text("당신의 점수는 \(count)점 입니다")
+        })
+        
+        
+//        .alert("축하합니다!!", isPresented: $isEnd, actions: {
+//
+//
+//        })
         .animation(.easeInOut(duration: 1.0), value: selectedColorAry)
     }
 }
