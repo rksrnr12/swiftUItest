@@ -47,8 +47,12 @@ struct ContentView: View {
                     //                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white),)
                     //                }
                     NavigationLink("cardGame") {
-                        cardGame()
-                    }
+                        NavigationLink {
+                            cardGame()
+                        } label: {
+                            Text("3x4")
+                        }
+                                            }
                     NavigationLink(isActive: $isPush) {
                         URLTest()
                     } label: {
