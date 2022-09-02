@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @State private var isShowingSheet = false
     @State private var isPush = false
+    @State private var test = ""
     
     
     var body: some View {
@@ -52,7 +53,7 @@ struct ContentView: View {
                         } label: {
                             Text("3x4")
                         }
-                                            }
+                    }
                     NavigationLink(isActive: $isPush) {
                         URLTest()
                     } label: {
@@ -62,10 +63,22 @@ struct ContentView: View {
                 NavigationLink("HapticTest") {
                     HapticTest()
                 }
-                
+            }
+        }
+        .toolbar(content: {
+            ToolbarItem(placement:.bottomBar) {
+                HStack{
+                    Button {
+                        isShowingSheet.toggle()
+                    } label: {
+                        Text("설정")
+                    }
+                    Spacer()
+                }
                 
             }
-        }.onOpenURL { url in
+        })
+        .onOpenURL { url in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 isPush = true
             }

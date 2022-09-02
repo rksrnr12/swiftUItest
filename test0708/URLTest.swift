@@ -47,7 +47,7 @@ struct URLTest: View {
             Link(destination: URL(string: "testApp://?testtesttest")!) {
                 Text("앱 전환")
             }
-            Text("네이버 웹")
+            Text("contextMenu")
                 .contextMenu {
                     MyWebView(urlToLoad: "https://naver.com")
                         .frame(width: 400, height: 400)
@@ -56,7 +56,7 @@ struct URLTest: View {
             NavigationLink {
                 MyWebView(urlToLoad: "https://naver.com")
             } label: {
-                Text("ㅅㄷㄴ")
+                Text("네이버웹")
             }
 
         }
