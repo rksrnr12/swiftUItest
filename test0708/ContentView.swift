@@ -10,6 +10,7 @@ import Foundation
 
 struct ContentView: View {
     
+    @Environment(\.presentationMode) var presentMode
     @State private var isShowingSheet = false
     @State private var isPush = false
     @State private var test = ""
@@ -48,14 +49,11 @@ struct ContentView: View {
                     //                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white),)
                     //                }
                     NavigationLink("cardGame") {
-                        NavigationLink {
                             cardGame()
-                        } label: {
-                            Text("3x4")
-                        }
                     }
                     NavigationLink(isActive: $isPush) {
                         URLTest()
+                            .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Text("url 오픈")
                     }
@@ -63,9 +61,12 @@ struct ContentView: View {
                 NavigationLink("HapticTest") {
                     HapticTest()
                 }
+                NavigationLink("AnimationTest") {
+                    AnimationTest()
+                }
             }
         }
-        .toolbar(content: {
+        .toolbar {
             ToolbarItem(placement:.bottomBar) {
                 HStack{
                     Button {
@@ -77,7 +78,7 @@ struct ContentView: View {
                 }
                 
             }
-        })
+        }
         .onOpenURL { url in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 isPush = true

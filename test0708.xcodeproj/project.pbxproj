@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BD51528AF85C7002800F9 /* cardGame.swift */; };
+		5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */; };
 		5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AE12A28AE356E00DA4173 /* cardFlip.swift */; };
 		5F868E7A28B736AF00549A4D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7928B736AF00549A4D /* HapticManager.swift */; };
 		5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7B28B739C300549A4D /* HapticTest.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		5F1BD51528AF85C7002800F9 /* cardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardGame.swift; sourceTree = "<group>"; };
+		5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTest.swift; sourceTree = "<group>"; };
 		5F7AE12A28AE356E00DA4173 /* cardFlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardFlip.swift; sourceTree = "<group>"; };
 		5F868E7928B736AF00549A4D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5F868E7B28B739C300549A4D /* HapticTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTest.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				5FCB0AD928B36F9300E9B9FC /* URLTest.swift */,
 				5F89CD6D28C19E69008931E8 /* MyWebView.swift */,
 				5F868E7B28B739C300549A4D /* HapticTest.swift */,
+				5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */,
 				5FC21F1D2877CE250099381C /* Assets.xcassets */,
 				5FC21F1F2877CE250099381C /* Preview Content */,
 			);
@@ -180,6 +183,7 @@
 				5FC43A432888EA2D00CA39B8 /* tabVIew.swift in Sources */,
 				5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */,
 				5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */,
+				5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */,
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
 				5FC21F1A2877CE240099381C /* test0708App.swift in Sources */,
 				5FBD49192887DE3C00E4698B /* calendar.swift in Sources */,

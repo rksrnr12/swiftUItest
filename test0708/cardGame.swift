@@ -25,11 +25,31 @@ struct cardGame: View {
     @State private var isThirdCard = false
     @State private var isEnd = false
     
+    @State private var isSelected = false
+    @Namespace var cardGame
+    
     let columns = [GridItem(),GridItem(),GridItem()]
     
     var body: some View {
+        if !isSelected {
+            Button {
+                withAnimation {
+                    isSelected.toggle()
+                }
+            } label: {
+                cardImageView
+                    .matchedGeometryEffect(id: "card", in: cardGame)
+                    .frame(width: 100, height: 125)
+            }
+        }else {
+            cardGameView
+                .matchedGeometryEffect(id: "card", in: cardGame)
+                .frame(maxWidth: .infinity,maxHeight: .infinity)
+        }
+    }
+    
+    var cardGameView: some View {
         VStack{
-            
             Text("점수는 = \(count)")
                 .font(.title)
             
@@ -103,11 +123,23 @@ struct cardGame: View {
         })
         
         
-//        .alert("축하합니다!!", isPresented: $isEnd, actions: {
-//
-//
-//        })
+        //        .alert("축하합니다!!", isPresented: $isEnd, actions: {
+        //
+        //
+        //        })
         .animation(.easeInOut(duration: 1.0), value: selectedColorAry)
+    }
+    var cardImageView: some View {
+        ZStack{
+        RoundedRectangle(cornerRadius: 20)
+            .fill(.white)
+            .frame(width: 100, height: 125)
+            .shadow(color: .gray, radius: 2, x: 0, y: 0)
+        Image(systemName: "suit.club.fill")
+            .resizable()
+            .frame(width: 40, height: 40)
+            .foregroundColor(.black)
+        }
     }
 }
 
