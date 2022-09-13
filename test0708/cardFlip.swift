@@ -64,6 +64,7 @@ struct cardFlip: View {
                 flipCard()
             }
         }
+        .buttonStyle(cardButtonStyle())
     }
     
     @ViewBuilder
@@ -72,7 +73,7 @@ struct cardFlip: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.white)
                 .frame(width: width, height: height)
-                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                .shadow(color: .black, radius: 2, x: 2, y: 2)
             Image(systemName: "suit.club.fill")
                 .resizable()
                 .frame(width: 40, height: 40)
@@ -86,7 +87,7 @@ struct cardFlip: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.gray)
                 .frame(width: width, height: height)
-                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                .shadow(color: .black, radius: 2, x: 2, y: 2)
             Image(systemName: "suit.club.fill")
                 .resizable()
                 .frame(width: 40, height: 40)
@@ -96,48 +97,9 @@ struct cardFlip: View {
     
 }
 
-//struct cardFront:View {
-//
-//    let width : CGFloat
-//    let height : CGFloat
-//    @Binding var degree : Double
-//
-//    var body: some View{
-//        ZStack{
-//            RoundedRectangle(cornerRadius: 20)
-//                .fill(.white)
-//                .frame(width: width, height: height)
-//                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-//            Image(systemName: "suit.club.fill")
-//                .resizable()
-//                .frame(width: 40, height: 40)
-//                .foregroundColor(cardColor)
-//        }.rotation3DEffect(Angle.degrees(degree), axis: (x:0, y: 1, z: 0))
-//    }
-//}
-
-//struct cardBack:View {
-//    
-//    let width : CGFloat
-//    let height : CGFloat
-//    @Binding var degree : Double
-//    
-//    var body: some View{
-//        ZStack{
-//            RoundedRectangle(cornerRadius: 20)
-//                .fill(.gray)
-//                .frame(width: width, height: height)
-//                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-//            Image(systemName: "suit.club.fill")
-//                .resizable()
-//                .frame(width: 40, height: 40)
-//                .foregroundColor(.red)
-//        }.rotation3DEffect(Angle.degrees(degree), axis: (x:0, y: 1, z: 0))
-//    }
-//}
-
-//struct cardFlip_Previews: PreviewProvider {
-//    static var previews: some View {
-//        cardFlip()
-//    }
-//}
+struct cardButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.8 : 1)
+    }
+}

@@ -11,9 +11,13 @@ import Foundation
 struct ContentView: View {
     
     @Environment(\.presentationMode) var presentMode
+    @AppStorage("myDayOff") var myDayOff = 2.5
     @State private var isShowingSheet = false
     @State private var isPush = false
     @State private var test = ""
+    @State private var isdayOff = false
+    @State private var isHalfdayOff = false
+    @State private var isAddDay = false
     
     
     var body: some View {
@@ -49,11 +53,10 @@ struct ContentView: View {
                     //                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white),)
                     //                }
                     NavigationLink("cardGame") {
-                            cardGame()
+                        cardGame()
                     }
                     NavigationLink(isActive: $isPush) {
                         URLTest()
-                            .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Text("url 오픈")
                     }
@@ -63,6 +66,40 @@ struct ContentView: View {
                 }
                 NavigationLink("AnimationTest") {
                     AnimationTest()
+                }
+                Text("내 연차 = \(String(format: "%.1f", myDayOff))일")
+                HStack{
+                    
+                    Button {
+                        isdayOff.toggle()
+                    } label: {
+                        Text("연차 사용")
+                    }
+                    
+                    Button {
+                        isHalfdayOff.toggle()
+                    } label: {
+                        Text("반차 사용")
+                    }
+                }.alert("반차사용??", isPresented: $isHalfdayOff) {
+                    HStack{
+                        Button("아니요") {
+                            isHalfdayOff = false
+                        }
+                        Button("네") {
+                            myDayOff -= 0.5
+                        }
+                    }
+                }
+                .alert("연차사용??", isPresented: $isdayOff) {
+                    HStack{
+                        Button("아니요") {
+                            isdayOff = false
+                        }
+                        Button("네") {
+                            myDayOff -= 1
+                        }
+                    }
                 }
             }
         }
@@ -76,15 +113,24 @@ struct ContentView: View {
                     }
                     Spacer()
                 }
-                
+            }
+            ToolbarItem {
+                Text("test")
             }
         }
         .onOpenURL { url in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 isPush = true
             }
-            
         }
+//        .onAppear{
+//            myDayOff = 2.5
+//            let format = DateFormatter()
+//            format.dateFormat = "dd"
+//            if format.string(from: Date()) == "17" {
+//                myDayOff += 1
+//            }
+//        }
     }
 }
 
