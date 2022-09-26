@@ -25,27 +25,11 @@ struct cardGame: View {
     @State private var isThirdCard = false
     @State private var isEnd = false
     
-    @State private var isSelected = false
-    @Namespace var cardGame
     
     let columns = [GridItem(),GridItem(),GridItem()]
     
     var body: some View {
-        if !isSelected {
-            Button {
-                withAnimation {
-                    isSelected.toggle()
-                }
-            } label: {
-                cardImageView
-                    .matchedGeometryEffect(id: "card", in: cardGame)
-                    .frame(width: 100, height: 125)
-            }
-        }else {
-            cardGameView
-                .matchedGeometryEffect(id: "card", in: cardGame)
-                .frame(maxWidth: .infinity,maxHeight: .infinity)
-        }
+        cardGameView
     }
     
     var cardGameView: some View {
@@ -121,25 +105,7 @@ struct cardGame: View {
         }, message: {
             Text("당신의 점수는 \(count)점 입니다")
         })
-        
-        
-        //        .alert("축하합니다!!", isPresented: $isEnd, actions: {
-        //
-        //
-        //        })
         .animation(.easeInOut(duration: 1.0), value: selectedColorAry)
-    }
-    var cardImageView: some View {
-        ZStack{
-        RoundedRectangle(cornerRadius: 20)
-            .fill(.white)
-            .frame(width: 100, height: 125)
-            .shadow(color: .gray, radius: 2, x: 0, y: 0)
-        Image(systemName: "suit.club.fill")
-            .resizable()
-            .frame(width: 40, height: 40)
-            .foregroundColor(.black)
-        }
     }
 }
 

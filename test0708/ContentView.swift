@@ -9,11 +9,15 @@ import SwiftUI
 import Foundation
 
 struct ContentView: View {
-    
     @Environment(\.presentationMode) var presentMode
+    @AppStorage("myDayOff") var myDayOff = 2.5
+    @State private var dayOffString = ""
     @State private var isShowingSheet = false
     @State private var isPush = false
     @State private var test = ""
+    @State private var isdayOff = false
+    @State private var isHalfdayOff = false
+    @State private var isOpen = false
     
     
     var body: some View {
@@ -45,15 +49,11 @@ struct ContentView: View {
                     NavigationLink("MapTest") {
                         MapTest()
                     }
-                    //                NavigationLink("cardFlip") {
-                    //                    cardFlip(cardColor: .constant(.blue),isShuffle:.constant(false),selectedColor: .constant(.white),)
-                    //                }
                     NavigationLink("cardGame") {
-                            cardGame()
+                        cardGame()
                     }
                     NavigationLink(isActive: $isPush) {
                         URLTest()
-                            .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Text("url 오픈")
                     }
@@ -64,26 +64,74 @@ struct ContentView: View {
                 NavigationLink("AnimationTest") {
                     AnimationTest()
                 }
+                Text("내 연차 = \(String(format: "%.1f", myDayOff))일")
+                HStack{
+                    
+                    Button {
+                        isdayOff.toggle()
+                    } label: {
+                        Text("연차 사용")
+                    }
+                    
+                    Button {
+                        isHalfdayOff.toggle()
+                    } label: {
+                        Text("반차 사용")
+                    }
+                }.alert("반차사용??", isPresented: $isHalfdayOff) {
+                    HStack{
+                        Button("아니요") {
+                            print("안함")
+                        }
+                        Button("네") {
+                            myDayOff -= 0.5
+                        }
+                    }
+                }
+                .alert("연차사용??", isPresented: $isdayOff) {
+                    HStack{
+                        Button("아니요") {
+                            print("안함")
+                        }
+                        Button("네") {
+                            myDayOff -= 1
+                        }
+                    }
+                }
             }
         }
         .toolbar {
-            ToolbarItem(placement:.bottomBar) {
-                HStack{
-                    Button {
-                        isShowingSheet.toggle()
-                    } label: {
-                        Text("설정")
-                    }
-                    Spacer()
+            ToolbarItem() {
+                Button {
+                    isOpen.toggle()
+                } label: {
+                    Text("설정")
                 }
-                
+                .alert("연차 수정", isPresented: $isOpen) {
+                    TextField("숫자만 입력", text: $dayOffString).keyboardType(.numbersAndPunctuation)
+                    HStack{
+                        Button("취소") {
+                            dayOffString = ""
+                        }
+                        Button("수정") {
+                            guard let num = Double(dayOffString)
+                            else {
+                                HapticManager.manager.notification(type: .error)
+                                return
+                            }
+                            myDayOff = num
+                            dayOffString = ""
+                        }
+                    }
+                } message: {
+                    Text("날짜를 입력하세요")
+                }
             }
         }
         .onOpenURL { url in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 isPush = true
             }
-            
         }
     }
 }

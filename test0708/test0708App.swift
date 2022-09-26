@@ -9,22 +9,24 @@ import SwiftUI
 
 @main
 struct test0708App: App {
+    @UIApplicationDelegateAdaptor var appDelegate:MyAppDelegate
+    
     var body: some Scene {
         WindowGroup {
             NavigationView{
                 ContentView()
                     .navigationBarTitleDisplayMode(.inline)
-                    .onOpenURL { url in
-                        print("url = \(url)")
-                        print("uri.path = \(url.path)")
-                        print("url.apos = \(url.absoluteString)")
-                        if url.query != nil {
-                            print("url.query = \(url.query!)")
-                        }
-                        if url.absoluteString == "test0708://URLtest" {
-                           print("여기 실행")
-                        }
-                    }
+//                    .onOpenURL { url in
+//                        print("url = \(url)")
+//                        print("uri.path = \(url.path)")
+//                        print("url.apos = \(url.absoluteString)")
+//                        if url.query != nil {
+//                            print("url.query = \(url.query!)")
+//                        }
+//                        if url.absoluteString == "test0708://URLtest" {
+//                           print("여기 실행")
+//                        }
+//                    }
                 Text("메뉴를 선택하세요")
             }
         }
