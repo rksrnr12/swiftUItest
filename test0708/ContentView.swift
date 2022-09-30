@@ -64,6 +64,9 @@ struct ContentView: View {
                 NavigationLink("AnimationTest") {
                     AnimationTest()
                 }
+                NavigationLink("GestureTest") {
+                    GestureTest()
+                }
                 Text("내 연차 = \(String(format: "%.1f", myDayOff))일")
                 HStack{
                     
