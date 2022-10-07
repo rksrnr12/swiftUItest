@@ -41,19 +41,16 @@ struct GestureTest: View {
                 case .one:
                     cardGame()
                         .frame(maxWidth:.infinity ,maxHeight:.infinity)
-                        .transition(.move(edge: .leading))
-                        //.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
+
+//                        .transition(.move(edge: .leading))
                 case .two:
                     URLTest()
                         .frame(maxWidth:.infinity ,maxHeight:.infinity)
-                        .transition(.asymmetric(insertion: .move(edge: testBool ? .leading : .trailing), removal: .move(edge: testBool ? .trailing : .leading)))
-
-                        //.transition(.asymmetric(insertion: .move(edge: testBool ? .leading : .trailing), removal: .move(edge: testBool ? .trailing : .leading)))
+//                        .transition(.asymmetric(insertion: .move(edge: testBool ? .leading : .trailing), removal: .move(edge: testBool ? .trailing : .leading)))
                 case .three:
                     AnimationTest()
                         .frame(maxWidth:.infinity ,maxHeight:.infinity)
-                        .transition(.move(edge: .trailing))
-                        //.transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+//                        .transition(.move(edge: .trailing))
                 }
             }
         }.animation(.easeInOut(duration: 0.3), value: testCase)

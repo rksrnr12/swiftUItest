@@ -52,6 +52,9 @@ struct ContentView: View {
                     NavigationLink("cardGame") {
                         cardGame()
                     }
+//                    NavigationLink(value: $isPush) {
+//                        Text("url 오픈")
+//                    }
                     NavigationLink(isActive: $isPush) {
                         URLTest()
                     } label: {
@@ -66,6 +69,9 @@ struct ContentView: View {
                 }
                 NavigationLink("GestureTest") {
                     GestureTest()
+                }
+                NavigationLink("islandTest") {
+                    islandTest()
                 }
                 Text("내 연차 = \(String(format: "%.1f", myDayOff))일")
                 HStack{
