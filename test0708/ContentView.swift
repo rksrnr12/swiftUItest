@@ -43,8 +43,8 @@ struct ContentView: View {
                     NavigationLink("floationgButton") {
                         floatingButton()
                     }
-                    NavigationLink("datePicker") {
-                        datePicker()
+                    NavigationLink("algorithms") {
+                        algorithmsTest()
                     }
                     NavigationLink("MapTest") {
                         MapTest()
@@ -55,11 +55,11 @@ struct ContentView: View {
 //                    NavigationLink(value: $isPush) {
 //                        Text("url 오픈")
 //                    }
-                    NavigationLink(isActive: $isPush) {
-                        URLTest()
-                    } label: {
-                        Text("url 오픈")
-                    }
+//                    NavigationLink(isActive: $isPush) {
+//                        URLTest()
+//                    } label: {
+//                        Text("url 오픈")
+//                    }
                 }
                 NavigationLink("HapticTest") {
                     HapticTest()
@@ -168,8 +168,3 @@ struct ViewTwo: View {
 }
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
