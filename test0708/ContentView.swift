@@ -11,160 +11,173 @@ import Foundation
 struct ContentView: View {
     @Environment(\.presentationMode) var presentMode
     @AppStorage("myDayOff") var myDayOff = 2.5
-    @State private var dayOffString = ""
-    @State private var isShowingSheet = false
-    @State private var isPush = false
-    @State private var test = ""
     @State private var isdayOff = false
     @State private var isHalfdayOff = false
     @State private var isOpen = false
+    @State private var dayOffString = ""
+    @State private var ColorArray:[Color] = Array(repeating: .white, count: 20)
+    @State private var test = 3
+        
+    var name = ["바차트","달력","탭뷰","플로팅버튼","알고리즘","지도","카드게임","URL","햅틱","애니메이션","아일랜드"]
     
+    func insert() {
+        ColorArray.removeAll()
+        while ColorArray.count != name.count {
+            ColorArray.append(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)).opacity(0.8))
+        }
+    }
+    
+    func gridColumns() -> [GridItem] {
+        Array(repeating: .init(.flexible()), count: test)
+    }
     
     var body: some View {
-        
         ScrollView{
-            VStack(spacing:20){
-                Group{
-                    Button("Show sheet", action: {
-                        isShowingSheet.toggle()
-                    })
-                    .sheet(isPresented: $isShowingSheet, content: {
-                        ViewOne(showParentSheet: $isShowingSheet)
-                    })
-                    NavigationLink("barChart") {
-                        BarChart()
-                    }
-                    NavigationLink("calendar") {
-                        calendar()
-                    }
-                    NavigationLink("tabView") {
-                        tabVIew()
-                    }
-                    NavigationLink("floationgButton") {
-                        floatingButton()
-                    }
-                    NavigationLink("algorithms") {
-                        algorithmsTest()
-                    }
-                    NavigationLink("MapTest") {
-                        MapTest()
-                    }
-                    NavigationLink("cardGame") {
-                        cardGame()
-                    }
-//                    NavigationLink(value: $isPush) {
-//                        Text("url 오픈")
-//                    }
-//                    NavigationLink(isActive: $isPush) {
-//                        URLTest()
-//                    } label: {
-//                        Text("url 오픈")
-//                    }
-                }
-                NavigationLink("HapticTest") {
-                    HapticTest()
-                }
-                NavigationLink("AnimationTest") {
-                    AnimationTest()
-                }
-                NavigationLink("GestureTest") {
-                    GestureTest()
-                }
-                NavigationLink("islandTest") {
-                    islandTest()
-                }
-                Text("내 연차 = \(String(format: "%.1f", myDayOff))일")
-                HStack{
-                    
-                    Button {
-                        isdayOff.toggle()
-                    } label: {
-                        Text("연차 사용")
-                    }
-                    
-                    Button {
-                        isHalfdayOff.toggle()
-                    } label: {
-                        Text("반차 사용")
-                    }
-                }.alert("반차사용??", isPresented: $isHalfdayOff) {
-                    HStack{
-                        Button("아니요") {
-                            print("안함")
-                        }
-                        Button("네") {
-                            myDayOff -= 0.5
-                        }
-                    }
-                }
-                .alert("연차사용??", isPresented: $isdayOff) {
-                    HStack{
-                        Button("아니요") {
-                            print("안함")
-                        }
-                        Button("네") {
-                            myDayOff -= 1
+            LazyVStack(pinnedViews:.sectionHeaders) {
+                Section(header: dayOffView) {
+                    LazyVGrid(columns: gridColumns()) {
+                        ForEach(Array(name.enumerated()),id: \.offset) { index,name in
+                            NavigationLink {
+                                otherViews(index: index)
+                            } label: {
+                                Text(name)
+                                    .frame(maxWidth: .infinity,minHeight: 100)
+                                    .foregroundColor(.black)
+                                    .background(ColorArray[index])
+//                                    .background(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)).opacity(0.8))
+                                    .cornerRadius(15)
+                            }
                         }
                     }
                 }
             }
         }
         .toolbar {
-            ToolbarItem() {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    isOpen.toggle()
-                } label: {
-                    Text("설정")
-                }
-                .alert("연차 수정", isPresented: $isOpen) {
-                    TextField("숫자만 입력", text: $dayOffString).keyboardType(.numbersAndPunctuation)
-                    HStack{
-                        Button("취소") {
-                            dayOffString = ""
-                        }
-                        Button("수정") {
-                            guard let num = Double(dayOffString)
-                            else {
-                                HapticManager.manager.notification(type: .error)
-                                return
-                            }
-                            myDayOff = num
-                            dayOffString = ""
-                        }
+                    withAnimation {
+                        test = .random(in: 2...10)
+                        insert()
                     }
-                } message: {
-                    Text("날짜를 입력하세요")
+                } label: {
+                    Text("그리드변경")
+                }
+
+            }
+            ToolbarItemGroup(placement:.bottomBar) {
+                Spacer()
+                toolBarBtn
+            }
+        }
+        .onAppear{
+            insert()
+        }
+    }
+    
+    
+    @ViewBuilder
+    func otherViews(index:Int) -> some View {
+        switch index {
+        case 0 :
+            BarChart()
+        case 1 :
+            calendar()
+        case 2:
+            tabVIew()
+        case 3:
+            floatingButton()
+        case 4:
+            GestureTest()
+        case 5:
+            MapTest()
+        case 6:
+            cardGame()
+        case 7:
+            URLTest()
+        case 8:
+            HapticTest()
+        case 9:
+            AnimationTest()
+        case 10:
+            islandTest()
+        default:
+            Text("")
+        }
+    }
+    
+    
+    var dayOffView:some View {
+        VStack(spacing:20){
+            Text("내 연차 = \(String(format: "%.1f", myDayOff))일")
+            HStack{
+                
+                Button {
+                    isdayOff.toggle()
+                } label: {
+                    Text("연차 사용")
+                }
+                
+                Button {
+                    isHalfdayOff.toggle()
+                } label: {
+                    Text("반차 사용")
+                }
+            }.alert("반차사용??", isPresented: $isHalfdayOff) {
+                HStack{
+                    Button("아니요") {
+                        print("안함")
+                    }
+                    Button("네") {
+                        myDayOff -= 0.5
+                    }
                 }
             }
-        }
-        .onOpenURL { url in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                isPush = true
+            .alert("연차사용??", isPresented: $isdayOff) {
+                HStack{
+                    Button("아니요") {
+                        print("안함")
+                    }
+                    Button("네") {
+                        myDayOff -= 1
+                    }
+                }
             }
-        }
+        }.frame(maxWidth: .infinity)
+            .padding(.vertical,15)
+            .background(Material.bar)
+            .cornerRadius(15)
     }
-}
-
-struct ViewOne: View {
-    @Binding var showParentSheet : Bool
     
-    var body: some View {
-        NavigationView {
-            NavigationLink("Go to ViewTwo", destination: ViewTwo(showParentSheet: $showParentSheet))
-            //.isDetailLink(false)
+    var toolBarBtn: some View {
+        Button {
+            isOpen.toggle()
+        } label: {
+            Text("설정")
+        }
+        .alert("연차 수정", isPresented: $isOpen) {
+            TextField("숫자만 입력", text: $dayOffString).keyboardType(.numbersAndPunctuation)
+            HStack{
+                Button("취소") {
+                    dayOffString = ""
+                }
+                Button("수정") {
+                    guard let num = Double(dayOffString)
+                    else {
+                        HapticManager.manager.notification(type: .error)
+                        return
+                    }
+                    myDayOff = num
+                    dayOffString = ""
+                }
+            }
+        } message: {
+            Text("날짜를 입력하세요")
         }
     }
-}
-
-struct ViewTwo: View {
-    @Binding var showParentSheet : Bool
-    @Environment(\.presentationMode) var presentationMode
     
-    var body: some View {
-        Button("Dismiss sheet here") {
-            showParentSheet = false
-        }
-    }
+    
+    
+    
 }
 
 

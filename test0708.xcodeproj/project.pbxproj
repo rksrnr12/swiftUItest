@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BD51528AF85C7002800F9 /* cardGame.swift */; };
 		5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */; };
-		5F45F2A428C9740E001CFC69 /* GestureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F45F2A328C9740E001CFC69 /* GestureTest.swift */; };
+		5F45F2A428C9740E001CFC69 /* ScrollTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F45F2A328C9740E001CFC69 /* ScrollTest.swift */; };
 		5F4EE982292B09FE00459FCD /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5F4EE981292B09FE00459FCD /* Algorithms */; };
 		5F6BBACF28F01ACE004DAC7A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */; };
 		5F6BBAD128F01ACE004DAC7A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6BBAD028F01ACE004DAC7A /* SwiftUI.framework */; };
@@ -27,7 +27,6 @@
 		5F868E7A28B736AF00549A4D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7928B736AF00549A4D /* HapticManager.swift */; };
 		5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7B28B739C300549A4D /* HapticTest.swift */; };
 		5F885E9D2887C5B8005744F3 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F885E9C2887C5B8005744F3 /* BarChart.swift */; };
-		5F89CD6E28C19E69008931E8 /* MyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F89CD6D28C19E69008931E8 /* MyWebView.swift */; };
 		5F8DD9702890D28300A1DCF2 /* floatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */; };
 		5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D428D1558F00579E4F /* MyAppDelegate.swift */; };
 		5FA414D728D156CE00579E4F /* MySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D628D156CE00579E4F /* MySceneDelegate.swift */; };
@@ -38,7 +37,7 @@
 		5FC21F212877CE250099381C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FC21F202877CE250099381C /* Preview Assets.xcassets */; };
 		5FC43A432888EA2D00CA39B8 /* tabVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC43A422888EA2D00CA39B8 /* tabVIew.swift */; };
 		5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB0AD928B36F9300E9B9FC /* URLTest.swift */; };
-		5FF0D3292893A62800D6FA7C /* algorithmsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0D3282893A62800D6FA7C /* algorithmsTest.swift */; };
+		5FF0D3292893A62800D6FA7C /* GestureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0D3282893A62800D6FA7C /* GestureTest.swift */; };
 		5FFC80CF28ACCDE100272E67 /* MapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC80CE28ACCDE100272E67 /* MapTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,7 @@
 /* Begin PBXFileReference section */
 		5F1BD51528AF85C7002800F9 /* cardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardGame.swift; sourceTree = "<group>"; };
 		5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTest.swift; sourceTree = "<group>"; };
-		5F45F2A328C9740E001CFC69 /* GestureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTest.swift; sourceTree = "<group>"; };
+		5F45F2A328C9740E001CFC69 /* ScrollTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTest.swift; sourceTree = "<group>"; };
 		5F6BBACC28F01ACE004DAC7A /* test0708widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = test0708widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5F6BBAD028F01ACE004DAC7A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -85,7 +84,6 @@
 		5F868E7928B736AF00549A4D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5F868E7B28B739C300549A4D /* HapticTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTest.swift; sourceTree = "<group>"; };
 		5F885E9C2887C5B8005744F3 /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
-		5F89CD6D28C19E69008931E8 /* MyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWebView.swift; sourceTree = "<group>"; };
 		5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = floatingButton.swift; sourceTree = "<group>"; };
 		5FA414D428D1558F00579E4F /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		5FA414D628D156CE00579E4F /* MySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +96,7 @@
 		5FC43A422888EA2D00CA39B8 /* tabVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabVIew.swift; sourceTree = "<group>"; };
 		5FCB0AD928B36F9300E9B9FC /* URLTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTest.swift; sourceTree = "<group>"; };
 		5FCB0ADB28B3744600E9B9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		5FF0D3282893A62800D6FA7C /* algorithmsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = algorithmsTest.swift; sourceTree = "<group>"; };
+		5FF0D3282893A62800D6FA7C /* GestureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTest.swift; sourceTree = "<group>"; };
 		5FFC80CE28ACCDE100272E67 /* MapTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,15 +176,14 @@
 				5FBD49182887DE3C00E4698B /* calendar.swift */,
 				5FC43A422888EA2D00CA39B8 /* tabVIew.swift */,
 				5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */,
-				5FF0D3282893A62800D6FA7C /* algorithmsTest.swift */,
+				5FF0D3282893A62800D6FA7C /* GestureTest.swift */,
 				5FFC80CE28ACCDE100272E67 /* MapTest.swift */,
 				5F7AE12A28AE356E00DA4173 /* cardFlip.swift */,
 				5F1BD51528AF85C7002800F9 /* cardGame.swift */,
 				5FCB0AD928B36F9300E9B9FC /* URLTest.swift */,
-				5F89CD6D28C19E69008931E8 /* MyWebView.swift */,
 				5F868E7B28B739C300549A4D /* HapticTest.swift */,
 				5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */,
-				5F45F2A328C9740E001CFC69 /* GestureTest.swift */,
+				5F45F2A328C9740E001CFC69 /* ScrollTest.swift */,
 				5F6BBAE828F01B22004DAC7A /* islandTest.swift */,
 				5FC21F1D2877CE250099381C /* Assets.xcassets */,
 				5FC21F1F2877CE250099381C /* Preview Content */,
@@ -335,11 +332,10 @@
 				5F6BBAE728F01AFC004DAC7A /* Attribute.swift in Sources */,
 				5FBD49192887DE3C00E4698B /* calendar.swift in Sources */,
 				5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */,
-				5FF0D3292893A62800D6FA7C /* algorithmsTest.swift in Sources */,
+				5FF0D3292893A62800D6FA7C /* GestureTest.swift in Sources */,
 				5FFC80CF28ACCDE100272E67 /* MapTest.swift in Sources */,
-				5F45F2A428C9740E001CFC69 /* GestureTest.swift in Sources */,
+				5F45F2A428C9740E001CFC69 /* ScrollTest.swift in Sources */,
 				5F8DD9702890D28300A1DCF2 /* floatingButton.swift in Sources */,
-				5F89CD6E28C19E69008931E8 /* MyWebView.swift in Sources */,
 				5F868E7A28B736AF00549A4D /* HapticManager.swift in Sources */,
 				5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */,
 			);
