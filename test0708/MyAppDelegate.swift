@@ -25,7 +25,7 @@ class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDel
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        myDayOff -= 1
+        myDayOff += 1
     }
     
     
