@@ -9,17 +9,20 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-//struct test0708widgetAttributes: ActivityAttributes {
-//    public struct ContentState: Codable, Hashable {
-//        // Dynamic stateful properties about your activity go here!
-//        var value: Int
-//    }
-//
-//    // Fixed non-changing properties about your activity go here!
-//    var name: String
-//}
+struct test0708widgetAttributes: ActivityAttributes {
+    public struct ContentState: Codable, Hashable {
+        // Dynamic stateful properties about your activity go here!
+        var value: Int
+    }
+
+    // Fixed non-changing properties about your activity go here!
+    var name: String
+}
 
 struct test0708widgetLiveActivity: Widget {
+    
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: Attributes.self) { context in
             // Lock screen/banner UI goes here
@@ -34,23 +37,38 @@ struct test0708widgetLiveActivity: Widget {
             DynamicIsland {
                 // Expanded UI goes here.  Compose the expanded UI through
                 // various regions, like leading/trailing/center/bottom
+                //MARK: - 큰화면 왼쪽
                 DynamicIslandExpandedRegion(.leading) {
-                     Text("😃")
+                    VStack{
+                        Text("😃")
+                    }
                 }
+                //MARK: - 큰화면 오른쪽
                 DynamicIslandExpandedRegion(.trailing) {
-                    Image(systemName: "paperplane.fill")
-                        .foregroundColor(.green)
+                    VStack{
+                        Image(systemName: "paperplane.fill")
+                            .foregroundColor(.green)
+                    }
+                   
                 }
+                //MARK: - 큰화면 아래
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("아래")
+                    VStack{
+                        Text("아래")
+                    }
                     // more content
                 }
             }
+            //MARK: - 작은 왼쪽
              compactLeading: {
                 Text(context.state.testname)
-            } compactTrailing: {
+            }
+            //MARK: - 작은 오른쪽
+            compactTrailing: {
                 Text(String(context.state.testnum))
-            } minimal: {
+            }
+            //MARK: - 2개 실행 동그라미
+            minimal: {
                 Text(context.state.testname)
             }
             .widgetURL(URL(string: "http://www.apple.com"))
