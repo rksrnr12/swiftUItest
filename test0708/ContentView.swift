@@ -17,7 +17,7 @@ struct ContentView: View {
     @State private var ColorArray:[Color] = Array(repeating: .white, count: 20)
     @State private var itemCount = 3
     
-    var name = ["바차트","달력","탭뷰","플로팅버튼","제스쳐테스트","지도","카드게임","URL","햅틱","애니메이션","아일랜드"]
+    var name = ["바차트","달력","탭뷰","플로팅버튼","제스쳐테스트","지도","카드게임","URL","햅틱","애니메이션","게이지테스트","아일랜드"]
     
     ///색상 재배치
     func insert() {
@@ -99,6 +99,8 @@ struct ContentView: View {
         case 9:
             AnimationTest()
         case 10:
+            GaugeTest()
+        case 11 :
             islandTest()
         default:
             Text("")
