@@ -6,20 +6,47 @@
 //
 
 import SwiftUI
+import Combine
+import AVFAudio
 
 struct GaugeTest: View {
     
     @State private var test:Double = 1
     @State private var batteryState:UIDevice.BatteryState = .unknown
     @State private var batteryLevel:Float = 0
+    @State private var myAirPods = "연결안됨"
     
     func myBattery(){
         UIDevice.current.isBatteryMonitoringEnabled = true
         batteryLevel = UIDevice.current.batteryLevel
     }
     
+    func checkAudioBluetooth() {
+        let session = AVAudioSession.sharedInstance()
+        try! session.setCategory(.playAndRecord, mode: .default,options: .allowBluetooth)
+        if let availableInputs = session.availableInputs {
+            for i in availableInputs {
+                if i.portType == .bluetoothHFP {
+                    myAirPods = i.portName
+                    print(i.portName)
+                }
+            }
+        } else {
+            myAirPods = "연결안됨"
+        }
+        
+    }
+    
+    
+    
     var body: some View {
         VStack(spacing:30){
+            HStack{
+                Text("내")
+                Image(systemName: "airpodspro")
+                Text("= \(myAirPods)")
+            }.font(.largeTitle)
+            
             HStack{
                 Gauge(value: test,in:0...100) {
                     Text("")
@@ -38,7 +65,7 @@ struct GaugeTest: View {
                         }
                     }else{
                         Image(systemName: "iphone.gen3")
-                          // .font(.title2)
+                          //.font(.title2)
                     }
                 }.gaugeStyle(.accessoryCircularCapacity)
                     .tint(Color.green)
@@ -76,10 +103,20 @@ struct GaugeTest: View {
                     Text("빼기")
                 }
             }
+            
+            Button {
+                withAnimation {
+                    checkAudioBluetooth()
+                }
+            } label: {
+                Text("확인")
+            }
+
         }.animation(.default, value: test)
             .onAppear {
                 withAnimation {
                     myBattery()
+                    checkAudioBluetooth()
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: UIDevice.batteryStateDidChangeNotification)) { _ in
@@ -94,3 +131,5 @@ struct GaugeTest: View {
             }
     }
 }
+
+
