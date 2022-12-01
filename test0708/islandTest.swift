@@ -41,7 +41,7 @@ struct islandTest: View {
             }
         }
         .padding()
-        .onReceive(timer) { _ in
+        .onReceive(timer) { out in
             print("여기")
             time += 1
             test2()            

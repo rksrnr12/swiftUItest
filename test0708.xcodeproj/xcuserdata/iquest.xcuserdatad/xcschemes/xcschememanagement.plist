@@ -34,11 +34,15 @@
 		</dict>
 		<key>test0708.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
 		<key>test0708widgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
@@ -51,6 +55,11 @@
 			<true/>
 		</dict>
 		<key>5FC21F152877CE240099381C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FCCE414293831D70007BF16</key>
 		<dict>
 			<key>primary</key>
 			<true/>

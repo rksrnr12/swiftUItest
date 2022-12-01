@@ -16,6 +16,10 @@ struct URLTest: View {
     var body: some View {
         VStack(spacing:10){
             Text("지도")
+                .background(Group<EmptyView> {
+                    Self._printChanges()
+                    return EmptyView()
+                })
                 .onTapGesture {
                     openURL(URL(string:"Maps:")!)
                 }

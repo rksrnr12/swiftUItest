@@ -90,7 +90,6 @@ struct GaugeTest: View {
                     if test < 100{
                         test += 1
                     }
-                    print(test)
                 } label: {
                     Text("더하기")
                 }
@@ -98,7 +97,6 @@ struct GaugeTest: View {
                     if test > 0{
                         test -= 1
                     }
-                    print(test)
                 } label: {
                     Text("빼기")
                 }
