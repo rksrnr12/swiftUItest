@@ -29,6 +29,12 @@ struct test0708App: App {
 //                    }
                 Text("메뉴를 선택하세요")
             }
+//            NavigationSplitView {
+//                ContentView()
+//            } detail: {
+//                Text("test")
+//            }
+
         }
     }
 }

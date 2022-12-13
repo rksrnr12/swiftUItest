@@ -9,17 +9,19 @@ import SwiftUI
 import ActivityKit
 import Combine
 
-struct islandTest: View {
+struct islandTest<content:View>: View {
     
     @State private var test = Color(red: 0.98, green: 0.9, blue: 0.2)
     @State private var time = 0
     @State private var text = "타이머 시작"
     @State private var bool = false
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+    var testView: (_ a:Int,_ b:Int) -> content
+
     
     var body: some View {
         VStack {
+            testView(0, 1)
             Text("")
             Button {
                 timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -35,6 +37,8 @@ struct islandTest: View {
                 Text("중지")
             }
             Button {
+                timer.upstream.connect().cancel()
+                time = 0
                 test3()
             } label: {
                 Text("아일랜드 중단")
@@ -44,7 +48,7 @@ struct islandTest: View {
         .onReceive(timer) { out in
             print("여기")
             time += 1
-            test2()            
+            test2()
         }
     }
     

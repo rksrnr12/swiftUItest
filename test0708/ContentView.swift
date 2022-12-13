@@ -46,7 +46,7 @@ struct ContentView: View {
                                     .foregroundColor(.black)
                                     .background(ColorArray[index])
                                     .cornerRadius(15)
-                            }
+                            }.buttonStyle(PushButtonStyle())
                         }
                     }
                 }
@@ -55,7 +55,10 @@ struct ContentView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    withAnimation {
+                    //response:총 애니메이션 시간
+                    //damping:튕기는 범위 작을수록 큼
+                    //blendDuration: 튕기는 시간
+                    withAnimation(.spring(response: 0.7,dampingFraction: 0.725,blendDuration: 1.0)) {
                         itemCount = .random(in: 2...10)
                         insert()
                     }
@@ -101,7 +104,14 @@ struct ContentView: View {
         case 10:
             GaugeTest()
         case 11 :
-            islandTest()
+            islandTest { a, b in
+                Button {
+                    print(a)
+                    print(b)
+                } label: {
+                    Text(String(a))
+                }
+            }
         default:
             Text("")
         }

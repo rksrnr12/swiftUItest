@@ -26,12 +26,14 @@ struct test0708widgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: Attributes.self) { context in
             // Lock screen/banner UI goes here
-            VStack {
-                Text(context.attributes.total)
-                Text(String(context.attributes.number))
+            HStack {
+                Text(context.state.testname)
+                Spacer()
+                Text(String(context.state.testnum))
             }
             .activityBackgroundTint(Color.cyan)
             .activitySystemActionForegroundColor(Color.black)
+            .padding(.horizontal,20)
             
         } dynamicIsland: { context in
             DynamicIsland {
@@ -69,7 +71,7 @@ struct test0708widgetLiveActivity: Widget {
             }
             //MARK: - 2개 실행 동그라미
             minimal: {
-                Text(context.state.testname)
+                Text(String(context.state.testnum))
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)

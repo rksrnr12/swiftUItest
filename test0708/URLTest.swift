@@ -26,7 +26,7 @@ struct URLTest: View {
             Text("문자")
                 .onTapGesture {
                     openURL(URL(string: "sms:01027085060")!)
-                }.buttonStyle(cardButtonStyle())
+                }.buttonStyle(PushButtonStyle())
             Text("카카오톡")
                 .onTapGesture {
                     openURL(URL(string: "kakaotalk://")!) { accepted in

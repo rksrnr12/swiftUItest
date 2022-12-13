@@ -37,9 +37,8 @@ struct GaugeTest: View {
         
     }
     
-    
-    
     var body: some View {
+        
         VStack(spacing:30){
             HStack{
                 Text("내")
@@ -65,7 +64,7 @@ struct GaugeTest: View {
                         }
                     }else{
                         Image(systemName: "iphone.gen3")
-                          //.font(.title2)
+                        //.font(.title2)
                     }
                 }.gaugeStyle(.accessoryCircularCapacity)
                     .tint(Color.green)
@@ -109,7 +108,6 @@ struct GaugeTest: View {
             } label: {
                 Text("확인")
             }
-
         }.animation(.default, value: test)
             .onAppear {
                 withAnimation {
@@ -128,6 +126,7 @@ struct GaugeTest: View {
                 }
             }
     }
+    
 }
 
 

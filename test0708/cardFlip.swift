@@ -64,7 +64,7 @@ struct cardFlip: View {
                 flipCard()
             }
         }
-        .buttonStyle(cardButtonStyle())
+        .buttonStyle(PushButtonStyle())
     }
     
     @ViewBuilder
@@ -97,9 +97,12 @@ struct cardFlip: View {
     
 }
 
-struct cardButtonStyle: ButtonStyle {
+struct PushButtonStyle: ButtonStyle {
+    var isBool = false
     func makeBody(configuration: Configuration) -> some View {
+        let num = isBool ? 1.1 : 0.9
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.8 : 1)
+            .scaleEffect(configuration.isPressed ? num : 1)
     }
 }
+
