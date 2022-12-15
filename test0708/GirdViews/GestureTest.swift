@@ -43,11 +43,22 @@ struct zoomTest<Content:View>:View {
                                     currentAmount = value - 1
                                 }
                                 .onEnded { value in
-                                    withAnimation(.spring()) {
+                                    withAnimation(.spring(response: 0.6,dampingFraction: 0.6)) {
                                         currentAmount = 0
                                     }
                                 }
                         )
+                        .highPriorityGesture(
+                            DragGesture()
+                            .onChanged { gesture in
+                                dragOffset = gesture.translation
+                                print(gesture.translation)
+                            }
+                            .onEnded { gesture in
+                                withAnimation(.spring(response: 0.7,dampingFraction: 0.6)) {
+                                    dragOffset = .zero
+                                }
+                            })
 //                .gesture(
 //                    DragGesture()
 //                        .onChanged { gesture in
@@ -55,9 +66,12 @@ struct zoomTest<Content:View>:View {
 //                            print(gesture.translation)
 //                        }
 //                        .onEnded { gesture in
-//                            dragOffset = .zero
+//                            withAnimation(.spring(response: 0.7,dampingFraction: 0.6)) {
+//                                dragOffset = .zero
+//                            }
 //                        }
 //                )
+                
     }
 }
 

@@ -15,7 +15,11 @@ struct AnimationTest: View {
     var body: some View {
         VStack(alignment:.center){
             imageBtn
-            testView {
+            testView { A, B in
+                Text(A + B)
+                    .foregroundColor(.blue)
+            }
+            testView {A,B in
                 Text("사진을 클릭하세요")
                     .foregroundColor(.green)
             }
