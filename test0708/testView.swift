@@ -9,6 +9,9 @@ import SwiftUI
 
 struct testView<content>: View where content:View  {
     
+    //dismiss할 때 사용
+    @Environment(\.dismiss) private var dismiss
+    
     var testView:content
     var text = "aaa"
     /**

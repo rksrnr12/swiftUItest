@@ -25,7 +25,8 @@ class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDel
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        myDayOff += 1
+        //알림창 누르면 실행
+        print("")
     }
     
     

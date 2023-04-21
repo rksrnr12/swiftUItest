@@ -10,13 +10,14 @@ import Algorithms
 
 struct GestureTest: View {
     
-    @State private var test = [10,20,30,40,50,60,70,80,90,100]
-    @State private var currentAmount:CGFloat = 0
-    @State private var lastAmount:CGFloat = 1
-    
     var body: some View {
-        zoomTest {
-            Text("test")
+        VStack{
+            zoomTest {
+                Text("상단")
+            }
+            zoomTest {
+                Text("test")
+            }
         }
     }
 
@@ -28,13 +29,14 @@ struct zoomTest<Content:View>:View {
     @State private var currentAmount:CGFloat = 0
     @State private var lastAmount:CGFloat = 1
     @State private var dragOffset = CGSize.zero
+    @State private var bgColor = Color.green
     @ViewBuilder let test:Content
     
     var body: some View {
             test
                 .foregroundColor(.white)
                 .padding(50)
-                .background(Color.green)
+                .background(bgColor)
                 .offset(dragOffset)
                 .scaleEffect(currentAmount + lastAmount)
                         .gesture(
@@ -45,6 +47,7 @@ struct zoomTest<Content:View>:View {
                                 .onEnded { value in
                                     withAnimation(.spring(response: 0.6,dampingFraction: 0.6)) {
                                         currentAmount = 0
+                                        dragOffset = .zero
                                     }
                                 }
                         )
@@ -53,10 +56,12 @@ struct zoomTest<Content:View>:View {
                             .onChanged { gesture in
                                 dragOffset = gesture.translation
                                 print(gesture.translation)
+                                bgColor = dragOffset.width > 80 ? .blue : .green
                             }
                             .onEnded { gesture in
                                 withAnimation(.spring(response: 0.7,dampingFraction: 0.6)) {
                                     dragOffset = .zero
+                                    bgColor = dragOffset.width > 80 ? .blue : .green
                                 }
                             })
 //                .gesture(

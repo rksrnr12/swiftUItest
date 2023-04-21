@@ -29,6 +29,7 @@
 		5F885E9D2887C5B8005744F3 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F885E9C2887C5B8005744F3 /* BarChart.swift */; };
 		5F8DD9702890D28300A1DCF2 /* floatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */; };
 		5F993B732941C4FA0066055B /* CalendarForScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F993B722941C4FA0066055B /* CalendarForScroll.swift */; };
+		5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3FB3629C42866007771BD /* DropGridViewModel.swift */; };
 		5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D428D1558F00579E4F /* MyAppDelegate.swift */; };
 		5FA414D728D156CE00579E4F /* MySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D628D156CE00579E4F /* MySceneDelegate.swift */; };
 		5FA8C68A294831D5003126F9 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8C689294831D5003126F9 /* testView.swift */; };
@@ -41,6 +42,7 @@
 		5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB0AD928B36F9300E9B9FC /* URLTest.swift */; };
 		5FF0D3292893A62800D6FA7C /* GestureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0D3282893A62800D6FA7C /* GestureTest.swift */; };
 		5FFC80CF28ACCDE100272E67 /* MapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC80CE28ACCDE100272E67 /* MapTest.swift */; };
+		5FFFB21929C19E480036B001 /* testView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFB21829C19E480036B001 /* testView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,7 @@
 		5F885E9C2887C5B8005744F3 /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		5F8DD96F2890D28300A1DCF2 /* floatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = floatingButton.swift; sourceTree = "<group>"; };
 		5F993B722941C4FA0066055B /* CalendarForScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarForScroll.swift; sourceTree = "<group>"; };
+		5FA3FB3629C42866007771BD /* DropGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropGridViewModel.swift; sourceTree = "<group>"; };
 		5FA414D428D1558F00579E4F /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		5FA414D628D156CE00579E4F /* MySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySceneDelegate.swift; sourceTree = "<group>"; };
 		5FA8C689294831D5003126F9 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		5FCB0ADB28B3744600E9B9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5FF0D3282893A62800D6FA7C /* GestureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTest.swift; sourceTree = "<group>"; };
 		5FFC80CE28ACCDE100272E67 /* MapTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTest.swift; sourceTree = "<group>"; };
+		5FFFB21829C19E480036B001 /* testView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +180,10 @@
 				5FA414D628D156CE00579E4F /* MySceneDelegate.swift */,
 				5F6BBAE628F01AFC004DAC7A /* Attribute.swift */,
 				5FC21F192877CE240099381C /* test0708App.swift */,
+				5FC21F1B2877CE240099381C /* ContentView.swift */,
 				5FCC5BB42949939C00D4054F /* GirdViews */,
 				5FA8C689294831D5003126F9 /* testView.swift */,
+				5FFFB21829C19E480036B001 /* testView2.swift */,
 				5FC21F1D2877CE250099381C /* Assets.xcassets */,
 				5FC21F1F2877CE250099381C /* Preview Content */,
 			);
@@ -195,7 +201,7 @@
 		5FCC5BB42949939C00D4054F /* GirdViews */ = {
 			isa = PBXGroup;
 			children = (
-				5FC21F1B2877CE240099381C /* ContentView.swift */,
+				5FA3FB3629C42866007771BD /* DropGridViewModel.swift */,
 				5F868E7928B736AF00549A4D /* HapticManager.swift */,
 				5F885E9C2887C5B8005744F3 /* BarChart.swift */,
 				5FBD49182887DE3C00E4698B /* calendar.swift */,
@@ -343,12 +349,14 @@
 				5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */,
 				5F6BBADE28F01ACF004DAC7A /* test0708widget.intentdefinition in Sources */,
 				5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */,
+				5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */,
 				5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */,
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
 				5FC21F1A2877CE240099381C /* test0708App.swift in Sources */,
 				5F6BBAE728F01AFC004DAC7A /* Attribute.swift in Sources */,
 				5FBD49192887DE3C00E4698B /* calendar.swift in Sources */,
 				5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */,
+				5FFFB21929C19E480036B001 /* testView2.swift in Sources */,
 				5FF0D3292893A62800D6FA7C /* GestureTest.swift in Sources */,
 				5FFC80CF28ACCDE100272E67 /* MapTest.swift in Sources */,
 				5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */,
@@ -378,7 +386,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SU9C6T74BG;
+				DEVELOPMENT_TEAM = 23Z89DEDAB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = test0708widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = test0708widget;
@@ -407,7 +415,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SU9C6T74BG;
+				DEVELOPMENT_TEAM = 23Z89DEDAB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = test0708widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = test0708widget;
@@ -478,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -532,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

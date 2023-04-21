@@ -103,6 +103,12 @@ struct PushButtonStyle: ButtonStyle {
         let num = isBool ? 1.1 : 0.9
         configuration.label
             .scaleEffect(configuration.isPressed ? num : 1)
+            .animation(.easeInOut.speed(2), value: configuration.isPressed)
     }
+}
+
+extension ButtonStyle where Self == PushButtonStyle {
+    
+    internal static var pushAnimation: PushButtonStyle { return PushButtonStyle()}
 }
 

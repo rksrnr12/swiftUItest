@@ -26,7 +26,7 @@ struct cardGame: View {
     @State private var isEnd = false
     
     
-    let columns = [GridItem(),GridItem(),GridItem()]
+    let columns:[GridItem] = .init(repeating: GridItem(), count: 3) // [GridItem(),GridItem(),GridItem()]
     
     var body: some View {
         cardGameView
