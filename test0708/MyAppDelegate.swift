@@ -10,7 +10,6 @@ import UIKit
 import SwiftUI
 
 class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    @AppStorage("myDayOff") var myDayOff = 0.0
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         let notiCenter = UNUserNotificationCenter.current()

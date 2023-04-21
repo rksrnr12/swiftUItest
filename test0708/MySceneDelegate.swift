@@ -10,10 +10,7 @@ import UIKit
 import SwiftUI
 
 class MySceneDelegate: NSObject, UIWindowSceneDelegate {
-    @AppStorage("myDayOff") var myDayOff = 0.0
     var window: UIWindow?
-    
-    
     
     func sceneWillResignActive(_ scene: UIScene) {
         

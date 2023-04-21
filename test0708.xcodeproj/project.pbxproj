@@ -181,6 +181,7 @@
 				5F6BBAE628F01AFC004DAC7A /* Attribute.swift */,
 				5FC21F192877CE240099381C /* test0708App.swift */,
 				5FC21F1B2877CE240099381C /* ContentView.swift */,
+				5FA3FB3629C42866007771BD /* DropGridViewModel.swift */,
 				5FCC5BB42949939C00D4054F /* GirdViews */,
 				5FA8C689294831D5003126F9 /* testView.swift */,
 				5FFFB21829C19E480036B001 /* testView2.swift */,
@@ -201,7 +202,6 @@
 		5FCC5BB42949939C00D4054F /* GirdViews */ = {
 			isa = PBXGroup;
 			children = (
-				5FA3FB3629C42866007771BD /* DropGridViewModel.swift */,
 				5F868E7928B736AF00549A4D /* HapticManager.swift */,
 				5F885E9C2887C5B8005744F3 /* BarChart.swift */,
 				5FBD49182887DE3C00E4698B /* calendar.swift */,

@@ -18,7 +18,7 @@ struct test0708App: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView{
+            NavigationStack{
                 ContentView()
                     .navigationBarTitleDisplayMode(.inline)
                     .onOpenURL { url in
@@ -32,7 +32,6 @@ struct test0708App: App {
                             print("여기 실행")
                         }
                     }
-                Text("메뉴를 선택하세요")
             }
 //            .onAppear{
 //                test = true
