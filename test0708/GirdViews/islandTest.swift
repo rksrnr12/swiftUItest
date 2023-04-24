@@ -11,48 +11,32 @@ import Combine
 
 struct islandTest: View {
     
-    @State private var test = Color(red: 0.98, green: 0.9, blue: 0.2)
-    @State private var time = 0
-    @State private var text = "타이머 시작"
-    @State private var bool = false
-    @State private var timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
-    
+    @State private var time = Date()
     
     var body: some View {
         VStack {
-            Text("")
-            Button {
-                timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                startActivity()
-            } label: {
-                Text("시작")
-                    .foregroundColor(test)
-            }
-            Button {
-                timer.upstream.connect().cancel()
-                updateActivity()
-                text = "타이머 중지"
-            } label: {
-                Text("중지")
-            }
-            Button {
-                timer.upstream.connect().cancel()
-                time = 0
-                endActivity()
-            } label: {
-                Text("아일랜드 중단")
+            
+            HStack {
+                Button {
+                    endActivity()
+                } label: {
+                    Text("중단")
+                }
+                
+                Button {
+                    startActivity()
+                    
+                } label: {
+                    Text("시작")
+                        .foregroundColor(.green)
+                }
             }
         }
         .padding()
-        .onReceive(timer) { out in
-            print("여기")
-            time += 1
-            updateActivity()
-        }
     }
     
     func startActivity() {
-        let contentState = Attributes.ContentState(testname: "시작", testnum: 10)
+        let contentState = Attributes.ContentState(mainText: "시작", timer: Date.now...Date().addingTimeInterval(100))
         let activityAttributes = Attributes(number: 2, total: "시작")
         let activityContent = ActivityContent(state: contentState, staleDate: .distantFuture)
         
@@ -67,7 +51,7 @@ struct islandTest: View {
     }
 
     func updateActivity() {
-        let update = Attributes.ContentState(testname: text , testnum: time)
+        let update = Attributes.ContentState(mainText: "새로고침", timer: Date.now...Date().addingTimeInterval(100))
         let activityContent = ActivityContent(state: update, staleDate: .distantFuture)
         Task{
             for activity in Activity<Attributes>.activities{
@@ -79,7 +63,7 @@ struct islandTest: View {
     }
 
     func endActivity() {
-        let end = Attributes.ContentState(testname: "끝", testnum: 1)
+        let end = Attributes.ContentState(mainText: "끝", timer: Date.now...Date())
         let activityContent = ActivityContent(state: end, staleDate: .distantFuture)
         Task{
             for activity in Activity<Attributes>.activities{
