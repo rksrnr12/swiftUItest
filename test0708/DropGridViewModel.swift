@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class DropGridViewModel: ObservableObject {
-    @Published var gridItems:[Grid] = [Grid(gridText: "바차트"),Grid(gridText: "달력"),Grid(gridText: "탭뷰"),Grid(gridText: "플로팅버튼"),Grid(gridText: "제스쳐테스트"),Grid(gridText: "지도"),Grid(gridText: "카드게임"),Grid(gridText: "URL"),Grid(gridText: "햅틱"),Grid(gridText: "애니메이션"),Grid(gridText: "게이지테스트"),Grid(gridText: "아일랜드")]
+    @Published var gridItems:[Grid] = [Grid(gridText: "달력"),Grid(gridText: "제스쳐테스트"),Grid(gridText: "지도"),Grid(gridText: "카드게임"),Grid(gridText: "URL"),Grid(gridText: "햅틱"),Grid(gridText: "애니메이션"),Grid(gridText: "게이지테스트"),Grid(gridText: "아일랜드")]
     
     @Published var currentGrid:Grid?
 }

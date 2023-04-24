@@ -14,14 +14,25 @@ struct AnimationTest: View {
     
     var body: some View {
         VStack(alignment:.center){
-            imageBtn
-            testView { A, B in
-                Text(A + B)
-                    .foregroundColor(.blue)
-            }
-            testView {A,B in
-                Text("사진을 클릭하세요")
-                    .foregroundColor(.green)
+            if isDetail {
+                Button {
+                    withAnimation(.spring(response: 0.7,dampingFraction: 0.7,blendDuration: 1.0)) {
+                        isDetail.toggle()
+                    }
+                } label: {
+                    Image("dog")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .matchedGeometryEffect(id: "test", in: test)
+                        .frame(width: 300)//isDetail ? 350 : 150)
+                        .padding()
+                        
+                }.buttonStyle(PushButtonStyle(isBool: isDetail))
+                Spacer()
+
+            }else {
+                imageBtn
             }
         }.frame(maxWidth: .infinity,maxHeight: .infinity)
         .background(isDetail ? Color.gray : Color.black)
@@ -38,8 +49,10 @@ struct AnimationTest: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                .frame(width: isDetail ? 350 : 150)
+                .matchedGeometryEffect(id: "test", in: test)
+                .frame(width: 150)//isDetail ? 350 : 150)
                 .padding()
+                
         }.buttonStyle(PushButtonStyle(isBool: isDetail))
 
         

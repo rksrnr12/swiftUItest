@@ -89,18 +89,10 @@ struct ContentView: View {
     @ViewBuilder
     func otherViews(title:String) -> some View {
         switch title {
-        case "바차트" :
-            BarChart()
         case "달력" :
             calendar()
-        case "탭뷰":
-            tabVIew()
-        case "플로팅버튼":
-            floatingButton()
         case "제스쳐테스트":
             GestureTest()
-        case "지도":
-            MapTest()
         case "카드게임":
             cardGame()
         case "URL":
@@ -112,14 +104,7 @@ struct ContentView: View {
         case "게이지테스트":
             GaugeTest()
         case "아일랜드" :
-            islandTest { a, b in
-                Button {
-                    print(a)
-                    print(b)
-                } label: {
-                    Text(String(a))
-                }
-            }
+            islandTest()
         default:
             Text("")
         }
@@ -190,6 +175,7 @@ struct ContentView: View {
                 }
             }
         }else {
+            isFaceID = true
             print("터치아이디,페이스아이디 없음")
         }
     }

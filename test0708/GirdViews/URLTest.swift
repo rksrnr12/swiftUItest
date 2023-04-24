@@ -54,9 +54,3 @@ struct URLTest: View {
         }
     }
 }
-
-struct URL_Previews: PreviewProvider {
-    static var previews: some View {
-        URLTest()
-    }
-}

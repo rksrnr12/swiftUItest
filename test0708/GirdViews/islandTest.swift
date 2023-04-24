@@ -9,29 +9,28 @@ import SwiftUI
 import ActivityKit
 import Combine
 
-struct islandTest<content:View>: View {
+struct islandTest: View {
     
     @State private var test = Color(red: 0.98, green: 0.9, blue: 0.2)
     @State private var time = 0
     @State private var text = "타이머 시작"
     @State private var bool = false
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    var testView: (_ a:Int,_ b:Int) -> content
-
+    @State private var timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+    
     
     var body: some View {
         VStack {
-            testView(0, 1)
             Text("")
             Button {
                 timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                test1()
+                startActivity()
             } label: {
                 Text("시작")
                     .foregroundColor(test)
             }
             Button {
                 timer.upstream.connect().cancel()
+                updateActivity()
                 text = "타이머 중지"
             } label: {
                 Text("중지")
@@ -39,7 +38,7 @@ struct islandTest<content:View>: View {
             Button {
                 timer.upstream.connect().cancel()
                 time = 0
-                test3()
+                endActivity()
             } label: {
                 Text("아일랜드 중단")
             }
@@ -48,35 +47,45 @@ struct islandTest<content:View>: View {
         .onReceive(timer) { out in
             print("여기")
             time += 1
-            test2()
+            updateActivity()
         }
     }
     
-    func test1() {
-        let testAttributes = Attributes(number: 1, total: "김한국")
-        let testContentState = Attributes.ContentState(testname: "한국", testnum: 10)
-
+    func startActivity() {
+        let contentState = Attributes.ContentState(testname: "시작", testnum: 10)
+        let activityAttributes = Attributes(number: 2, total: "시작")
+        let activityContent = ActivityContent(state: contentState, staleDate: .distantFuture)
+        
         do {
-            let testActivity = try Activity<Attributes>.request(attributes: testAttributes, contentState: testContentState,pushType: nil)
-            print("다이나믹아일랜드 실행 \(testActivity.id)")
+            let activity = try Activity<Attributes>
+                .request(attributes: activityAttributes, content: activityContent)
+//                .request(attributes: activityContent, contentState: contentState,pushType: nil)
+            print("다이나믹아일랜드 실행 \(activity.id)")
         }catch(let error){
             print(error.localizedDescription)
         }
     }
 
-    func test2() {
+    func updateActivity() {
+        let update = Attributes.ContentState(testname: text , testnum: time)
+        let activityContent = ActivityContent(state: update, staleDate: .distantFuture)
         Task{
-            let update = Attributes.ContentState(testname: text , testnum: time)
             for activity in Activity<Attributes>.activities{
-                await activity.update(using: update)
+                await activity
+                    .update(activityContent)
+//                    .update(using: update)
             }
         }
     }
 
-    func test3() {
+    func endActivity() {
+        let end = Attributes.ContentState(testname: "끝", testnum: 1)
+        let activityContent = ActivityContent(state: end, staleDate: .distantFuture)
         Task{
             for activity in Activity<Attributes>.activities{
-                await activity.end(dismissalPolicy: .immediate)
+                await activity
+                    .end(activityContent,dismissalPolicy: .default)
+//                    .end(dismissalPolicy: .immediate)
             }
         }
     }

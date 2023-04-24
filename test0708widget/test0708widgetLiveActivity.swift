@@ -43,6 +43,7 @@ struct test0708widgetLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.leading) {
                     VStack{
                         Text("😃")
+                        Text(context.attributes.total)
                     }
                 }
                 //MARK: - 큰화면 오른쪽
