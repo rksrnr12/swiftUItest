@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BD51528AF85C7002800F9 /* cardGame.swift */; };
 		5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */; };
+		5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3BF4DE29FA170000F1A2A7 /* custom.swift */; };
 		5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F45F2A328C9740E001CFC69 /* GaugeTest.swift */; };
 		5F4EE982292B09FE00459FCD /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5F4EE981292B09FE00459FCD /* Algorithms */; };
 		5F6BBACF28F01ACE004DAC7A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */; };
@@ -67,6 +68,7 @@
 		5F00C1C5293EF83600495B33 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5F1BD51528AF85C7002800F9 /* cardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardGame.swift; sourceTree = "<group>"; };
 		5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTest.swift; sourceTree = "<group>"; };
+		5F3BF4DE29FA170000F1A2A7 /* custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = custom.swift; sourceTree = "<group>"; };
 		5F45F2A328C9740E001CFC69 /* GaugeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeTest.swift; sourceTree = "<group>"; };
 		5F6BBACC28F01ACE004DAC7A /* test0708widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = test0708widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -198,6 +200,7 @@
 				5FC21F1B2877CE240099381C /* ContentView.swift */,
 				5FA3FB3629C42866007771BD /* DropGridViewModel.swift */,
 				5FCC5BB42949939C00D4054F /* GirdViews */,
+				5F3BF4DE29FA170000F1A2A7 /* custom.swift */,
 				5FC21F1D2877CE250099381C /* Assets.xcassets */,
 				5FC21F1F2877CE250099381C /* Preview Content */,
 			);
@@ -356,6 +359,7 @@
 				5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */,
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
 				5FC21F1A2877CE240099381C /* test0708App.swift in Sources */,
+				5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */,
 				5F6BBAE728F01AFC004DAC7A /* Attribute.swift in Sources */,
 				5FBD49192887DE3C00E4698B /* calendar.swift in Sources */,
 				5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */,
@@ -559,7 +563,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"test0708/Preview Content\"";
-				DEVELOPMENT_TEAM = SU9C6T74BG;
+				DEVELOPMENT_TEAM = 23Z89DEDAB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = test0708/Info.plist;
@@ -590,7 +594,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"test0708/Preview Content\"";
-				DEVELOPMENT_TEAM = SU9C6T74BG;
+				DEVELOPMENT_TEAM = 23Z89DEDAB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = test0708/Info.plist;
