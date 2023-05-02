@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import ActivityKit
 import Combine
 
@@ -28,6 +29,13 @@ struct islandTest: View {
                     
                 } label: {
                     Text("시작")
+                        .foregroundColor(.green)
+                }
+                
+                Button {
+                    alertNotification()
+                } label: {
+                    Text("테스트")
                         .foregroundColor(.green)
                 }
             }

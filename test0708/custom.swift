@@ -6,7 +6,31 @@
 //
 
 import Foundation
+import UIKit
 import SwiftUI
+
+/// 입력한 interval초 후에 노티생성
+public func alertNotification(timeInterval:Double = 0.1) {
+    UNUserNotificationCenter.current().getNotificationSettings { settings in
+        if settings.authorizationStatus == UNAuthorizationStatus.authorized{
+            let localNoti = UNMutableNotificationContent()
+            localNoti.title = "알림"
+//            localNoti.subtitle = "서브타이틀"
+            localNoti.body = "알림창 테스트"
+            localNoti.sound = .default
+            
+            
+            var date = DateComponents()
+            date.hour = 14
+            date.minute = 56
+            
+//            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            let request = UNNotificationRequest(identifier: "customAlert", content: localNoti, trigger: trigger)
+            UNUserNotificationCenter.current().add(request)
+        }
+    }
+}
 
 struct PushButtonStyle: ButtonStyle {
     var isBool = false
