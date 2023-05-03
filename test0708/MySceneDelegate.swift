@@ -20,11 +20,12 @@ class MySceneDelegate: NSObject, UIWindowSceneDelegate {
                 localNoti.title = "알림"
 //                localNoti.subtitle = ""
                 localNoti.body = "할말없음"
+                localNoti.sound = .default
                 
                 
                 var date = DateComponents()
-                date.hour = 10
-                date.minute = 30
+                date.hour = 15
+                date.minute = 50
                 
                 let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
                 let request = UNNotificationRequest(identifier: "addDayOff", content: localNoti, trigger: trigger)
