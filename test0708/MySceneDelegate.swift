@@ -23,8 +23,8 @@ class MySceneDelegate: NSObject, UIWindowSceneDelegate {
                 
                 
                 var date = DateComponents()
-                date.hour = 11
-                date.minute = 00
+                date.hour = 10
+                date.minute = 30
                 
                 let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
                 let request = UNNotificationRequest(identifier: "addDayOff", content: localNoti, trigger: trigger)
