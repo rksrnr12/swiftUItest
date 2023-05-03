@@ -8,15 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-        
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("test")
+        NavigationView {
+            ScrollView {
+                VStack {
+                    NavigationLink {
+                        NewWatchView()
+                            .navigationTitle("이동한 뷰")
+                    } label: {
+                        Text("이동하기")
+                            .foregroundColor(.green)
+                    }
+                    Text("test")
+                    
+                    Image("dog")
+                        .resizable()
+                        .frame(width:200,height: 200)
+                        .clipShape(Circle())
+                }
+            }.navigationTitle("처음화면")
+                .navigationBarTitleDisplayMode(.inline)
         }
-        .padding()
     }
     
 }

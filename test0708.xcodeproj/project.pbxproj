@@ -12,7 +12,10 @@
 		5F0D33092A023D4A0005DB99 /* calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD49182887DE3C00E4698B /* calendar.swift */; };
 		5F0D33142A023D8F0005DB99 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BBAE628F01AFC004DAC7A /* Attribute.swift */; };
 		5F0D33162A023DEE0005DB99 /* CalendarForScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F993B722941C4FA0066055B /* CalendarForScroll.swift */; };
-		5F0D331E2A024DA30005DB99 /* WatchTest0708App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D33182A023ECF0005DB99 /* WatchTest0708App.swift */; };
+		5F0D33202A0250170005DB99 /* NewWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D331F2A0250170005DB99 /* NewWatchView.swift */; };
+		5F0D33212A0250170005DB99 /* NewWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D331F2A0250170005DB99 /* NewWatchView.swift */; };
+		5F0D33222A0255160005DB99 /* test0708App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC21F192877CE240099381C /* test0708App.swift */; };
+		5F0D33242A02552C0005DB99 /* WatchTest0708App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D33182A023ECF0005DB99 /* WatchTest0708App.swift */; };
 		5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BD51528AF85C7002800F9 /* cardGame.swift */; };
 		5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */; };
 		5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3BF4DE29FA170000F1A2A7 /* custom.swift */; };
@@ -37,7 +40,6 @@
 		5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D428D1558F00579E4F /* MyAppDelegate.swift */; };
 		5FA414D728D156CE00579E4F /* MySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D628D156CE00579E4F /* MySceneDelegate.swift */; };
 		5FBD49192887DE3C00E4698B /* calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBD49182887DE3C00E4698B /* calendar.swift */; };
-		5FC21F1A2877CE240099381C /* test0708App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC21F192877CE240099381C /* test0708App.swift */; };
 		5FC21F1C2877CE240099381C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC21F1B2877CE240099381C /* ContentView.swift */; };
 		5FC21F1E2877CE250099381C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FC21F1D2877CE250099381C /* Assets.xcassets */; };
 		5FC21F212877CE250099381C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FC21F202877CE250099381C /* Preview Assets.xcassets */; };
@@ -96,6 +98,7 @@
 		5F0D33002A0227070005DB99 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		5F0D33022A0227180005DB99 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		5F0D33182A023ECF0005DB99 /* WatchTest0708App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTest0708App.swift; sourceTree = "<group>"; };
+		5F0D331F2A0250170005DB99 /* NewWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWatchView.swift; sourceTree = "<group>"; };
 		5F1BD51528AF85C7002800F9 /* cardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardGame.swift; sourceTree = "<group>"; };
 		5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTest.swift; sourceTree = "<group>"; };
 		5F3BF4DE29FA170000F1A2A7 /* custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = custom.swift; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 			children = (
 				5F0D33182A023ECF0005DB99 /* WatchTest0708App.swift */,
 				5FCA27EA2A0217D900C1ADFB /* ContentView.swift */,
+				5F0D331F2A0250170005DB99 /* NewWatchView.swift */,
 				5FCA27EC2A0217DB00C1ADFB /* Assets.xcassets */,
 				5FCA27EE2A0217DB00C1ADFB /* Preview Content */,
 				5F0D33002A0227070005DB99 /* NotificationView.swift */,
@@ -454,10 +458,11 @@
 				5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */,
 				5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */,
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
-				5FC21F1A2877CE240099381C /* test0708App.swift in Sources */,
 				5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */,
 				5F6BBAE728F01AFC004DAC7A /* Attribute.swift in Sources */,
 				5FBD49192887DE3C00E4698B /* calendar.swift in Sources */,
+				5F0D33222A0255160005DB99 /* test0708App.swift in Sources */,
+				5F0D33202A0250170005DB99 /* NewWatchView.swift in Sources */,
 				5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */,
 				5FF0D3292893A62800D6FA7C /* GestureTest.swift in Sources */,
 				5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */,
@@ -473,7 +478,8 @@
 			files = (
 				5F0D33092A023D4A0005DB99 /* calendar.swift in Sources */,
 				5FCA27EB2A0217D900C1ADFB /* ContentView.swift in Sources */,
-				5F0D331E2A024DA30005DB99 /* WatchTest0708App.swift in Sources */,
+				5F0D33212A0250170005DB99 /* NewWatchView.swift in Sources */,
+				5F0D33242A02552C0005DB99 /* WatchTest0708App.swift in Sources */,
 				5F0D33162A023DEE0005DB99 /* CalendarForScroll.swift in Sources */,
 				5F0D33032A0227180005DB99 /* NotificationController.swift in Sources */,
 				5F0D33012A0227070005DB99 /* NotificationView.swift in Sources */,
