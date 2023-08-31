@@ -18,6 +18,7 @@
 		5F0D33242A02552C0005DB99 /* WatchTest0708App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0D33182A023ECF0005DB99 /* WatchTest0708App.swift */; };
 		5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1BD51528AF85C7002800F9 /* cardGame.swift */; };
 		5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */; };
+		5F3247CB2AA0359900C3F69F /* scrollTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3247CA2AA0359900C3F69F /* scrollTest.swift */; };
 		5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3BF4DE29FA170000F1A2A7 /* custom.swift */; };
 		5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F45F2A328C9740E001CFC69 /* GaugeTest.swift */; };
 		5F4EE982292B09FE00459FCD /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5F4EE981292B09FE00459FCD /* Algorithms */; };
@@ -101,6 +102,7 @@
 		5F0D331F2A0250170005DB99 /* NewWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWatchView.swift; sourceTree = "<group>"; };
 		5F1BD51528AF85C7002800F9 /* cardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardGame.swift; sourceTree = "<group>"; };
 		5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTest.swift; sourceTree = "<group>"; };
+		5F3247CA2AA0359900C3F69F /* scrollTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrollTest.swift; sourceTree = "<group>"; };
 		5F3BF4DE29FA170000F1A2A7 /* custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = custom.swift; sourceTree = "<group>"; };
 		5F45F2A328C9740E001CFC69 /* GaugeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeTest.swift; sourceTree = "<group>"; };
 		5F6BBACC28F01ACE004DAC7A /* test0708widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = test0708widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,6 +296,7 @@
 				5F2536B828C87CC1004FF9E6 /* AnimationTest.swift */,
 				5F45F2A328C9740E001CFC69 /* GaugeTest.swift */,
 				5F6BBAE828F01B22004DAC7A /* islandTest.swift */,
+				5F3247CA2AA0359900C3F69F /* scrollTest.swift */,
 			);
 			path = GirdViews;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				5FC21F142877CE240099381C /* Resources */,
 				5F6BBAE228F01AD0004DAC7A /* Embed Foundation Extensions */,
 				5FCA27F42A0217DB00C1ADFB /* Embed Watch Content */,
+				5F2217762A56B5630087F452 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -432,6 +436,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F2217762A56B5630087F452 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\n    ERRORTAG=\"DANGER:|ERROR:\"\n    find \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5F6BBAC828F01ACE004DAC7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -468,6 +492,7 @@
 				5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */,
 				5F993B732941C4FA0066055B /* CalendarForScroll.swift in Sources */,
 				5F868E7A28B736AF00549A4D /* HapticManager.swift in Sources */,
+				5F3247CB2AA0359900C3F69F /* scrollTest.swift in Sources */,
 				5F1BD51628AF85C7002800F9 /* cardGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

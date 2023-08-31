@@ -12,23 +12,6 @@ struct CalendarForScroll: View {
     var selectedDate = Date()
     var num:Int
     
-    
-    var firstDayOfMonth:Date {
-        let components = Calendar.current.dateComponents([.year, .month], from: selectedDate.addMonth(n: num))
-        return Calendar.current.date(from: components) ?? Date()
-    }
-    
-    var startingSpaces:Int {
-        let components = Calendar.current.dateComponents([.weekday], from: firstDayOfMonth)
-        return (components.weekday ?? 0) - 1
-    }
-    var start:Int {
-        startingSpaces == 0 ? startingSpaces + 7 : startingSpaces
-    }
-    
-    
-    
-    
     var body: some View {
         VStack(spacing: 0){
             ForEach(0..<6){ row in
@@ -57,6 +40,19 @@ struct CalendarForScroll: View {
                 }
             }
         }
+    }
+    
+    var firstDayOfMonth:Date {
+        let components = Calendar.current.dateComponents([.year, .month], from: selectedDate.addMonth(n: num))
+        return Calendar.current.date(from: components) ?? Date()
+    }
+    
+    var startingSpaces:Int {
+        let components = Calendar.current.dateComponents([.weekday], from: firstDayOfMonth)
+        return (components.weekday ?? 0) - 1
+    }
+    var start:Int {
+        startingSpaces == 0 ? startingSpaces + 7 : startingSpaces
     }
 }
 

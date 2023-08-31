@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class DropGridViewModel: ObservableObject {
-    @Published var gridItems:[Grid] = [Grid(gridText: "달력"),Grid(gridText: "제스쳐테스트"),Grid(gridText: "지도"),Grid(gridText: "카드게임"),Grid(gridText: "URL"),Grid(gridText: "햅틱"),Grid(gridText: "애니메이션"),Grid(gridText: "게이지테스트"),Grid(gridText: "아일랜드")]
+    @Published var gridItems:[Grid] = [Grid(gridText: "달력"),Grid(gridText: "제스쳐테스트"),Grid(gridText: "지도"),Grid(gridText: "카드게임"),Grid(gridText: "URL"),Grid(gridText: "햅틱"),Grid(gridText: "애니메이션"),Grid(gridText: "게이지테스트"),Grid(gridText: "아일랜드"),Grid(gridText: "스크롤")]
     
     @Published var currentGrid:Grid?
 }
@@ -29,6 +29,7 @@ struct DropViewDelegate: DropDelegate {
     var gridData: DropGridViewModel
     
     func performDrop(info: DropInfo) -> Bool {
+        HapticManager.manager.notification(type: .success)
         return true
     }
     
@@ -44,6 +45,7 @@ struct DropViewDelegate: DropDelegate {
         
         if fromIndex != toIndex {
             withAnimation {
+                HapticManager.manager.impact(style: .soft)
                 let fromGrid = gridData.gridItems[fromIndex]
                 gridData.gridItems[fromIndex] = gridData.gridItems[toIndex]
                 gridData.gridItems[toIndex] = fromGrid

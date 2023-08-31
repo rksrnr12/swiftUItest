@@ -11,10 +11,61 @@ import AVFAudio
 
 struct GaugeTest: View {
     
-    @State private var test:Double = 1
     @State private var batteryState:UIDevice.BatteryState = .unknown
     @State private var batteryLevel:Float = 0
     @State private var myAirPods = "연결안됨"
+    
+    
+    var body: some View {
+        
+        VStack(spacing:30){
+            HStack{
+                Text("내")
+                Image(systemName: "airpodspro")
+                Text("= \(myAirPods)")
+            }.font(.largeTitle)
+            
+            HStack{
+                Gauge(value: batteryLevel,in:0...1) {
+                    Text("")
+                } currentValueLabel: {
+                    if batteryState == .charging {
+                        HStack(spacing:0){
+                            Text(String(Int(batteryLevel * 100)))
+                            Image(systemName: "bolt.fill")
+                                .font(.footnote)
+                        }
+                    }else{
+                        Image(systemName: "iphone.gen3")
+                    }
+                }.gaugeStyle(.accessoryCircularCapacity)
+                    .tint(batteryState == .charging ? Color.green : Color.gray)
+            }
+            
+            Button {
+                withAnimation {
+                    checkAudioBluetooth()
+                }
+            } label: {
+                Text("확인")
+            }
+        }.onAppear {
+            withAnimation {
+                myBattery()
+                checkAudioBluetooth()
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.batteryStateDidChangeNotification)) { _ in
+            withAnimation {
+                batteryState = UIDevice.current.batteryState
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.batteryLevelDidChangeNotification)) { _ in
+            withAnimation {
+                myBattery()
+            }
+        }
+    }
     
     func myBattery(){
         UIDevice.current.isBatteryMonitoringEnabled = true
@@ -35,96 +86,6 @@ struct GaugeTest: View {
             myAirPods = "연결안됨"
         }
         
-    }
-    
-    var body: some View {
-        
-        VStack(spacing:30){
-            HStack{
-                Text("내")
-                Image(systemName: "airpodspro")
-                Text("= \(myAirPods)")
-            }.font(.largeTitle)
-            
-            HStack{
-                Gauge(value: test,in:0...100) {
-                    Text("")
-                } currentValueLabel: {
-                    Image(systemName: "airpodspro")
-                }.gaugeStyle(.accessoryCircularCapacity)
-                
-                Gauge(value: batteryLevel,in:0...1) {
-                    Text("")
-                } currentValueLabel: {
-                    if batteryState == .charging {
-                        HStack(spacing:0){
-                            Text(String(Int(batteryLevel * 100)))
-                            Image(systemName: "bolt.fill")
-                                .font(.footnote)
-                        }
-                    }else{
-                        Image(systemName: "iphone.gen3")
-                        //.font(.title2)
-                    }
-                }.gaugeStyle(.accessoryCircularCapacity)
-                    .tint(Color.green)
-                
-                Gauge(value: test,in:0...100) {
-                    Text("")
-                } currentValueLabel: {
-                    Image(systemName: "ipad")
-                }.gaugeStyle(.accessoryCircularCapacity)
-                
-                Gauge(value: test,in:0...100) {
-                    Text("")
-                } currentValueLabel: {
-                    Image(systemName: "applewatch")
-                }.gaugeStyle(.accessoryCircularCapacity)
-                
-                
-                
-            }
-            HStack{
-                Button {
-                    if test < 100{
-                        test += 1
-                    }
-                } label: {
-                    Text("더하기")
-                }
-                Button {
-                    if test > 0{
-                        test -= 1
-                    }
-                } label: {
-                    Text("빼기")
-                }
-            }
-            
-            Button {
-                withAnimation {
-                    checkAudioBluetooth()
-                }
-            } label: {
-                Text("확인")
-            }
-        }.animation(.default, value: test)
-            .onAppear {
-                withAnimation {
-                    myBattery()
-                    checkAudioBluetooth()
-                }
-            }
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.batteryStateDidChangeNotification)) { _ in
-                withAnimation {
-                    batteryState = UIDevice.current.batteryState
-                }
-            }
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.batteryLevelDidChangeNotification)) { _ in
-                withAnimation {
-                    myBattery()
-                }
-            }
     }
     
 }

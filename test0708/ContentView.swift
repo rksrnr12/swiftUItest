@@ -64,6 +64,7 @@ struct ContentView: View {
                                             .foregroundColor(.white)
                                     }
                                     .onDrag ({
+                                        HapticManager.manager.notification(type: .success)
                                         gridViewModel.currentGrid = grid
                                         return NSItemProvider(object: String(grid.gridText) as NSString)
                                     })
@@ -71,7 +72,7 @@ struct ContentView: View {
                             }.buttonStyle(.pushAnimation)
                             
                         }
-                    }
+                    }.padding(.horizontal,5)
                 }
             }
         }.toolbar {
@@ -105,6 +106,8 @@ struct ContentView: View {
             GaugeTest()
         case "아일랜드" :
             islandTest()
+        case "스크롤" :
+            scrollTest()
         default:
             Text("")
         }

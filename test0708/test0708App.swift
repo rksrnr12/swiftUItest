@@ -13,8 +13,8 @@ import AVKit
 struct test0708App: App {
     @UIApplicationDelegateAdaptor var appDelegate:MyAppDelegate
     
-    //@State private var test = false
-    //@State private var player = AVPlayer(url: Bundle.main.url(forResource: "", withExtension: "")!)
+//    @State private var test = false
+//    @State private var player = AVPlayer(url: Bundle.main.url(forResource: "", withExtension: "")!)
     
     var body: some Scene {
         WindowGroup {
