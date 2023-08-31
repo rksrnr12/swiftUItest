@@ -11,6 +11,7 @@ struct scrollTest: View {
     
     @Environment(\.dismiss) private var dismiss
     @State private var testBool = true
+    @State private var viewChange = true
     @State private var selection = 0
     @State private var scrollOffset:CGFloat = 0
     @Namespace var testName
@@ -19,7 +20,11 @@ struct scrollTest: View {
         VStack(spacing:0) {
             Text("")
             customToolbar
-            testScrollView
+            if viewChange {
+                testScrollView
+            }else {
+                testNormalView
+            }
         }.toolbar(.hidden, for: .navigationBar)
     }
     
@@ -43,6 +48,11 @@ struct scrollTest: View {
                             Button {
                                 withAnimation {
                                     selection = num
+                                    if num == 0 {
+                                        viewChange = true
+                                    }else {
+                                        viewChange = false
+                                    }
                                     //proxy.scrollTo(num,anchor: .center)
                                 }
                             } label: {
@@ -66,7 +76,7 @@ struct scrollTest: View {
                 }
             }
         }.padding(.vertical,20)
-            .background(Color.gray)
+            //.background(Color.gray)
         
     }
     
@@ -75,8 +85,12 @@ struct scrollTest: View {
             ZStack {
                 VStack {
                     ForEach(0...30, id: \.self) { index in
-                        Text("Row \(index)")
-                            .frame(maxWidth:.infinity,minHeight: 100)
+                        Button {
+                            print(index)
+                        } label: {
+                            Text("Row \(index)")
+                                .frame(maxWidth:.infinity,minHeight: 100)
+                        }
                     }
                     
                     GeometryReader { proxy in
@@ -105,6 +119,36 @@ struct scrollTest: View {
                     }
                 }
             }
+    }
+    
+    var testNormalView: some View {
+        VStack {
+            Text("test")
+            Button {
+                print("test")
+            } label: {
+                Text("testButton")
+                    .frame(width: 100,height: 100)
+                    .background(Color.green)
+            }
+
+        }.frame(maxWidth: .infinity,maxHeight: .infinity)
+            .background(Color.gray)
+            .highPriorityGesture(
+                DragGesture()
+                .onChanged { value in
+                    if value.translation.height < -70 {
+                        withAnimation {
+                            testBool = false
+                        }
+                    }
+                    
+                    if value.translation.height > 70 {
+                        withAnimation {
+                            testBool = true
+                        }
+                    }
+                })
     }
     
 }
