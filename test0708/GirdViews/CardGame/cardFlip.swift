@@ -64,7 +64,7 @@ struct cardFlip: View {
                 flipCard()
             }
         }
-        .buttonStyle(PushButtonStyle())
+        .buttonStyle(.pushAnimation)
     }
     
     @ViewBuilder
@@ -95,14 +95,5 @@ struct cardFlip: View {
         }.rotation3DEffect(Angle.degrees(backDegree), axis: (x:0, y: 1, z: 0))
     }
     
-}
-
-struct PushButtonStyle: ButtonStyle {
-    var isBool = false
-    func makeBody(configuration: Configuration) -> some View {
-        let num = isBool ? 1.1 : 0.9
-        configuration.label
-            .scaleEffect(configuration.isPressed ? num : 1)
-    }
 }
 

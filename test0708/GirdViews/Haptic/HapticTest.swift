@@ -46,8 +46,4 @@ struct HapticTest: View {
     }
 }
 
-struct HapticTest_Previews: PreviewProvider {
-    static var previews: some View {
-        HapticTest()
-    }
-}
+

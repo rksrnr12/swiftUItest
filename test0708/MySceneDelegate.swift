@@ -10,30 +10,31 @@ import UIKit
 import SwiftUI
 
 class MySceneDelegate: NSObject, UIWindowSceneDelegate {
-    @AppStorage("myDayOff") var myDayOff = 0.0
     var window: UIWindow?
-    
-    
     
     func sceneWillResignActive(_ scene: UIScene) {
         
-        UNUserNotificationCenter.current().getNotificationSettings { [self] settings in
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
             if settings.authorizationStatus == UNAuthorizationStatus.authorized{
                 let localNoti = UNMutableNotificationContent()
-                localNoti.title = "연차 추가"
-                localNoti.subtitle = "클릭 시 연차가 1일 추가됨"
-                localNoti.body = "현재 연차 = \(myDayOff)"
+                localNoti.title = "알림"
+//                localNoti.subtitle = ""
+                localNoti.body = "할말없음"
+                localNoti.sound = .default
                 
                 
                 var date = DateComponents()
-                date.day = 17
-                date.hour = 10
-                date.minute = 00
+                date.hour = 23
+                date.minute = 30
                 
-                let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
                 let request = UNNotificationRequest(identifier: "addDayOff", content: localNoti, trigger: trigger)
                 UNUserNotificationCenter.current().add(request)
             }
         }
     }
+    
+//    func sceneDidBecomeActive(_ scene: UIScene) {
+//        print("becomeActive")
+//    }
 }

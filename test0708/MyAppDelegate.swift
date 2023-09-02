@@ -10,7 +10,6 @@ import UIKit
 import SwiftUI
 
 class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    @AppStorage("myDayOff") var myDayOff = 0.0
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         let notiCenter = UNUserNotificationCenter.current()
@@ -25,7 +24,8 @@ class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDel
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-        myDayOff += 1
+        //알림창 누르면 실행
+        print("")
     }
     
     

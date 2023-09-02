@@ -27,9 +27,9 @@ struct test0708widgetLiveActivity: Widget {
         ActivityConfiguration(for: Attributes.self) { context in
             // Lock screen/banner UI goes here
             HStack {
-                Text(context.state.testname)
+                Text(context.state.mainText)
                 Spacer()
-                Text(String(context.state.testnum))
+                Text(timerInterval: context.state.timer,countsDown: true)
             }
             .activityBackgroundTint(Color.cyan)
             .activitySystemActionForegroundColor(Color.black)
@@ -43,6 +43,7 @@ struct test0708widgetLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.leading) {
                     VStack{
                         Text("😃")
+                        Text(context.attributes.total)
                     }
                 }
                 //MARK: - 큰화면 오른쪽
@@ -63,15 +64,15 @@ struct test0708widgetLiveActivity: Widget {
             }
             //MARK: - 작은 왼쪽
              compactLeading: {
-                Text(context.state.testname)
+                Text(context.state.mainText)
             }
             //MARK: - 작은 오른쪽
             compactTrailing: {
-                Text(String(context.state.testnum))
+                Text(timerInterval: context.state.timer,countsDown: true)
             }
             //MARK: - 2개 실행 동그라미
             minimal: {
-                Text(String(context.state.testnum))
+                Text(String(context.state.mainText))
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)

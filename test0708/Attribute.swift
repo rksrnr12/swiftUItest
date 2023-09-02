@@ -12,8 +12,8 @@ import ActivityKit
 struct Attributes: ActivityAttributes {
     
     public struct ContentState: Codable, Hashable {
-        var testname:String
-        var testnum:Int
+        var mainText:String
+        var timer:ClosedRange<Date>
     }
     
     var number:Int

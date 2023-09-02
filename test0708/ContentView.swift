@@ -7,111 +7,107 @@
 
 import SwiftUI
 import Foundation
+import LocalAuthentication
+
 
 struct ContentView: View {
+    
+    @AppStorage("arrayData") var arrayData:Data?
     @AppStorage("myDayOff") var myDayOff = 2.5
-    @State private var isdayOff = false
-    @State private var isHalfdayOff = false
-    @State private var openSetting = false
+    @StateObject private var gridViewModel = DropGridViewModel()
     @State private var dayOffString = ""
-    @State private var ColorArray:[Color] = Array(repeating: .white, count: 20)
-    @State private var itemCount = 3
+    @State private var openAlert = false
+    @State private var isFaceID = false
+    @State private var alertContent:AlertText = .init()
+    var gridColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
-    var name = ["바차트","달력","탭뷰","플로팅버튼","제스쳐테스트","지도","카드게임","URL","햅틱","애니메이션","게이지테스트","아일랜드"]
-    
-    ///색상 재배치
-    func insert() {
-        ColorArray.removeAll()
-        while ColorArray.count != name.count {
-            ColorArray.append(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)).opacity(0.8))
-        }
-    }
-    
-    ///변동 그리드아이템 생성
-    func gridColumns() -> [GridItem] {
-        Array(repeating: .init(.flexible()), count: itemCount)
-    }
     
     var body: some View {
-        ScrollView{
+        VStack{
+            if isFaceID {
+                mainView()
+            }else {
+                Spacer()
+                Button("로그인 다시시도") {
+                    faceIDCHeck()
+                }
+                Spacer()
+            }
+        }.task {
+            if isFaceID == false {
+                faceIDCHeck()
+            }
+            if arrayData == nil {
+                guard let data = try? JSONEncoder().encode(gridViewModel.gridItems) else { return }
+                arrayData = data
+            }else {
+                guard let array = try? JSONDecoder().decode([Grid].self, from: arrayData!) else { return }
+                gridViewModel.gridItems = array
+            }
+        }
+    }
+    
+    func mainView() -> some View {
+        ScrollView {
             LazyVStack(pinnedViews:.sectionHeaders) {
                 Section(header: dayOffView) {
-                    LazyVGrid(columns: gridColumns()) {
-                        ForEach(Array(name.enumerated()),id: \.offset) { index,name in
+                    LazyVGrid(columns: gridColumns) {
+                        ForEach(gridViewModel.gridItems) { grid in
                             NavigationLink {
-                                otherViews(index: index)
+                                otherViews(title: grid.gridText)
                             } label: {
-                                Text(name)
+                                RoundedRectangle(cornerRadius: 25)
                                     .frame(maxWidth: .infinity,minHeight: 100)
-                                    .foregroundColor(.black)
-                                    .background(ColorArray[index])
-                                    .cornerRadius(15)
-                            }.buttonStyle(PushButtonStyle())
+                                    .foregroundColor(Color(red: grid.number, green: grid.number2, blue: grid.number3))
+                                    .overlay {
+                                        Text(grid.gridText)
+                                            .foregroundColor(.white)
+                                    }
+                                    .onDrag ({
+                                        HapticManager.manager.notification(type: .success)
+                                        gridViewModel.currentGrid = grid
+                                        return NSItemProvider(object: String(grid.gridText) as NSString)
+                                    })
+                                    .onDrop(of: [.text], delegate: DropViewDelegate(gird: grid, gridData: gridViewModel))
+                            }.buttonStyle(.pushAnimation)
+                            
                         }
+                    }.padding(.horizontal,5)
+                }
+            }
+        }.toolbar {
+            ToolbarItem {
+                Button("숨기기") {
+                    withAnimation {
+                        isFaceID = false
                     }
                 }
             }
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    //response:총 애니메이션 시간
-                    //damping:튕기는 범위 작을수록 큼
-                    //blendDuration: 튕기는 시간
-                    withAnimation(.spring(response: 0.7,dampingFraction: 0.725,blendDuration: 1.0)) {
-                        itemCount = .random(in: 2...10)
-                        insert()
-                    }
-                } label: {
-                    Text("그리드변경")
-                }
-                
-            }
-            ToolbarItemGroup(placement:.bottomBar) {
-                Spacer()
-                toolBarBtn
-            }
-        }
-        .onAppear{
-            insert()
         }
     }
     
     //MARK: -이동하는 뷰
     @ViewBuilder
-    func otherViews(index:Int) -> some View {
-        switch index {
-        case 0 :
-            BarChart()
-        case 1 :
+    func otherViews(title:String) -> some View {
+        switch title {
+        case "달력" :
             calendar()
-        case 2:
-            tabVIew()
-        case 3:
-            floatingButton()
-        case 4:
+        case "제스쳐테스트":
             GestureTest()
-        case 5:
-            MapTest()
-        case 6:
+        case "카드게임":
             cardGame()
-        case 7:
+        case "URL":
             URLTest()
-        case 8:
+        case "햅틱":
             HapticTest()
-        case 9:
+        case "애니메이션":
             AnimationTest()
-        case 10:
+        case "게이지테스트":
             GaugeTest()
-        case 11 :
-            islandTest { a, b in
-                Button {
-                    print(a)
-                    print(b)
-                } label: {
-                    Text(String(a))
-                }
-            }
+        case "아일랜드" :
+            islandTest()
+        case "스크롤" :
+            scrollTest()
         default:
             Text("")
         }
@@ -120,29 +116,33 @@ struct ContentView: View {
     //MARK: -연차 내용 뷰
     var dayOffView:some View {
         VStack(spacing:20){
-            Text("내 연차 = \(String(format: "%.1f", myDayOff))일")
+            Text("내 연차 = ") + Text("\(String(format: "%.1f", myDayOff))일").foregroundColor(myDayOff > 7 ? .cyan : .red)
             HStack{
-                basicBtn(title: "연차 사용") {
-                    isdayOff.toggle()
+                commonBtn(title: "연차 사용", message: "연차를 사용하나요??") {
+                    myDayOff -= 1
                 }
-                basicBtn(title: "반차 사용") {
-                    isHalfdayOff.toggle()
+                commonBtn(title: "반차 사용", message: "반차를 사용하나요??") {
+                    myDayOff -= 0.5
                 }
-            }.alert("반차사용??", isPresented: $isHalfdayOff) {
-                HStack{
-                    basicBtn(title: "아니요")
-                    basicBtn(title: "네") {
-                        myDayOff -= 0.5
+                commonBtn(title: "연차 수정", message: "입력한 내용으로 수정됩니다.") {
+                    guard let num = Double(dayOffString)
+                    else {
+                        HapticManager.manager.notification(type: .error)
+                        return
                     }
+                    myDayOff = num
                 }
             }
-            .alert("연차사용??", isPresented: $isdayOff) {
-                HStack{
-                    basicBtn(title: "아니요")
-                    basicBtn(title: "네") {
-                        myDayOff -= 1
-                    }
+            .alert(alertContent.title, isPresented: $openAlert, presenting: alertContent) { text in
+                if text.title == "연차 수정" {
+                    TextField("숫자만 입력", text: $dayOffString).keyboardType(.numbersAndPunctuation)
                 }
+                Button("아니요") { print("") }
+                Button("네") {
+                    text.okAction()
+                }
+            } message: { text in
+                Text(text.message)
             }
         }.frame(maxWidth: .infinity)
             .padding(.vertical,15)
@@ -150,39 +150,44 @@ struct ContentView: View {
             .cornerRadius(15)
     }
     
-    
-    //MARK: - 툴바 버튼
-    var toolBarBtn: some View {
-        basicBtn(title: "설정") {
-            openSetting.toggle()
-        }
-        .alert("연차 수정", isPresented: $openSetting) {
-            TextField("숫자만 입력", text: $dayOffString).keyboardType(.numbersAndPunctuation)
-            HStack{
-                basicBtn(title: "취소") {
-                    dayOffString = ""
-                }
-                basicBtn(title: "수정") {
-                    guard let num = Double(dayOffString)
-                    else {
-                        HapticManager.manager.notification(type: .error)
-                        return
-                    }
-                    myDayOff = num
-                    dayOffString = ""                }
-            }
-        } message: {
-            Text("날짜를 입력하세요")
-        }
-    }
-    
-    //MARK: - 기본버튼
-    @ViewBuilder
-    func basicBtn(title:String, action:@escaping () -> Void = {}) -> some View {
+    func commonBtn(title:String,message:String,action: @escaping () -> ()) -> some View {
         Button(title) {
-            action()
+            alertContent = .init(title:title,message: message,okAction: {
+                action()
+            })
+            dayOffString = ""
+            openAlert.toggle()
         }
     }
+    
+    func faceIDCHeck() {
+        let context = LAContext()
+        var error:NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "testApp"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+                if success {
+                    withAnimation {
+                        isFaceID = true
+                    }
+                }else {
+                    withAnimation {
+                        isFaceID = false
+                    }
+                }
+            }
+        }else {
+            isFaceID = true
+            print("터치아이디,페이스아이디 없음")
+        }
+    }
+}
+
+struct AlertText {
+    var title = ""
+    var message = ""
+    var okAction: () -> () = {}
 }
 
 
