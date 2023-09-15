@@ -13,6 +13,7 @@ struct scrollTest: View {
     @State private var testBool = true
     @State private var viewChange = true
     @State private var selection = 0
+    @State private var selectedDate = Date()
     @State private var scrollOffset:CGFloat = 0
     @Namespace var testName
     
@@ -44,40 +45,57 @@ struct scrollTest: View {
             ScrollViewReader { proxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing:30) {
-                        ForEach(0...30,id:\.self) { num in
-                            Button {
-                                withAnimation {
-                                    selection = num
-                                    if num == 0 {
-                                        viewChange = true
-                                    }else {
-                                        viewChange = false
-                                    }
-                                    //proxy.scrollTo(num,anchor: .center)
-                                }
-                            } label: {
-                                VStack(spacing:10) {
-                                    Text("툴바 테스트\(num)")
-                                        .foregroundColor(selection == num ? .green : .black)
-                                    if selection == num {
-                                        Rectangle()
-                                            .frame(maxWidth: .infinity,maxHeight: 2)
-                                            .matchedGeometryEffect(id: "test1", in: testName)
-                                            .foregroundColor(selection == num ? Color.green : Color.gray)
-                                    }else {
-                                        Rectangle()
-                                            .frame(maxWidth: .infinity,maxHeight: 2)
-                                            .foregroundColor(.clear)
-                                    }
-                                }
-                            }.id(num)
+                        ForEach(-36...0,id:\.self) { num in
+                            listCell(num: num)
                         }
                     }.padding(.horizontal,20)
-                }
+                        .scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                        .onChange(of: selection) { newValue in
+                            withAnimation {
+                                proxy.scrollTo(newValue,anchor: .center)
+                            }
+                        }
+                }.scaleEffect(x: -1.0, y: 1.0, anchor: .center)
             }
         }.padding(.vertical,20)
-            //.background(Color.gray)
+        //.background(Color.gray)
         
+    }
+    
+    @ViewBuilder
+    func listCell(num:Int) -> some View {
+        if selectedDate.addMonth(n: num).string(format: "M") == "1" {
+            VStack(spacing:3) {
+                Text(selectedDate.addMonth(n: num).string(format: "yyyy"))
+                HStack {
+                    Rectangle()
+                        .frame(width: 2,height: 27)
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+        Button {
+            withAnimation {
+                selection = num
+                viewChange.toggle()
+            }
+        } label: {
+            VStack(spacing:10) {
+                //                                    Text("툴바 테스트\(num)")
+                Text(selectedDate.addMonth(n: num).string(format: "M월"))
+                    .foregroundColor(selection == num ? .green : .gray)
+                if selection == num {
+                    Rectangle()
+                        .frame(maxWidth: .infinity,maxHeight: 2)
+                    //.matchedGeometryEffect(id: "test1", in: testName)
+                        .foregroundColor(Color.green)
+                }else {
+                    Rectangle()
+                        .frame(maxWidth: .infinity,maxHeight: 2)
+                        .foregroundColor(.clear)
+                }
+            }
+        }.id(num)
     }
     
     var testScrollView: some View {
@@ -131,24 +149,24 @@ struct scrollTest: View {
                     .frame(width: 100,height: 100)
                     .background(Color.green)
             }
-
+            
         }.frame(maxWidth: .infinity,maxHeight: .infinity)
             .background(Color.gray)
             .highPriorityGesture(
                 DragGesture()
-                .onChanged { value in
-                    if value.translation.height < -70 {
-                        withAnimation {
-                            testBool = false
+                    .onChanged { value in
+                        if value.translation.height < -70 {
+                            withAnimation {
+                                testBool = false
+                            }
                         }
-                    }
-                    
-                    if value.translation.height > 70 {
-                        withAnimation {
-                            testBool = true
+                        
+                        if value.translation.height > 70 {
+                            withAnimation {
+                                testBool = true
+                            }
                         }
-                    }
-                })
+                    })
     }
     
 }
@@ -163,3 +181,11 @@ struct testKey:PreferenceKey {
     typealias Value = CGFloat
 }
 
+//func dateString(num:Int) -> String {
+//    let currentMonth = (Date().int(format: "M") + num) % 12
+//    if currentMonth > 0 {
+//        return "\(currentMonth)월"
+//    }else {
+//        return "\(currentMonth + 12)월"
+//    }
+//}

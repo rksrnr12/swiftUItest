@@ -42,7 +42,9 @@ struct ContentView: View {
                 arrayData = data
             }else {
                 guard let array = try? JSONDecoder().decode([Grid].self, from: arrayData!) else { return }
-                gridViewModel.gridItems = array
+                if gridViewModel.compareGrid(saved: array) {
+                    gridViewModel.gridItems = array
+                }
             }
         }
     }
