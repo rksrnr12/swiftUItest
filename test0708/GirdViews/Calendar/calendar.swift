@@ -11,28 +11,28 @@ struct calendar: View {
     
     @State var selectedDate = Date()
     @State private var calendarID = 0
-    @State private var startPoint:Int = -10
-    @State private var endPoint:Int = 10
     @State private var testArray = -100...100
     var dayOfTheWeek = ["일","월","화","수","목","금","토"]
     
     var body: some View {
         VStack(spacing: 0) {
             HStack{
-                Button {
+                Button("이전") {
                     withAnimation {
-                        calendarID = calendarID - 1
+                        calendarID -= 1
                     }
-                } label: {
-                    Text("이전")
                 }
-                Text(selectedDate.string(format: "yyyy년M월"))
-                Button {
+                
+                Button(selectedDate.string(format: "yyyy년M월")) {
                     withAnimation {
-                        calendarID = calendarID + 1
+                        calendarID = 0
                     }
-                } label: {
-                    Text("다음")
+                }
+                
+                Button("다음") {
+                    withAnimation {
+                        calendarID += 1
+                    }
                 }
             }
             HStack{
@@ -50,9 +50,9 @@ struct calendar: View {
                 }
             }.frame(maxWidth: .infinity,maxHeight: 450)
                 .tabViewStyle(.page(indexDisplayMode: .never))
-        }.onChange(of: calendarID) { [calendarID] newValue in
+        }.onChange(of: calendarID) { _, newValue in
             withAnimation {
-                selectedDate = calendarID > newValue ? selectedDate.addMonth(n: -1) : selectedDate.addMonth(n: 1)
+                selectedDate = Date().addMonth(n: newValue)
             }
         }
     }
@@ -60,6 +60,7 @@ struct calendar: View {
 
 extension Date {
     
+    ///해당 월 총 일수
     var daysInMonth:Int {
         let range = Calendar.current.range(of: .day , in: .month, for: self)
         return range?.count ?? 0

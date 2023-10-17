@@ -17,29 +17,40 @@ struct CalendarForScroll: View {
             ForEach(0..<6){ row in
                 HStack(spacing: 0){
                     ForEach(1..<8){ column in
-                        let count:Int = column + (row * 7)
-                        let day:Int = count - start
-                        if day < 1 || (day > selectedDate.addMonth(n: num).daysInMonth){
-                            if day < 1 {
-                                let prevMonth = selectedDate.addMonth(n: num - 1).daysInMonth + day
-                                Text(String(prevMonth))
-                                    .frame(maxWidth: .infinity,minHeight: 65,alignment: .top)
-                                    .foregroundColor(.gray)
-                            }else{
-                                let nextMonth = day - selectedDate.addMonth(n: num).daysInMonth
-                                Text(String(nextMonth))
-                                    .frame(maxWidth: .infinity,minHeight: 65,alignment: .top)
-                                    .foregroundColor(.gray)
-                            }
-                        }else{
-                            Text(String(day))
-                                .frame(maxWidth: .infinity, minHeight: 65, alignment: .top)
-                                .foregroundColor(column == 1 ? .red : .white)
+                        let count = column + (row * 7)
+                        let day = count - start
+                        if day < 1 {
+                            //이전 달 출력
+                            calendarDay(day: selectedDate.addMonth(n: num - 1).daysInMonth + day)
+                        }else if (day > selectedDate.addMonth(n: num).daysInMonth) {
+                            //다음 달 출력
+                            calendarDay(day: day - selectedDate.addMonth(n: num).daysInMonth)
+                        }else {
+                            //현재 달 출력
+                            calendarDay(day: day, color: column == 1 ? .red : .white)
                         }
                     }.border(.black, width: 0.5)
                 }
             }
         }
+    }
+    
+    func calendarDay(day:Int,color:Color = .gray) -> some View {
+        Button {
+            print(day)
+        } label: {
+            VStack(spacing: 0) {
+                Text(String(day))
+                    .frame(maxWidth: .infinity,minHeight: 65)
+                    .foregroundStyle(color)
+                if day == 10 {
+                    Text("무언가")
+                }
+                Spacer()
+            }
+            
+        }
+        
     }
     
     var firstDayOfMonth:Date {

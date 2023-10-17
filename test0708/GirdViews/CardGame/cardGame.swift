@@ -60,7 +60,7 @@ struct cardGame: View {
                 Text("카드 재정렬")
                     .padding(.top,20)
             }
-        }.onChange(of: forCheck) { newValue in
+        }.onChange(of: forCheck) { _,newValue in
             if !isSecondCard {
                 isSecondCard = true
                 firstCard = selectedColor

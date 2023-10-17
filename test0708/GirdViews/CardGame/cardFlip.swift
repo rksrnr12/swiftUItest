@@ -59,7 +59,7 @@ struct cardFlip: View {
                 cardFront()
                 cardBack()
             }
-        }.onChange(of: isShuffle) { newValue in
+        }.onChange(of: isShuffle) { _,newValue in
             if newValue == true && isFlipped == true {
                 flipCard()
             }

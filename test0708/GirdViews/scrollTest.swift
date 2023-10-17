@@ -50,7 +50,7 @@ struct scrollTest: View {
                         }
                     }.padding(.horizontal,20)
                         .scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                        .onChange(of: selection) { newValue in
+                        .onChange(of: selection) { _,newValue in
                             withAnimation {
                                 proxy.scrollTo(newValue,anchor: .center)
                             }
