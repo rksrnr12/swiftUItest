@@ -10,7 +10,7 @@ import Foundation
 
 struct URLTest: View {
     
-    @Environment(\.openURL) var openURL
+    @Environment(\.openURL) private var openURL
     @State private var isPush = false
     
     var body: some View {

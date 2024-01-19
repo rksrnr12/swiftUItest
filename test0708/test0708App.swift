@@ -26,10 +26,9 @@ struct test0708App: App {
                         print("uri.path = \(url.path)")
                         print("url.apos = \(url.absoluteString)")
                         if url.query != nil {
-                            print("url.query = \(url.query!)")
-                        }
-                        if url.absoluteString == "test0708://URLtest" {
-                            print("여기 실행")
+                            print("url.query = \(url.query()!)")
+                            var test = URLComponents(string: url.absoluteString)?.queryItems ?? []
+                            print(test)
                         }
                     }
             }
@@ -48,15 +47,12 @@ struct test0708App: App {
 //                        player.pause()
 //                    }
 //            }
-//            NavigationSplitView {
-//                ContentView()
-//            } detail: {
-//                Text("test")
-//            }
 
         }
     }
-    
-    
-    
+}
+
+struct Test123 {
+    var test = ""
+    var asd = ""
 }

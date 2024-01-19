@@ -17,30 +17,15 @@ struct calendar: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack{
-                Button("이전") {
-                    withAnimation {
-                        calendarID -= 1
-                    }
-                }
-                
-                Button(selectedDate.string(format: "yyyy년M월")) {
-                    withAnimation {
-                        calendarID = 0
-                    }
-                }
-                
-                Button("다음") {
-                    withAnimation {
-                        calendarID += 1
-                    }
-                }
+                commonBtn(title: "이전", num: -1)
+                commonBtn(title: selectedDate.string(format: "yyyy년M월"), num: 0)
+                commonBtn(title: "다음", num: 1)
             }
             HStack{
                 ForEach(dayOfTheWeek, id: \.self) { day in
                     Text(day)
                         .frame(maxWidth: .infinity, minHeight: 52 ,alignment: .center)
                         .foregroundColor(day == "일" ? .red : .white)
-                        
                 }
             }.border(.black, width: 1)
             TabView(selection:$calendarID) {
@@ -48,11 +33,21 @@ struct calendar: View {
                     CalendarForScroll(num: num)
                         .tag(num)
                 }
-            }.frame(maxWidth: .infinity,maxHeight: 450)
-                .tabViewStyle(.page(indexDisplayMode: .never))
-        }.onChange(of: calendarID) { _, newValue in
+            }
+            .frame(maxWidth: .infinity,maxHeight: 450)
+            .tabViewStyle(.page(indexDisplayMode: .never))
+        }
+        .onChange(of: calendarID) { _,newValue in
             withAnimation {
                 selectedDate = Date().addMonth(n: newValue)
+            }
+        }
+    }
+    
+    func commonBtn(title:String,num:Int) -> some View {
+        Button(title) {
+            withAnimation {
+                calendarID = num == 0 ? 0 : (calendarID + num)
             }
         }
     }
@@ -71,11 +66,31 @@ extension Date {
         return cal.date(byAdding: .month, value: n, to: self)!
     }
     
+    var startDay:Date {
+        return self.dateChange(day: 1)
+    }
+    
     func string(format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = .init(identifier: "ko")
         dateFormatter.calendar = .init(identifier: .gregorian)
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self)
+    }
+    func int(format: String) -> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = .autoupdatingCurrent
+        dateFormatter.calendar = .init(identifier: .gregorian)
+        dateFormatter.dateFormat = format
+        return Int(dateFormatter.string(from: self)) ?? 0
+    }
+    
+    func dateChange(year:Int? = nil,month:Int? = nil,day:Int? = nil) -> Date {
+        let dateComponents = DateComponents(
+            year: year == nil ? self.int(format: "yyyy") : year,
+            month:month == nil ? self.int(format: "MM") : month,
+            day:day == nil ? self.int(format: "dd") : day
+        )
+        return Calendar.current.date(from: dateComponents) ?? Date()
     }
 }

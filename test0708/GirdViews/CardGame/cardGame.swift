@@ -60,7 +60,8 @@ struct cardGame: View {
                 Text("카드 재정렬")
                     .padding(.top,20)
             }
-        }.onChange(of: forCheck) { _,newValue in
+        }
+        .onChange(of: forCheck, { old,newValue in
             if !isSecondCard {
                 isSecondCard = true
                 firstCard = selectedColor
@@ -89,7 +90,7 @@ struct cardGame: View {
             }
             
             print("1 = \(firstCard), 2 = \(secondCard), issecond = \(isSecondCard)")
-        }
+        })
         .alert("축하합니다!!", isPresented: $isEnd, actions: {
             Button {
                 count = 0
