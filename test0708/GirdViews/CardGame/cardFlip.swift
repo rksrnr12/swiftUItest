@@ -59,11 +59,12 @@ struct cardFlip: View {
                 cardFront()
                 cardBack()
             }
-        }.onChange(of: isShuffle) { newValue in
+        }
+        .onChange(of: isShuffle, { oldValue, newValue in
             if newValue == true && isFlipped == true {
                 flipCard()
             }
-        }
+        })
         .buttonStyle(.pushAnimation)
     }
     
