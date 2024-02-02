@@ -27,7 +27,7 @@ struct test0708App: App {
                         print("url.apos = \(url.absoluteString)")
                         if url.query != nil {
                             print("url.query = \(url.query()!)")
-                            var test = URLComponents(string: url.absoluteString)?.queryItems ?? []
+                            let test = URLComponents(string: url.absoluteString)?.queryItems ?? []
                             print(test)
                         }
                     }
