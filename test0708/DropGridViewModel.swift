@@ -12,6 +12,10 @@ class DropGridViewModel: ObservableObject {
     @Published var gridItems:[Grid] = [Grid(gridText: "달력"),Grid(gridText: "제스쳐테스트"),Grid(gridText: "지도"),Grid(gridText: "카드게임"),Grid(gridText: "URL"),Grid(gridText: "햅틱"),Grid(gridText: "애니메이션"),Grid(gridText: "게이지테스트"),Grid(gridText: "아일랜드"),Grid(gridText: "스크롤")]
     
     @Published var currentGrid:Grid?
+    
+    func compareGrid(saved:[Grid]) -> Bool{
+        gridItems.map{ $0.gridText }.sorted() == saved.map{ $0.gridText }.sorted()
+    }
 }
 
 struct Grid: Identifiable,Codable {

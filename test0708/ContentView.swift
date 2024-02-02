@@ -19,13 +19,67 @@ struct ContentView: View {
     @State private var openAlert = false
     @State private var isFaceID = false
     @State private var alertContent:AlertText = .init()
-    var gridColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    @State private var gridColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    @State private var gridCount = 3
     
     
     var body: some View {
         VStack{
             if isFaceID {
                 mainView()
+                    .highPriorityGesture(
+                        MagnifyGesture()
+                            .onChanged{ value in
+                                withAnimation {
+                                    switch value.magnification {
+                                    case 0.1...0.5 :
+                                        if gridCount < 9 {
+                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount + 2)
+                                        }
+                                    case 0.5...1 :
+                                        if gridCount < 10 {
+                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount + 1)
+                                        }
+                                    case 1...1.5 :
+                                        gridColumns = Array(repeating: .init(.flexible()), count: gridCount)
+                                    case 1.5...2 :
+                                        if gridCount > 1 {
+                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount - 1)
+                                        }
+                                    case 2... :
+                                        if gridCount > 2 {
+                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount - 2)
+                                        }
+                                    default:
+                                        break
+                                    }
+                                }
+                            }
+                            .onEnded { value in
+                                switch value.magnification {
+                                case 0.1...0.5 :
+                                    if gridCount < 9 {
+                                        gridCount += 2
+                                    }
+                                case 0.5...1 :
+                                    if gridCount < 10 {
+                                        gridCount += 1
+                                    }
+                                case 1...1.5 :
+                                    gridCount = gridCount
+                                case 1.5...2 :
+                                    if gridCount > 1 {
+                                        gridCount -= 1
+                                    }
+                                case 2... :
+                                    if gridCount > 2 {
+                                        gridCount -= 2
+                                    }
+                                default:
+                                    break
+                                }
+                            }
+                    )
             }else {
                 Spacer()
                 Button("로그인 다시시도") {
@@ -42,7 +96,9 @@ struct ContentView: View {
                 arrayData = data
             }else {
                 guard let array = try? JSONDecoder().decode([Grid].self, from: arrayData!) else { return }
-                gridViewModel.gridItems = array
+                if gridViewModel.compareGrid(saved: array) {
+                    gridViewModel.gridItems = array
+                }
             }
         }
     }
@@ -148,6 +204,7 @@ struct ContentView: View {
             .padding(.vertical,15)
             .background(Material.bar)
             .cornerRadius(15)
+            .animation(.default, value: myDayOff)
     }
     
     func commonBtn(title:String,message:String,action: @escaping () -> ()) -> some View {
@@ -166,19 +223,21 @@ struct ContentView: View {
         
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "testApp"
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, error in
                 if success {
                     withAnimation {
                         isFaceID = true
                     }
                 }else {
-                    withAnimation {
-                        isFaceID = false
-                    }
+                    //                    withAnimation {
+                    //                        isFaceID = false
+                    //                    }
                 }
             }
         }else {
-            isFaceID = true
+            withAnimation {
+                isFaceID = true
+            }
             print("터치아이디,페이스아이디 없음")
         }
     }
