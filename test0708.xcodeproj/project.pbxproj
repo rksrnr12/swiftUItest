@@ -22,6 +22,7 @@
 		5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3BF4DE29FA170000F1A2A7 /* custom.swift */; };
 		5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F45F2A328C9740E001CFC69 /* GaugeTest.swift */; };
 		5F4EE982292B09FE00459FCD /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5F4EE981292B09FE00459FCD /* Algorithms */; };
+		5F5815E12B7DB047008C1CD3 /* webViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5815E02B7DB047008C1CD3 /* webViewTest.swift */; };
 		5F6BBACF28F01ACE004DAC7A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */; };
 		5F6BBAD128F01ACE004DAC7A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6BBAD028F01ACE004DAC7A /* SwiftUI.framework */; };
 		5F6BBAD428F01ACE004DAC7A /* test0708widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BBAD328F01ACE004DAC7A /* test0708widgetBundle.swift */; };
@@ -36,6 +37,8 @@
 		5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AE12A28AE356E00DA4173 /* cardFlip.swift */; };
 		5F868E7A28B736AF00549A4D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7928B736AF00549A4D /* HapticManager.swift */; };
 		5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7B28B739C300549A4D /* HapticTest.swift */; };
+		5F86EA342BA2EB2600771632 /* BtnStyle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F86EA312BA2EB1F00771632 /* BtnStyle.framework */; };
+		5F86EA352BA2EB2600771632 /* BtnStyle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F86EA312BA2EB1F00771632 /* BtnStyle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5F993B732941C4FA0066055B /* CalendarForScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F993B722941C4FA0066055B /* CalendarForScroll.swift */; };
 		5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3FB3629C42866007771BD /* DropGridViewModel.swift */; };
 		5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D428D1558F00579E4F /* MyAppDelegate.swift */; };
@@ -60,6 +63,20 @@
 			remoteGlobalIDString = 5F6BBACB28F01ACE004DAC7A;
 			remoteInfo = test0708widgetExtension;
 		};
+		5F86EA302BA2EB1F00771632 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F86EA2B2BA2EB1F00771632 /* BtnStyle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5F94BD4F2BA2E79600DC193F;
+			remoteInfo = BtnStyle;
+		};
+		5F86EA322BA2EB1F00771632 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F86EA2B2BA2EB1F00771632 /* BtnStyle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5F94BD592BA2E79700DC193F;
+			remoteInfo = BtnStyleTests;
+		};
 		5FCA27F12A0217DB00C1ADFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5FC21F0E2877CE240099381C /* Project object */;
@@ -79,6 +96,17 @@
 				5F6BBAE128F01ACF004DAC7A /* test0708widgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F86EA362BA2EB2700771632 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5F86EA352BA2EB2600771632 /* BtnStyle.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5FCA27F42A0217DB00C1ADFB /* Embed Watch Content */ = {
@@ -104,6 +132,7 @@
 		5F3247CA2AA0359900C3F69F /* scrollTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrollTest.swift; sourceTree = "<group>"; };
 		5F3BF4DE29FA170000F1A2A7 /* custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = custom.swift; sourceTree = "<group>"; };
 		5F45F2A328C9740E001CFC69 /* GaugeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeTest.swift; sourceTree = "<group>"; };
+		5F5815E02B7DB047008C1CD3 /* webViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webViewTest.swift; sourceTree = "<group>"; };
 		5F6BBACC28F01ACE004DAC7A /* test0708widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = test0708widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5F6BBAD028F01ACE004DAC7A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -118,6 +147,7 @@
 		5F7AE12A28AE356E00DA4173 /* cardFlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardFlip.swift; sourceTree = "<group>"; };
 		5F868E7928B736AF00549A4D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5F868E7B28B739C300549A4D /* HapticTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTest.swift; sourceTree = "<group>"; };
+		5F86EA2B2BA2EB1F00771632 /* BtnStyle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BtnStyle.xcodeproj; path = ../../BtnStyle/BtnStyle.xcodeproj; sourceTree = "<group>"; };
 		5F993B722941C4FA0066055B /* CalendarForScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarForScroll.swift; sourceTree = "<group>"; };
 		5FA3FB3629C42866007771BD /* DropGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropGridViewModel.swift; sourceTree = "<group>"; };
 		5FA414D428D1558F00579E4F /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F4EE982292B09FE00459FCD /* Algorithms in Frameworks */,
+				5F86EA342BA2EB2600771632 /* BtnStyle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +226,7 @@
 		5F6BBACD28F01ACE004DAC7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F86EA2B2BA2EB1F00771632 /* BtnStyle.xcodeproj */,
 				5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */,
 				5F6BBAD028F01ACE004DAC7A /* SwiftUI.framework */,
 			);
@@ -212,6 +244,15 @@
 				5F6BBADC28F01ACF004DAC7A /* Info.plist */,
 			);
 			path = test0708widget;
+			sourceTree = "<group>";
+		};
+		5F86EA2C2BA2EB1F00771632 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F86EA312BA2EB1F00771632 /* BtnStyle.framework */,
+				5F86EA332BA2EB1F00771632 /* BtnStyleTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5FC21F0D2877CE240099381C = {
@@ -295,6 +336,7 @@
 				5F45F2A328C9740E001CFC69 /* GaugeTest.swift */,
 				5F6BBAE828F01B22004DAC7A /* islandTest.swift */,
 				5F3247CA2AA0359900C3F69F /* scrollTest.swift */,
+				5F5815E02B7DB047008C1CD3 /* webViewTest.swift */,
 			);
 			path = GirdViews;
 			sourceTree = "<group>";
@@ -328,6 +370,7 @@
 				5FC21F142877CE240099381C /* Resources */,
 				5F6BBAE228F01AD0004DAC7A /* Embed Foundation Extensions */,
 				5FCA27F42A0217DB00C1ADFB /* Embed Watch Content */,
+				5F86EA362BA2EB2700771632 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -395,6 +438,12 @@
 			);
 			productRefGroup = 5FC21F172877CE240099381C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5F86EA2C2BA2EB1F00771632 /* Products */;
+					ProjectRef = 5F86EA2B2BA2EB1F00771632 /* BtnStyle.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5FC21F152877CE240099381C /* test0708 */,
@@ -403,6 +452,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5F86EA312BA2EB1F00771632 /* BtnStyle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BtnStyle.framework;
+			remoteRef = 5F86EA302BA2EB1F00771632 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5F86EA332BA2EB1F00771632 /* BtnStyleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BtnStyleTests.xctest;
+			remoteRef = 5F86EA322BA2EB1F00771632 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5F6BBACA28F01ACE004DAC7A /* Resources */ = {
@@ -461,6 +527,7 @@
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
 				5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */,
 				5F6BBAE728F01AFC004DAC7A /* Attribute.swift in Sources */,
+				5F5815E12B7DB047008C1CD3 /* webViewTest.swift in Sources */,
 				5FBD49192887DE3C00E4698B /* calendar.swift in Sources */,
 				5F0D33222A0255160005DB99 /* test0708App.swift in Sources */,
 				5F0D33202A0250170005DB99 /* NewWatchView.swift in Sources */,

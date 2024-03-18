@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import LocalAuthentication
+import BtnStyle
 
 
 struct ContentView: View {
@@ -28,62 +29,15 @@ struct ContentView: View {
             if isFaceID {
                 mainView()
                     .highPriorityGesture(
-                        MagnifyGesture()
-                            .onChanged{ value in
-                                withAnimation {
-                                    switch value.magnification {
-                                    case 0.1...0.5 :
-                                        if gridCount < 9 {
-                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount + 2)
-                                        }
-                                    case 0.5...1 :
-                                        if gridCount < 10 {
-                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount + 1)
-                                        }
-                                    case 1...1.5 :
-                                        gridColumns = Array(repeating: .init(.flexible()), count: gridCount)
-                                    case 1.5...2 :
-                                        if gridCount > 1 {
-                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount - 1)
-                                        }
-                                    case 2... :
-                                        if gridCount > 2 {
-                                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount - 2)
-                                        }
-                                    default:
-                                        break
-                                    }
-                                }
-                            }
-                            .onEnded { value in
-                                switch value.magnification {
-                                case 0.1...0.5 :
-                                    if gridCount < 9 {
-                                        gridCount += 2
-                                    }
-                                case 0.5...1 :
-                                    if gridCount < 10 {
-                                        gridCount += 1
-                                    }
-                                case 1...1.5 :
-                                    gridCount = gridCount
-                                case 1.5...2 :
-                                    if gridCount > 1 {
-                                        gridCount -= 1
-                                    }
-                                case 2... :
-                                    if gridCount > 2 {
-                                        gridCount -= 2
-                                    }
-                                default:
-                                    break
-                                }
-                            }
+                        magnify
                     )
             }else {
                 Spacer()
                 Button("로그인 다시시도") {
                     faceIDCHeck()
+                }
+                confirmButton(title: "test") {
+                    print("test")
                 }
                 Spacer()
             }
@@ -164,6 +118,8 @@ struct ContentView: View {
             islandTest()
         case "스크롤" :
             scrollTest()
+        case "웹뷰" :
+            webViewTest()
         default:
             Text("")
         }
@@ -240,6 +196,60 @@ struct ContentView: View {
             }
             print("터치아이디,페이스아이디 없음")
         }
+    }
+    
+    var magnify: some Gesture {
+        MagnifyGesture()
+            .onChanged{ value in
+                withAnimation {
+                    switch value.magnification {
+                    case 0.1...0.5 :
+                        if gridCount < 9 {
+                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount + 2)
+                        }
+                    case 0.5...1 :
+                        if gridCount < 10 {
+                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount + 1)
+                        }
+                    case 1...1.5 :
+                        gridColumns = Array(repeating: .init(.flexible()), count: gridCount)
+                    case 1.5...2 :
+                        if gridCount > 1 {
+                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount - 1)
+                        }
+                    case 2... :
+                        if gridCount > 2 {
+                            gridColumns = Array(repeating: .init(.flexible()), count: gridCount - 2)
+                        }
+                    default:
+                        break
+                    }
+                }
+            }
+            .onEnded { value in
+                switch value.magnification {
+                case 0.1...0.5 :
+                    if gridCount < 9 {
+                        gridCount += 2
+                    }
+                case 0.5...1 :
+                    if gridCount < 10 {
+                        gridCount += 1
+                    }
+                case 1...1.5 :
+                    gridCount = gridCount
+                case 1.5...2 :
+                    if gridCount > 1 {
+                        gridCount -= 1
+                    }
+                case 2... :
+                    if gridCount > 2 {
+                        gridCount -= 2
+                    }
+                default:
+                    break
+                }
+            }
     }
 }
 
