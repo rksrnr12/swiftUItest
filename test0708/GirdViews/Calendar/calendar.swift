@@ -25,9 +25,9 @@ struct calendar: View {
                 ForEach(dayOfTheWeek, id: \.self) { day in
                     Text(day)
                         .frame(maxWidth: .infinity, minHeight: 52 ,alignment: .center)
-                        .foregroundColor(day == "일" ? .red : .white)
+                        .foregroundStyle(day == "일" ? .red : Color("basicColor"))
                 }
-            }.border(.black, width: 1)
+            }
             TabView(selection:$calendarID) {
                 ForEach(testArray,id: \.self) { num in
                     CalendarForScroll(num: num)

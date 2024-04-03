@@ -32,9 +32,9 @@ struct CalendarForScroll: View {
                             calendarDay(day: day - selectedDate.addMonth(n: num).daysInMonth,addMonth: num)
                         }else {
                             //현재 달 출력
-                            calendarDay(day: day,addMonth: 0,color: column == 1 ? .red : .white)
+                            calendarDay(day: day,addMonth: 0,color: column == 1 ? .red : Color("basicColor"))
                         }
-                    }.border(.black, width: 0.5)
+                    }
                 }
             }
         }
