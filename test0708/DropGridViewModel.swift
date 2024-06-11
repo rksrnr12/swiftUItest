@@ -18,7 +18,7 @@ class DropGridViewModel: ObservableObject {
     }
 }
 
-struct Grid: Identifiable,Codable {
+struct Grid: Identifiable,Codable,Hashable {
     var id = UUID()
     var gridText:String = ""
     var number:Double = .random(in: 0...1)

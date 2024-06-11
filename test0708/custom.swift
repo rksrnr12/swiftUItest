@@ -78,6 +78,64 @@ extension View {
                     .presentationBackground(Color.clear)
             }
     }
+    
+    @ViewBuilder
+    func naviLinkWithBool<Content:View>(isPresented:Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View {
+        if #available(iOS 16.0, *) {
+            self
+                .navigationDestination(isPresented: isPresented) {
+                    content()
+                }
+                
+        } else {
+            self
+                .background(
+                    NavigationLink(isActive: isPresented, destination: {
+                        content()
+                    }, label: {
+                        Text("")
+                    })
+                )
+        }
+    }
+    
+    @ViewBuilder
+    func naviLinkWithItem<Content:View,Item:Equatable>(isPresented:Binding<Bool>,item:Binding<Item?> ,@ViewBuilder content: @escaping (Item?) -> Content) -> some View {
+        Group {
+            if #available(iOS 16.0, *) {
+                self
+                    .navigationDestination(isPresented: isPresented) {
+                        content(item.wrappedValue)
+                    }
+            } else {
+                self
+                    .background(
+                        NavigationLink(isActive: isPresented, destination: {
+                            content(item.wrappedValue)
+                        }, label: {
+                            Text("")
+                        })
+                    )
+            }
+        }.onChange(of: item.wrappedValue) {
+            //아이템이 nil이 아니면 네비뷰 나옴
+            if item.wrappedValue != nil {
+                isPresented.wrappedValue = true
+            }
+        }
+        .onChange(of: isPresented.wrappedValue) { 
+            if isPresented.wrappedValue {
+                //네비뷰 트리거가 true인데 item이 nil이면 바로 내림
+                if item.wrappedValue == nil {
+                    isPresented.wrappedValue = false
+                }
+            }else {
+                //네비뷰 꺼지면 item을 nil로 변경
+                item.wrappedValue = nil
+            }
+        }
+        
+    }
 }
 
 struct PresentationPopupView: View{

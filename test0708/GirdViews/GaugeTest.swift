@@ -38,8 +38,9 @@ struct GaugeTest: View {
                     }else{
                         Image(systemName: "iphone.gen3")
                     }
-                }.gaugeStyle(.accessoryCircularCapacity)
-                    .tint(batteryState == .charging ? Color.green : Color.gray)
+                }
+                .gaugeStyle(.accessoryCircularCapacity)
+                .tint(batteryState == .charging ? Color.green : Color.gray)
             }
             
             Button {
@@ -49,7 +50,8 @@ struct GaugeTest: View {
             } label: {
                 Text("확인")
             }
-        }.onAppear {
+        }
+        .task {
             withAnimation {
                 myBattery()
                 checkAudioBluetooth()
@@ -69,7 +71,8 @@ struct GaugeTest: View {
     
     func myBattery(){
         UIDevice.current.isBatteryMonitoringEnabled = true
-        batteryLevel = UIDevice.current.batteryLevel
+        let level = UIDevice.current.batteryLevel
+        batteryLevel = level < 0 ? 0 : level
     }
     
     func checkAudioBluetooth() {

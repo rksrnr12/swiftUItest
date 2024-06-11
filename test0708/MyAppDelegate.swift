@@ -6,27 +6,38 @@
 //
 
 import Foundation
+import FirebaseCore
 import UIKit
 import SwiftUI
 
 class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        //FirebaseApp.configure()
         let notiCenter = UNUserNotificationCenter.current()
         notiCenter.requestAuthorization(options: [.alert,.sound,.badge]) { didAllow, error in }
         notiCenter.delegate = self
-        
         return true
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-        [.list,.banner,.sound,.badge]
+        //앱 켜져 있을때
+        print("나옴")
+        NotificationCenter.default.post(name: .init("alert"), object: nil)
+        return [.list,.banner,.sound,.badge]
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         //알림창 누르면 실행
-        print("")
+        print("실행")
+        center.setBadgeCount(0) { _ in }
     }
+        
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+//        print("받음")
+//
+//        return .noData
+//    }
     
     
     

@@ -8,13 +8,14 @@
 import SwiftUI
 import Foundation
 import LocalAuthentication
-import BtnStyle
+//import BtnStyle
 
 
 struct ContentView: View {
     
     @AppStorage("arrayData") var arrayData:Data?
     @AppStorage("myDayOff") var myDayOff = 2.5
+//    @Environment(\.openURL) private var openURL
     @StateObject private var gridViewModel = DropGridViewModel()
     @State private var dayOffString = ""
     @State private var openAlert = false
@@ -22,6 +23,9 @@ struct ContentView: View {
     @State private var alertContent:AlertText = .init()
     @State private var gridColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     @State private var gridCount = 3
+    @State private var alertID = 0
+    @State private var alertCount = 0
+    @State private var selection:Grid? = nil
     
     
     var body: some View {
@@ -36,12 +40,27 @@ struct ContentView: View {
                 Button("로그인 다시시도") {
                     faceIDCHeck()
                 }
-                confirmButton(title: "test") {
-                    print("test")
-                }
+//                confirmButton(title: "test") {
+//                    print("test")
+//                }
                 Spacer()
             }
-        }.task {
+        }
+        .toolbar {
+            ToolbarItem {
+                Button("숨기기") {
+                    withAnimation {
+                        isFaceID = false
+                    }
+                }
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .init("alert"))) { _ in
+            Task {
+                alertCount = await UNUserNotificationCenter.current().deliveredNotifications().count
+            }
+        }
+        .task {
             if isFaceID == false {
                 faceIDCHeck()
             }
@@ -55,6 +74,9 @@ struct ContentView: View {
                 }
             }
         }
+        .navigationDestination(item: $selection) { grid in
+            otherViews(title: grid.gridText)
+        }
     }
     
     func mainView() -> some View {
@@ -63,8 +85,8 @@ struct ContentView: View {
                 Section(header: dayOffView) {
                     LazyVGrid(columns: gridColumns) {
                         ForEach(gridViewModel.gridItems) { grid in
-                            NavigationLink {
-                                otherViews(title: grid.gridText)
+                            Button {
+                                selection = grid
                             } label: {
                                 RoundedRectangle(cornerRadius: 25)
                                     .frame(maxWidth: .infinity,minHeight: 100)
@@ -79,18 +101,11 @@ struct ContentView: View {
                                         return NSItemProvider(object: String(grid.gridText) as NSString)
                                     })
                                     .onDrop(of: [.text], delegate: DropViewDelegate(gird: grid, gridData: gridViewModel))
-                            }.buttonStyle(.pushAnimation)
-                            
+                            }
+                            .buttonStyle(.pushAnimation)
                         }
-                    }.padding(.horizontal,5)
-                }
-            }
-        }.toolbar {
-            ToolbarItem {
-                Button("숨기기") {
-                    withAnimation {
-                        isFaceID = false
                     }
+                    .padding(.horizontal,5)
                 }
             }
         }
@@ -129,6 +144,7 @@ struct ContentView: View {
     var dayOffView:some View {
         VStack(spacing:20){
             Text("내 연차 = ") + Text("\(String(format: "%.1f", myDayOff))일").foregroundColor(myDayOff > 7 ? .cyan : .red)
+            Text("\(alertCount)")
             HStack{
                 commonBtn(title: "연차 사용", message: "연차를 사용하나요??") {
                     myDayOff -= 1
@@ -143,6 +159,43 @@ struct ContentView: View {
                         return
                     }
                     myDayOff = num
+                }
+                Button("알림") {
+                    let notiCenter = UNUserNotificationCenter.current()
+                    notiCenter.getNotificationSettings { item in
+                        if item.authorizationStatus != .authorized {
+//                            openURL(URL(string: UIApplication.openSettingsURLString)!)
+                        }else {
+                            alertID += 1
+                            let localNoti = UNMutableNotificationContent()
+                            localNoti.title = "알림"
+                            localNoti.body = "할말없음"
+                            localNoti.sound = .default
+                            localNoti.badge = 1
+                            
+                            
+                            var date = DateComponents()
+                            date.hour = 16
+                            date.minute = 9
+                            
+                            //                    let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+                            let request = UNNotificationRequest(identifier: "test" + "\(alertID)", content: localNoti, trigger: trigger)
+                            UNUserNotificationCenter.current().add(request)
+                        }
+                    }
+                }
+                Button("확인") {
+                    Task {
+                        let noti = await UNUserNotificationCenter.current().deliveredNotifications()
+                        print(noti)
+                        alertCount = noti.count
+                    }
+                }
+                Button("지우기") {
+                    UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+                    UNUserNotificationCenter.current().setBadgeCount(0) { _ in }
+                    alertCount = 0
                 }
             }
             .alert(alertContent.title, isPresented: $openAlert, presenting: alertContent) { text in

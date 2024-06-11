@@ -28,6 +28,7 @@ class MySceneDelegate: NSObject, UIWindowSceneDelegate {
                 date.minute = 30
                 
                 let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+//                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
                 let request = UNNotificationRequest(identifier: "addDayOff", content: localNoti, trigger: trigger)
                 UNUserNotificationCenter.current().add(request)
             }
