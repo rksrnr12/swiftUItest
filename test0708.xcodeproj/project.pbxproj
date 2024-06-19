@@ -26,6 +26,7 @@
 		5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F45F2A328C9740E001CFC69 /* GaugeTest.swift */; };
 		5F4EE982292B09FE00459FCD /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5F4EE981292B09FE00459FCD /* Algorithms */; };
 		5F5815E12B7DB047008C1CD3 /* webViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5815E02B7DB047008C1CD3 /* webViewTest.swift */; };
+		5F66395B2C182DD300A87F85 /* chartTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F66395A2C182DD300A87F85 /* chartTest.swift */; };
 		5F6BBACF28F01ACE004DAC7A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */; };
 		5F6BBAD128F01ACE004DAC7A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6BBAD028F01ACE004DAC7A /* SwiftUI.framework */; };
 		5F6BBAD428F01ACE004DAC7A /* test0708widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6BBAD328F01ACE004DAC7A /* test0708widgetBundle.swift */; };
@@ -120,6 +121,7 @@
 		5F40F5112BF5F2C9006D5915 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F45F2A328C9740E001CFC69 /* GaugeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeTest.swift; sourceTree = "<group>"; };
 		5F5815E02B7DB047008C1CD3 /* webViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webViewTest.swift; sourceTree = "<group>"; };
+		5F66395A2C182DD300A87F85 /* chartTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chartTest.swift; sourceTree = "<group>"; };
 		5F6BBACC28F01ACE004DAC7A /* test0708widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = test0708widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6BBACE28F01ACE004DAC7A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5F6BBAD028F01ACE004DAC7A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -315,6 +317,7 @@
 				5F6BBAE828F01B22004DAC7A /* islandTest.swift */,
 				5F3247CA2AA0359900C3F69F /* scrollTest.swift */,
 				5F5815E02B7DB047008C1CD3 /* webViewTest.swift */,
+				5F66395A2C182DD300A87F85 /* chartTest.swift */,
 			);
 			path = GirdViews;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */,
 				5F6BBADE28F01ACF004DAC7A /* test0708widget.intentdefinition in Sources */,
 				5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */,
+				5F66395B2C182DD300A87F85 /* chartTest.swift in Sources */,
 				5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */,
 				5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */,
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,

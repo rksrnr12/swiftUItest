@@ -135,6 +135,8 @@ struct ContentView: View {
             scrollTest()
         case "웹뷰" :
             webViewTest()
+        case "차트":
+            chartTest()
         default:
             Text("")
         }
