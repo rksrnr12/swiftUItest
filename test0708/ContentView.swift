@@ -26,6 +26,7 @@ struct ContentView: View {
     @State private var alertID = 0
     @State private var alertCount = 0
     @State private var selection:Grid? = nil
+    @Namespace var testName
     
     
     var body: some View {
@@ -76,6 +77,7 @@ struct ContentView: View {
         }
         .navigationDestination(item: $selection) { grid in
             otherViews(title: grid.gridText)
+                .navigationTransition(.zoom(sourceID: grid.id, in: testName))
         }
     }
     
@@ -103,6 +105,7 @@ struct ContentView: View {
                                     .onDrop(of: [.text], delegate: DropViewDelegate(gird: grid, gridData: gridViewModel))
                             }
                             .buttonStyle(.pushAnimation)
+                            .matchedTransitionSource(id: grid.id, in: testName)
                         }
                     }
                     .padding(.horizontal,5)

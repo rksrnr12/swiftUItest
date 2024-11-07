@@ -49,7 +49,7 @@ struct ContentView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
                     WKInterfaceDevice.current().isBatteryMonitoringEnabled = true
-                    batteryLevel = WKInterfaceDevice.current().batteryLevel
+                    batteryLevel = WKInterfaceDevice.current().batteryLevel < 0 ? 0 : WKInterfaceDevice.current().batteryLevel
                 }
         }
     }
