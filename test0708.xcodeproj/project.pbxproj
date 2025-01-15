@@ -41,6 +41,7 @@
 		5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7AE12A28AE356E00DA4173 /* cardFlip.swift */; };
 		5F868E7A28B736AF00549A4D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7928B736AF00549A4D /* HapticManager.swift */; };
 		5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7B28B739C300549A4D /* HapticTest.swift */; };
+		5F9082D12D018891005FF655 /* CoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9082D02D018891005FF655 /* CoreViewModel.swift */; };
 		5F993B732941C4FA0066055B /* CalendarForScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F993B722941C4FA0066055B /* CalendarForScroll.swift */; };
 		5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3FB3629C42866007771BD /* DropGridViewModel.swift */; };
 		5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D428D1558F00579E4F /* MyAppDelegate.swift */; };
@@ -137,6 +138,7 @@
 		5F7AE12A28AE356E00DA4173 /* cardFlip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardFlip.swift; sourceTree = "<group>"; };
 		5F868E7928B736AF00549A4D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5F868E7B28B739C300549A4D /* HapticTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTest.swift; sourceTree = "<group>"; };
+		5F9082D02D018891005FF655 /* CoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreViewModel.swift; sourceTree = "<group>"; };
 		5F993B722941C4FA0066055B /* CalendarForScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarForScroll.swift; sourceTree = "<group>"; };
 		5FA3FB3629C42866007771BD /* DropGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropGridViewModel.swift; sourceTree = "<group>"; };
 		5FA414D428D1558F00579E4F /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				5FC21F192877CE240099381C /* test0708App.swift */,
 				5FC21F1B2877CE240099381C /* ContentView.swift */,
 				5FA3FB3629C42866007771BD /* DropGridViewModel.swift */,
+				5F9082D02D018891005FF655 /* CoreViewModel.swift */,
 				5FCC5BB42949939C00D4054F /* GirdViews */,
 				5F3BF4DE29FA170000F1A2A7 /* custom.swift */,
 				5FC21F1D2877CE250099381C /* Assets.xcassets */,
@@ -481,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F9082D12D018891005FF655 /* CoreViewModel.swift in Sources */,
 				5FC21F1C2877CE240099381C /* ContentView.swift in Sources */,
 				5F6BBAE928F01B22004DAC7A /* islandTest.swift in Sources */,
 				5FA414D728D156CE00579E4F /* MySceneDelegate.swift in Sources */,

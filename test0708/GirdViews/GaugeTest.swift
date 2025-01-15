@@ -14,11 +14,17 @@ struct GaugeTest: View {
     @State private var batteryState:UIDevice.BatteryState = .unknown
     @State private var batteryLevel:Float = 0
     @State private var myAirPods = "연결안됨"
+    @EnvironmentObject private var coreViewModel:CoreViewModel
     
     
     var body: some View {
         
         VStack(spacing:30){
+            
+            NavigationLink("test") {
+                URLTest()
+            }
+            
             HStack{
                 Text("내")
                 Image(systemName: "airpodspro")

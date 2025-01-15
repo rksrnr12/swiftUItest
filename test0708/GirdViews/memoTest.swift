@@ -32,7 +32,7 @@ struct memoTest: View {
         attributeString.append(NSAttributedString(attachment: imageAttachment))
         attributeString.append(NSAttributedString(string: word))
         
-        //test = attributeString
+        test = attributeString.string
         
     }
 }

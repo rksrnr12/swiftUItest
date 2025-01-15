@@ -12,9 +12,14 @@ struct URLTest: View {
     
     @Environment(\.openURL) private var openURL
     @State private var isPush = false
+    @EnvironmentObject private var coreViewModel:CoreViewModel
     
     var body: some View {
         VStack(spacing:10){
+            Text("\(coreViewModel.test)")
+                .onTapGesture {
+                    coreViewModel.naviStack.removeLast()
+                }
             Text("지도")
                 .background(Group<EmptyView> {
                     Self._printChanges()
@@ -25,7 +30,7 @@ struct URLTest: View {
                 }
             Text("문자")
                 .onTapGesture {
-                    openURL(URL(string: "sms:01027085060")!)
+                    openURL(URL(string: "sms:01068669087")!)
                 }.buttonStyle(PushButtonStyle())
             Text("카카오톡")
                 .onTapGesture {
@@ -43,7 +48,7 @@ struct URLTest: View {
                 .onTapGesture {
                     openURL(URL(string: "naversearchapp:")!)
                 }
-            Link(destination: URL(string: "tel:01027085060")!) {
+            Link(destination: URL(string: "tel:01068669087")!) {
                 Text("전화")
             }
             Text("yonghk1233@naver.com")

@@ -17,6 +17,7 @@ struct ContentView: View {
     @AppStorage("myDayOff") var myDayOff = 2.5
 //    @Environment(\.openURL) private var openURL
     @StateObject private var gridViewModel = DropGridViewModel()
+    @EnvironmentObject private var coreViewModel:CoreViewModel
     @State private var dayOffString = ""
     @State private var openAlert = false
     @State private var isFaceID = false
@@ -75,10 +76,17 @@ struct ContentView: View {
                 }
             }
         }
-        .navigationDestination(item: $selection) { grid in
-            otherViews(title: grid.gridText)
-                .navigationTransition(.zoom(sourceID: grid.id, in: testName))
+        .navigationDestination(for: Grid.self) { value in
+            otherViews(title: value.gridText)
+                .navigationTransition(.zoom(sourceID: value.id, in: testName))
+                .onAppear {
+                    print(coreViewModel.naviStack)
+                }
         }
+//        .navigationDestination(item: $selection) { grid in
+//            otherViews(title: grid.gridText)
+//                .navigationTransition(.zoom(sourceID: grid.id, in: testName))
+//        }
     }
     
     func mainView() -> some View {
@@ -87,9 +95,7 @@ struct ContentView: View {
                 Section(header: dayOffView) {
                     LazyVGrid(columns: gridColumns) {
                         ForEach(gridViewModel.gridItems) { grid in
-                            Button {
-                                selection = grid
-                            } label: {
+                            NavigationLink(value: grid) {
                                 RoundedRectangle(cornerRadius: 25)
                                     .frame(maxWidth: .infinity,minHeight: 100)
                                     .foregroundColor(Color(red: grid.number, green: grid.number2, blue: grid.number3))
@@ -106,6 +112,25 @@ struct ContentView: View {
                             }
                             .buttonStyle(.pushAnimation)
                             .matchedTransitionSource(id: grid.id, in: testName)
+//                            Button {
+//                                selection = grid
+//                            } label: {
+//                                RoundedRectangle(cornerRadius: 25)
+//                                    .frame(maxWidth: .infinity,minHeight: 100)
+//                                    .foregroundColor(Color(red: grid.number, green: grid.number2, blue: grid.number3))
+//                                    .overlay {
+//                                        Text(grid.gridText)
+//                                            .foregroundColor(.white)
+//                                    }
+//                                    .onDrag ({
+//                                        HapticManager.manager.notification(type: .success)
+//                                        gridViewModel.currentGrid = grid
+//                                        return NSItemProvider(object: String(grid.gridText) as NSString)
+//                                    })
+//                                    .onDrop(of: [.text], delegate: DropViewDelegate(gird: grid, gridData: gridViewModel))
+//                            }
+//                            .buttonStyle(.pushAnimation)
+//                            .matchedTransitionSource(id: grid.id, in: testName)
                         }
                     }
                     .padding(.horizontal,5)

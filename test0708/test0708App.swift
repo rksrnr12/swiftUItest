@@ -11,14 +11,16 @@ import AVKit
 
 @main
 struct test0708App: App {
+    
     @UIApplicationDelegateAdaptor var appDelegate:MyAppDelegate
+    @StateObject private var viewModel = CoreViewModel()
     
 //    @State private var test = false
 //    @State private var player = AVPlayer(url: Bundle.main.url(forResource: "", withExtension: "")!)
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack{
+            NavigationStack(path:$viewModel.naviStack){
                 ContentView()
                     .navigationBarTitleDisplayMode(.inline)
                     .onOpenURL { url in
@@ -32,6 +34,7 @@ struct test0708App: App {
                         }
                     }
             }
+            .environmentObject(viewModel)
 //            .onAppear{
 //                test = true
 //            }

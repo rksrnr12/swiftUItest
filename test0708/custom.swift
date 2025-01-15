@@ -136,6 +136,43 @@ extension View {
         }
         
     }
+    
+    ///ios17이상 최적화
+    @ViewBuilder
+    func naviLinkWithItem<Content:View,Item:Hashable>(isPresented:Binding<Bool>,item:Binding<Item?> ,@ViewBuilder content: @escaping (Item?) -> Content) -> some View {
+            if #available(iOS 17.0, *) {
+                self
+                    .navigationDestination(item: item) { item in
+                        content(item)
+                    }
+            } else {
+                self
+                    .background(
+                        NavigationLink(isActive: isPresented, destination: {
+                            content(item.wrappedValue)
+                        }, label: {
+                            Text("")
+                        })
+                    )
+                    .onChange(of: item.wrappedValue) { newValue in
+                        //아이템이 nil이 아니면 네비뷰 나옴
+                        if newValue != nil {
+                            isPresented.wrappedValue = true
+                        }
+                    }
+                    .onChange(of: isPresented.wrappedValue) { newValue in
+                        if newValue {
+                            //네비뷰 트리거가 true인데 item이 nil이면 바로 내림
+                            if item.wrappedValue == nil {
+                                isPresented.wrappedValue = false
+                            }
+                        }else {
+                            //네비뷰 꺼지면 item을 nil로 변경
+                            item.wrappedValue = nil
+                        }
+                    }
+            }
+    }
 }
 
 struct PresentationPopupView: View{
