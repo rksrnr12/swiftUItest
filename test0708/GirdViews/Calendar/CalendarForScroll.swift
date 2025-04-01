@@ -40,8 +40,11 @@ struct CalendarForScroll: View {
         }
         .sheet(isPresented: $testBool) {
             //bool타입으로 시트를 올려야지 Detents에서 selection이 제대로 작동함
-            dataInputView(item: sheetItem)
+            dataInputView(item: $sheetItem)
                 .presentationDetents([.medium,.height(200)],selection:$sheetSize)
+                .onDisappear {
+                    eventList.append(sheetItem)
+                }
         }
         .task {
             guard let savedEvent = event else { return }
@@ -64,15 +67,20 @@ struct CalendarForScroll: View {
                     .frame(maxWidth: .infinity)
                     .foregroundStyle(color)
                 if compareDate(day: day, addMonth: addMonth) {
-                    Text("test")
+                    Text("운동")
                         .font(.footnote)
                 }
                 Spacer()
             }
+            .background {
+                if compareDate(day: day, addMonth: addMonth) {
+                    Color.green
+                }
+            }
         }
     }
     
-    func dataInputView(item:Crossfit) -> some View {
+    func dataInputView(item:Binding<Crossfit>) -> some View {
         VStack(spacing: 20) {
             commonTextView(title: "날짜", detail: item.date)
             commonTextView(title: "운동타임", detail: item.time)
@@ -80,14 +88,16 @@ struct CalendarForScroll: View {
         }.padding(.horizontal,20)
     }
     
-    func commonTextView(title:String,detail:String) -> some View {
+    func commonTextView(title:String,detail:Binding<String>) -> some View {
         HStack {
             Text(title)
                 .onTapGesture {
                     print(sheetSize)
                 }
             Spacer()
-            Text(detail)
+            TextField("", text: detail)
+                .multilineTextAlignment(.trailing)
+                .disabled(title == "날짜")
         }
         
     }

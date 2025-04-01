@@ -61,6 +61,11 @@ extension Date {
         return range?.count ?? 0
     }
     
+    //날짜 간격 계산식
+    func dateOffset() {
+       let num = Calendar.current.dateComponents([.month], from: Date(),to: Date())
+    }
+    
     func addMonth(n: Int) -> Date {
         let cal = NSCalendar.current
         return cal.date(byAdding: .month, value: n, to: self)!

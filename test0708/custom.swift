@@ -44,12 +44,14 @@ struct PushButtonStyle: ButtonStyle {
 
 struct ColorButtonStyle: ButtonStyle {
     var bgColor:Color = .black
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundColor(.black)
+            .foregroundStyle(.black)
             .frame(maxWidth: .infinity)
-            .padding(.vertical,18)
-            .background(bgColor)
+            .padding(.all,18)
+            .background(bgColor,in: RoundedRectangle(cornerRadius: 15))
+            .shadow(color: .gray.opacity(0.3), radius: 3, x: 2, y: 2)
     }
 }
 
@@ -228,5 +230,54 @@ extension PresentationPopupView {
         boldTitle = test12
         mainText = test21
         self.action = action
+    }
+}
+
+extension AttributedString {
+    ///중간에 폰트,색상 변경되는 타이틀 통합으로 사용
+    func ReplaceString(replaceValue:[ReplaceStringValue]) -> AttributedString {
+        var mainTitle = self
+        replaceValue.forEach { item in
+            if let replaceFont = mainTitle.range(of: item.title) {
+                mainTitle[replaceFont].font = item.font
+                mainTitle[replaceFont].foregroundColor = item.color
+            }
+        }
+        return mainTitle
+    }
+}
+
+
+
+public struct ReplaceStringValue {
+    var title:String
+    var font:Font
+    var color:Color?
+    
+    init(title: String, font:FontStyle, color: Color? = nil) {
+        self.title = title
+        self.font = font.font
+        self.color = color
+    }
+    
+    enum FontStyle {
+        case Bold(CGFloat)
+        case SemiBold(CGFloat)
+        case Medium(CGFloat)
+        case Regular(CGFloat)
+        
+        var font:Font {
+            return .caption
+//            switch self {
+//            case .Bold(let size):
+//                return R.font.pretendardBold.swiftFontOfSize(size)
+//            case .SemiBold(let size):
+//                return R.font.pretendardSemiBold.swiftFontOfSize(size)
+//            case .Medium(let size):
+//                return R.font.pretendardMedium.swiftFontOfSize(size)
+//            case .Regular(let size):
+//                return R.font.pretendardRegular.swiftFontOfSize(size)
+//            }
+        }
     }
 }

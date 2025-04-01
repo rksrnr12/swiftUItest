@@ -15,7 +15,6 @@ struct ContentView: View {
     
     @AppStorage("arrayData") var arrayData:Data?
     @AppStorage("myDayOff") var myDayOff = 2.5
-//    @Environment(\.openURL) private var openURL
     @StateObject private var gridViewModel = DropGridViewModel()
     @EnvironmentObject private var coreViewModel:CoreViewModel
     @State private var dayOffString = ""
@@ -28,7 +27,7 @@ struct ContentView: View {
     @State private var alertCount = 0
     @State private var selection:Grid? = nil
     @Namespace var testName
-    
+    @State private var popoverTest = false
     
     var body: some View {
         VStack{
@@ -56,6 +55,9 @@ struct ContentView: View {
                     }
                 }
             }
+//            ToolbarItem(placement: .bottomBar) {
+//                testBottomBar()
+//            }
         }
         .onReceive(NotificationCenter.default.publisher(for: .init("alert"))) { _ in
             Task {
@@ -165,16 +167,37 @@ struct ContentView: View {
             webViewTest()
         case "차트":
             chartTest()
+        case "부업":
+            SideWork()
         default:
             Text("")
         }
     }
+    
+    
     
     //MARK: -연차 내용 뷰
     var dayOffView:some View {
         VStack(spacing:20){
             Text("내 연차 = ") + Text("\(String(format: "%.1f", myDayOff))일").foregroundColor(myDayOff > 7 ? .cyan : .red)
             Text("\(alertCount)")
+//            Text("test")
+//                .foregroundStyle(.blue)
+//                .onTapGesture {
+//                    popoverTest.toggle()
+//                }
+//                .popover(isPresented: $popoverTest) {
+//                    VStack {
+//                        Button("test1") {
+//                            popoverTest.toggle()
+//                        }
+//                    }
+//                    //.background(Color.green)
+//                    .presentationCompactAdaptation(.popover)
+//                    .presentationBackground {
+//                        Color.green
+//                    }
+//                }
             HStack{
                 commonBtn(title: "연차 사용", message: "연차를 사용하나요??") {
                     myDayOff -= 1
@@ -334,6 +357,80 @@ struct ContentView: View {
                 }
             }
     }
+    
+    func testBottomBar() -> some View {
+        HStack {
+            Menu {
+                Button("이름 어디까지 길어지나요") {
+                    print("1")
+                }
+                Button("이름이 엄청 길어지면 과연 어떻게 될까요?") {
+                    print("1")
+                }
+                Button("이름이 그냥 끝이 없으면 어떻게 될까요 하하 이거보다 더 길어지면 어떻게 될까요?") {
+                    print("1")
+                }
+            } label: {
+                Text("버튼1")
+            }
+            Spacer()
+            Menu {
+                Button("이름 어디까지 길어지나요") {
+                    print("1")
+                }
+                Button("이름이 엄청 길어지면 과연 어떻게 될까요?") {
+                    print("1")
+                }
+                Button("이름이 그냥 끝이 없으면 어떻게 될까요 하하 이거보다 더 길어지면 어떻게 될까요?") {
+                    print("1")
+                }
+            } label: {
+                Text("버튼2")
+            }
+            Spacer()
+            Menu {
+                Button("이름 어디까지 길어지나요") {
+                    print("1")
+                }
+                Button("이름이 엄청 길어지면 과연 어떻게 될까요?") {
+                    print("1")
+                }
+                Button("이름이 그냥 끝이 없으면 어떻게 될까요 하하 이거보다 더 길어지면 어떻게 될까요?") {
+                    print("1")
+                }
+            } label: {
+                Text("버튼3")
+            }
+            Spacer()
+            Menu {
+                Button("이름 어디까지 길어지나요") {
+                    print("1")
+                }
+                Button("이름이 엄청 길어지면 과연 어떻게 될까요?") {
+                    print("1")
+                }
+                Button("이름이 그냥 끝이 없으면 어떻게 될까요 하하 이거보다 더 길어지면 어떻게 될까요?") {
+                    print("1")
+                }
+            } label: {
+                Text("버튼4")
+            }
+            Spacer()
+            Menu {
+                Button("이름 어디까지 길어지나요") {
+                    print("1")
+                }
+                Button("이름이 엄청 길어지면 과연 어떻게 될까요?") {
+                    print("1")
+                }
+                Button("이름이 그냥 끝이 없으면 어떻게 될까요 하하 이거보다 더 길어지면 어떻게 될까요?") {
+                    print("1")
+                }
+            } label: {
+                Text("버튼5")
+            }
+        }
+    }
 }
 
 struct AlertText {
@@ -343,3 +440,13 @@ struct AlertText {
 }
 
 
+struct MyButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .foregroundColor(configuration.isPressed ? .blue : .red)
+            .background(Color(configuration.isPressed ? .gray : .yellow))
+            .opacity(configuration.isPressed ? 1 : 0.75)
+            //.clipShape(Capsule())
+    }
+}

@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import UIKit
 import SwiftUI
+import HealthKit
 
 class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
@@ -17,6 +18,11 @@ class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDel
         let notiCenter = UNUserNotificationCenter.current()
         notiCenter.requestAuthorization(options: [.alert,.sound,.badge]) { didAllow, error in }
         notiCenter.delegate = self
+        
+        let healthData = HKHealthStore()
+        let requestData = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!,HKObjectType.quantityType(forIdentifier: .stepCount)!,HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,HKObjectType.quantityType(forIdentifier: .distanceCycling)!])
+        
+        healthData.requestAuthorization(toShare: requestData, read: requestData) { success, error in }
         return true
     }
     

@@ -56,7 +56,7 @@
 		5FCA27F32A0217DB00C1ADFB /* WatchTest0708 Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5FCA27E62A0217D800C1ADFB /* WatchTest0708 Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5FCB0ADA28B36F9300E9B9FC /* URLTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB0AD928B36F9300E9B9FC /* URLTest.swift */; };
 		5FF0D3292893A62800D6FA7C /* GestureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0D3282893A62800D6FA7C /* GestureTest.swift */; };
-		5FF755692C2967790071EB6E /* memoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF755682C2967790071EB6E /* memoTest.swift */; };
+		5FF755692C2967790071EB6E /* SideWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF755682C2967790071EB6E /* SideWork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +143,7 @@
 		5FA3FB3629C42866007771BD /* DropGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropGridViewModel.swift; sourceTree = "<group>"; };
 		5FA414D428D1558F00579E4F /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		5FA414D628D156CE00579E4F /* MySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySceneDelegate.swift; sourceTree = "<group>"; };
+		5FA9E8632D93CF7B00917694 /* test0708.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test0708.entitlements; sourceTree = "<group>"; };
 		5FBD49182887DE3C00E4698B /* calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendar.swift; sourceTree = "<group>"; };
 		5FC21F162877CE240099381C /* test0708.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test0708.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC21F192877CE240099381C /* test0708App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test0708App.swift; sourceTree = "<group>"; };
@@ -156,7 +157,7 @@
 		5FCB0AD928B36F9300E9B9FC /* URLTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTest.swift; sourceTree = "<group>"; };
 		5FCB0ADB28B3744600E9B9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5FF0D3282893A62800D6FA7C /* GestureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTest.swift; sourceTree = "<group>"; };
-		5FF755682C2967790071EB6E /* memoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoTest.swift; sourceTree = "<group>"; };
+		5FF755682C2967790071EB6E /* SideWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideWork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +263,7 @@
 		5FC21F182877CE240099381C /* test0708 */ = {
 			isa = PBXGroup;
 			children = (
+				5FA9E8632D93CF7B00917694 /* test0708.entitlements */,
 				5FCB0ADB28B3744600E9B9FC /* Info.plist */,
 				5F40F5112BF5F2C9006D5915 /* GoogleService-Info.plist */,
 				5FA414D428D1558F00579E4F /* MyAppDelegate.swift */,
@@ -323,7 +325,7 @@
 				5F3247CA2AA0359900C3F69F /* scrollTest.swift */,
 				5F5815E02B7DB047008C1CD3 /* webViewTest.swift */,
 				5F66395A2C182DD300A87F85 /* chartTest.swift */,
-				5FF755682C2967790071EB6E /* memoTest.swift */,
+				5FF755682C2967790071EB6E /* SideWork.swift */,
 			);
 			path = GirdViews;
 			sourceTree = "<group>";
@@ -492,7 +494,7 @@
 				5F6BBADE28F01ACF004DAC7A /* test0708widget.intentdefinition in Sources */,
 				5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */,
 				5F66395B2C182DD300A87F85 /* chartTest.swift in Sources */,
-				5FF755692C2967790071EB6E /* memoTest.swift in Sources */,
+				5FF755692C2967790071EB6E /* SideWork.swift in Sources */,
 				5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */,
 				5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */,
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
@@ -727,6 +729,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOL_FRAMEWORKS = "SwiftUI,UIKit";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = test0708/test0708.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"test0708/Preview Content\"";
@@ -734,7 +737,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = test0708/Info.plist;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = test;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "faceID를 사용합니다";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 걸음 수와 활동 정보를 업데이트하여 건강 관리를 지원합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 걸음 수와 활동 정보를 업데이트하여 건강 관리를 지원합니다.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -761,6 +766,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOL_FRAMEWORKS = "SwiftUI,UIKit";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = test0708/test0708.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"test0708/Preview Content\"";
@@ -768,7 +774,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = test0708/Info.plist;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = test;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "faceID를 사용합니다";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 걸음 수와 활동 정보를 업데이트하여 건강 관리를 지원합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 걸음 수와 활동 정보를 업데이트하여 건강 관리를 지원합니다.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
