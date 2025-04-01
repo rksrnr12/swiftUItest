@@ -110,11 +110,22 @@ struct SideWork: View {
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("완료") {
+                            focus = nil
+                        }
+                        .foregroundStyle(.blue)
+                    }
+                    
+                }
+            }
         }else {
             Button {
-                withAnimation {
-                    changePrice = true
-                }
+                changePrice = true
+                focus = 1
             } label: {
                 Text("💰 예상 수익: \(totalPrice)원")
                     .font(.system(size: 28, weight: .bold))
