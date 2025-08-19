@@ -43,6 +43,8 @@
 		5F868E7C28B739C300549A4D /* HapticTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F868E7B28B739C300549A4D /* HapticTest.swift */; };
 		5F9082D12D018891005FF655 /* CoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9082D02D018891005FF655 /* CoreViewModel.swift */; };
 		5F993B732941C4FA0066055B /* CalendarForScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F993B722941C4FA0066055B /* CalendarForScroll.swift */; };
+		5FA3274B2D9D1A6B006F1DEA /* WorkFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3274A2D9D1A6B006F1DEA /* WorkFile.swift */; };
+		5FA3274F2D9D2B4D006F1DEA /* SideWorkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3274E2D9D2B4D006F1DEA /* SideWorkViewModel.swift */; };
 		5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA3FB3629C42866007771BD /* DropGridViewModel.swift */; };
 		5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D428D1558F00579E4F /* MyAppDelegate.swift */; };
 		5FA414D728D156CE00579E4F /* MySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA414D628D156CE00579E4F /* MySceneDelegate.swift */; };
@@ -140,6 +142,8 @@
 		5F868E7B28B739C300549A4D /* HapticTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTest.swift; sourceTree = "<group>"; };
 		5F9082D02D018891005FF655 /* CoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreViewModel.swift; sourceTree = "<group>"; };
 		5F993B722941C4FA0066055B /* CalendarForScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarForScroll.swift; sourceTree = "<group>"; };
+		5FA3274A2D9D1A6B006F1DEA /* WorkFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFile.swift; sourceTree = "<group>"; };
+		5FA3274E2D9D2B4D006F1DEA /* SideWorkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideWorkViewModel.swift; sourceTree = "<group>"; };
 		5FA3FB3629C42866007771BD /* DropGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropGridViewModel.swift; sourceTree = "<group>"; };
 		5FA414D428D1558F00579E4F /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		5FA414D628D156CE00579E4F /* MySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySceneDelegate.swift; sourceTree = "<group>"; };
@@ -326,6 +330,8 @@
 				5F5815E02B7DB047008C1CD3 /* webViewTest.swift */,
 				5F66395A2C182DD300A87F85 /* chartTest.swift */,
 				5FF755682C2967790071EB6E /* SideWork.swift */,
+				5FA3274E2D9D2B4D006F1DEA /* SideWorkViewModel.swift */,
+				5FA3274A2D9D1A6B006F1DEA /* WorkFile.swift */,
 			);
 			path = GirdViews;
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 				5F66395B2C182DD300A87F85 /* chartTest.swift in Sources */,
 				5FF755692C2967790071EB6E /* SideWork.swift in Sources */,
 				5FA3FB3729C42866007771BD /* DropGridViewModel.swift in Sources */,
+				5FA3274F2D9D2B4D006F1DEA /* SideWorkViewModel.swift in Sources */,
 				5F2536B928C87CC1004FF9E6 /* AnimationTest.swift in Sources */,
 				5F7AE12B28AE356E00DA4173 /* cardFlip.swift in Sources */,
 				5F3BF4DF29FA170000F1A2A7 /* custom.swift in Sources */,
@@ -506,6 +513,7 @@
 				5F0D33202A0250170005DB99 /* NewWatchView.swift in Sources */,
 				5FA414D528D1558F00579E4F /* MyAppDelegate.swift in Sources */,
 				5FF0D3292893A62800D6FA7C /* GestureTest.swift in Sources */,
+				5FA3274B2D9D1A6B006F1DEA /* WorkFile.swift in Sources */,
 				5F45F2A428C9740E001CFC69 /* GaugeTest.swift in Sources */,
 				5F993B732941C4FA0066055B /* CalendarForScroll.swift in Sources */,
 				5F868E7A28B736AF00549A4D /* HapticManager.swift in Sources */,

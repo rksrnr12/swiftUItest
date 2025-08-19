@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import LocalAuthentication
+import StoreKit
 //import BtnStyle
 
 
@@ -448,5 +449,19 @@ struct MyButtonStyle: ButtonStyle {
             .background(Color(configuration.isPressed ? .gray : .yellow))
             .opacity(configuration.isPressed ? 1 : 0.75)
             //.clipShape(Capsule())
+    }
+}
+
+
+//앱스토어 시트
+func presentAppStore(appID: String) {
+    guard let window = UIApplication.shared.connectedScenes
+            .compactMap({ ($0 as? UIWindowScene)?.keyWindow }).first else { return }
+    let storeVC = SKStoreProductViewController()
+    let params = [SKStoreProductParameterITunesItemIdentifier: appID]
+    storeVC.loadProduct(withParameters: params) { loaded, error in
+        if loaded {
+            window.rootViewController?.present(storeVC, animated: true)
+        }
     }
 }
