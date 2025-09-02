@@ -15,7 +15,7 @@ struct TodayWork:Codable,Identifiable,Equatable {
     var savedDate = Date()
     var workList:[WorkType:Int] = [:]
     
-    var id:UUID { UUID() }
+    var id = UUID()
     
 }
 
@@ -36,9 +36,10 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
     case olacker = "오락"
     case okCashBag = "OK캐시백"
     case NHAllOne = "NH올원뱅크"
+    case Karrot = "당근마켓"
     case none = ""
         
-    var id:UUID { UUID() }
+    var id: String { rawValue }
     
     var scheme:String {
         switch self {
@@ -76,13 +77,15 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
             "ocbtapp://"
         case .NHAllOne:
             "shortcuts://run-shortcut?name=nh"
+        case .Karrot:
+            "Karrot://"
         default:
             ""
         }
     }
     
     static let attendanceList:[WorkType] = [.kBank,.naverPay,.shinhanSol,.hanaCard,.wooriWon,.payBooc,.IBK,.okCashBag]
-    static let pedometerList:[WorkType] = [.toss,.kakaoBank,.kakaoPay,.hanaMoney,.cashWalk,.seoul9988,.olacker,.NHAllOne]
+    static let pedometerList:[WorkType] = [.toss,.kakaoBank,.kakaoPay,.hanaMoney,.cashWalk,.seoul9988,.olacker,.NHAllOne,.Karrot]
     
 }
 

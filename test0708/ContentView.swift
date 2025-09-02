@@ -69,14 +69,15 @@ struct ContentView: View {
             if isFaceID == false {
                 faceIDCHeck()
             }
-            if arrayData == nil {
+            
+            guard let savedData = arrayData else {
                 guard let data = try? JSONEncoder().encode(gridViewModel.gridItems) else { return }
                 arrayData = data
-            }else {
-                guard let array = try? JSONDecoder().decode([Grid].self, from: arrayData!) else { return }
-                if gridViewModel.compareGrid(saved: array) {
-                    gridViewModel.gridItems = array
-                }
+                return
+            }
+            guard let array = try? JSONDecoder().decode([Grid].self, from: savedData) else { return }
+            if gridViewModel.compareGrid(saved: array) {
+                gridViewModel.gridItems = array
             }
         }
         .navigationDestination(for: Grid.self) { value in
