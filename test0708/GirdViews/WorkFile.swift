@@ -25,6 +25,7 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
     case kBank = "케이뱅크"
     case naverPay = "네이버페이"
     case shinhanSol = "신한쏠"
+    case shinhanCard = "신한카드"
     case kakaoPay = "카카오페이"
     case hanaCard = "하나카드"
     case wooriWon = "우리원"
@@ -55,10 +56,13 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
             "naverpayapp://"
         case .shinhanSol:
             "smailapp://"
+        case .shinhanCard:
+            "shinhan-sr-ansimclick://"
         case .kakaoPay:
             "kakaopay://"
         case .hanaCard:
-            "shortcuts://run-shortcut?name=하나카드"
+//            "shortcuts://run-shortcut?name=하나카드"
+            "cloudpay://"
         case .wooriWon:
             "wooribank://"
         case .cashWalk:
@@ -70,7 +74,8 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
         case .payBooc:
             "ispmobile://"
         case .IBK:
-            "shortcuts://run-shortcut?name=ibk"
+//            "shortcuts://run-shortcut?name=ibk"
+            "ibkcard://"
         case .olacker:
             "olocker://"
         case .okCashBag:
@@ -84,7 +89,7 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
         }
     }
     
-    static let attendanceList:[WorkType] = [.kBank,.naverPay,.shinhanSol,.hanaCard,.wooriWon,.payBooc,.IBK,.okCashBag]
+    static let attendanceList:[WorkType] = [.kBank,.naverPay,.shinhanSol,.shinhanCard,.hanaCard,.wooriWon,.payBooc,.IBK,.okCashBag]
     static let pedometerList:[WorkType] = [.toss,.kakaoBank,.kakaoPay,.hanaMoney,.cashWalk,.seoul9988,.olacker,.NHAllOne,.Karrot]
     
 }
