@@ -38,6 +38,8 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
     case okCashBag = "OK캐시백"
     case NHAllOne = "NH올원뱅크"
     case Karrot = "당근마켓"
+    case tmoneyGo = "티머니고"
+    case tmoneyPay = "모바일티머니"
     case none = ""
         
     var id: String { rawValue }
@@ -84,12 +86,16 @@ enum WorkType:String,CaseIterable,Identifiable,Codable {
             "shortcuts://run-shortcut?name=nh"
         case .Karrot:
             "Karrot://"
+        case .tmoneyGo:
+            "tmoneytia://"
+        case .tmoneyPay:
+            "tmoneypay://"
         default:
             ""
         }
     }
     
-    static let attendanceList:[WorkType] = [.kBank,.naverPay,.shinhanSol,.shinhanCard,.hanaCard,.wooriWon,.payBooc,.IBK,.okCashBag]
+    static let attendanceList:[WorkType] = [.kBank,.naverPay,.shinhanSol,.shinhanCard,.hanaCard,.wooriWon,.payBooc,.IBK,.okCashBag,.tmoneyGo,.tmoneyPay]
     static let pedometerList:[WorkType] = [.toss,.kakaoBank,.kakaoPay,.hanaMoney,.cashWalk,.seoul9988,.olacker,.NHAllOne,.Karrot]
     
 }

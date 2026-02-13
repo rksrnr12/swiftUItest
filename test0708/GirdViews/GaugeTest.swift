@@ -83,7 +83,7 @@ struct GaugeTest: View {
     
     func checkAudioBluetooth() {
         let session = AVAudioSession.sharedInstance()
-        try! session.setCategory(.playAndRecord, mode: .default,options: .allowBluetooth)
+        try! session.setCategory(.playAndRecord, mode: .default,options: [.allowBluetoothHFP,.allowBluetoothA2DP])
         if let availableInputs = session.availableInputs {
             for i in availableInputs {
                 if i.portType == .bluetoothHFP {

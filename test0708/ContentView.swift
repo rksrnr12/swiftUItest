@@ -9,6 +9,8 @@ import SwiftUI
 import Foundation
 import LocalAuthentication
 import StoreKit
+import Amplify
+import AWSAPIPlugin
 //import BtnStyle
 
 
@@ -171,6 +173,8 @@ struct ContentView: View {
             chartTest()
         case "부업":
             SideWork()
+        case "aws":
+            AWSView()
         default:
             Text("")
         }
@@ -181,7 +185,11 @@ struct ContentView: View {
     //MARK: -연차 내용 뷰
     var dayOffView:some View {
         VStack(spacing:20){
-            Text("내 연차 = ") + Text("\(String(format: "%.1f", myDayOff))일").foregroundColor(myDayOff > 7 ? .cyan : .red)
+            HStack {
+                Text("내 연차 = ")
+                Text("\(String(format: "%.1f", myDayOff))일")
+                    .foregroundColor(myDayOff > 7 ? .cyan : .red)
+            }
             Text("\(alertCount)")
 //            Text("test")
 //                .foregroundStyle(.blue)

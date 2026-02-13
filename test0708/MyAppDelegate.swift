@@ -10,11 +10,20 @@ import FirebaseCore
 import UIKit
 import SwiftUI
 import HealthKit
+import Amplify
+import AWSAPIPlugin
 
 class MyAppDelegate: NSObject,UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         //FirebaseApp.configure()
+        do {
+            try Amplify.add(plugin: AWSAPIPlugin())
+            try Amplify.configure()
+            print("Amplify 초기화 완료")
+        }catch {
+            print("aws오류")
+        }
         let notiCenter = UNUserNotificationCenter.current()
         notiCenter.requestAuthorization(options: [.alert,.sound,.badge]) { didAllow, error in }
         notiCenter.delegate = self
