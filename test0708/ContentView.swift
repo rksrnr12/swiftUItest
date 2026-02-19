@@ -159,8 +159,6 @@ struct ContentView: View {
             URLTest()
         case "햅틱":
             HapticTest()
-        case "애니메이션":
-            AnimationTest()
         case "게이지테스트":
             GaugeTest()
         case "아일랜드" :

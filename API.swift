@@ -460,8 +460,8 @@ public struct CreateTodoInput: GraphQLMapConvertible {
 public struct ModelTodoConditionInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(name: ModelStringInput? = nil, description: ModelStringInput? = nil, and: [ModelTodoConditionInput?]? = nil, or: [ModelTodoConditionInput?]? = nil, not: ModelTodoConditionInput? = nil, createdAt: ModelStringInput? = nil, updatedAt: ModelStringInput? = nil) {
-    graphQLMap = ["name": name, "description": description, "and": and, "or": or, "not": not, "createdAt": createdAt, "updatedAt": updatedAt]
+  public init(name: ModelStringInput? = nil, description: ModelStringInput? = nil, and: [ModelTodoConditionInput?]? = nil, or: [ModelTodoConditionInput?]? = nil, not: ModelTodoConditionInput? = nil, createdAt: ModelStringInput? = nil, updatedAt: ModelStringInput? = nil, owner: ModelStringInput? = nil) {
+    graphQLMap = ["name": name, "description": description, "and": and, "or": or, "not": not, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner]
   }
 
   public var name: ModelStringInput? {
@@ -524,6 +524,15 @@ public struct ModelTodoConditionInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "updatedAt")
+    }
+  }
+
+  public var owner: ModelStringInput? {
+    get {
+      return graphQLMap["owner"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "owner")
     }
   }
 }
@@ -844,8 +853,8 @@ public struct DeleteTodoInput: GraphQLMapConvertible {
 public struct ModelTodoFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelIDInput? = nil, name: ModelStringInput? = nil, description: ModelStringInput? = nil, createdAt: ModelStringInput? = nil, updatedAt: ModelStringInput? = nil, and: [ModelTodoFilterInput?]? = nil, or: [ModelTodoFilterInput?]? = nil, not: ModelTodoFilterInput? = nil) {
-    graphQLMap = ["id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "and": and, "or": or, "not": not]
+  public init(id: ModelIDInput? = nil, name: ModelStringInput? = nil, description: ModelStringInput? = nil, createdAt: ModelStringInput? = nil, updatedAt: ModelStringInput? = nil, and: [ModelTodoFilterInput?]? = nil, or: [ModelTodoFilterInput?]? = nil, not: ModelTodoFilterInput? = nil, owner: ModelStringInput? = nil) {
+    graphQLMap = ["id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "and": and, "or": or, "not": not, "owner": owner]
   }
 
   public var id: ModelIDInput? {
@@ -917,6 +926,15 @@ public struct ModelTodoFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "not")
+    }
+  }
+
+  public var owner: ModelStringInput? {
+    get {
+      return graphQLMap["owner"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "owner")
     }
   }
 }
@@ -1049,8 +1067,8 @@ public struct ModelIDInput: GraphQLMapConvertible {
 public struct ModelSubscriptionTodoFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelSubscriptionIDInput? = nil, name: ModelSubscriptionStringInput? = nil, description: ModelSubscriptionStringInput? = nil, createdAt: ModelSubscriptionStringInput? = nil, updatedAt: ModelSubscriptionStringInput? = nil, and: [ModelSubscriptionTodoFilterInput?]? = nil, or: [ModelSubscriptionTodoFilterInput?]? = nil) {
-    graphQLMap = ["id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "and": and, "or": or]
+  public init(id: ModelSubscriptionIDInput? = nil, name: ModelSubscriptionStringInput? = nil, description: ModelSubscriptionStringInput? = nil, createdAt: ModelSubscriptionStringInput? = nil, updatedAt: ModelSubscriptionStringInput? = nil, and: [ModelSubscriptionTodoFilterInput?]? = nil, or: [ModelSubscriptionTodoFilterInput?]? = nil, owner: ModelStringInput? = nil) {
+    graphQLMap = ["id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "and": and, "or": or, "owner": owner]
   }
 
   public var id: ModelSubscriptionIDInput? {
@@ -1113,6 +1131,15 @@ public struct ModelSubscriptionTodoFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "or")
+    }
+  }
+
+  public var owner: ModelStringInput? {
+    get {
+      return graphQLMap["owner"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "owner")
     }
   }
 }
@@ -1351,7 +1378,7 @@ public struct ModelSubscriptionStringInput: GraphQLMapConvertible {
 
 public final class CreateTodoMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateTodo($input: CreateTodoInput!, $condition: ModelTodoConditionInput) {\n  createTodo(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation CreateTodo($input: CreateTodoInput!, $condition: ModelTodoConditionInput) {\n  createTodo(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n    owner\n  }\n}"
 
   public var input: CreateTodoInput
   public var condition: ModelTodoConditionInput?
@@ -1401,6 +1428,7 @@ public final class CreateTodoMutation: GraphQLMutation {
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -1409,8 +1437,8 @@ public final class CreateTodoMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
       }
 
       public var __typename: String {
@@ -1466,13 +1494,22 @@ public final class CreateTodoMutation: GraphQLMutation {
           snapshot.updateValue(newValue, forKey: "updatedAt")
         }
       }
+
+      public var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
+        }
+      }
     }
   }
 }
 
 public final class UpdateTodoMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateTodo($input: UpdateTodoInput!, $condition: ModelTodoConditionInput) {\n  updateTodo(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation UpdateTodo($input: UpdateTodoInput!, $condition: ModelTodoConditionInput) {\n  updateTodo(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n    owner\n  }\n}"
 
   public var input: UpdateTodoInput
   public var condition: ModelTodoConditionInput?
@@ -1522,6 +1559,7 @@ public final class UpdateTodoMutation: GraphQLMutation {
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -1530,8 +1568,8 @@ public final class UpdateTodoMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
       }
 
       public var __typename: String {
@@ -1587,13 +1625,22 @@ public final class UpdateTodoMutation: GraphQLMutation {
           snapshot.updateValue(newValue, forKey: "updatedAt")
         }
       }
+
+      public var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
+        }
+      }
     }
   }
 }
 
 public final class DeleteTodoMutation: GraphQLMutation {
   public static let operationString =
-    "mutation DeleteTodo($input: DeleteTodoInput!, $condition: ModelTodoConditionInput) {\n  deleteTodo(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation DeleteTodo($input: DeleteTodoInput!, $condition: ModelTodoConditionInput) {\n  deleteTodo(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n    owner\n  }\n}"
 
   public var input: DeleteTodoInput
   public var condition: ModelTodoConditionInput?
@@ -1643,6 +1690,7 @@ public final class DeleteTodoMutation: GraphQLMutation {
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -1651,8 +1699,8 @@ public final class DeleteTodoMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
       }
 
       public var __typename: String {
@@ -1708,13 +1756,22 @@ public final class DeleteTodoMutation: GraphQLMutation {
           snapshot.updateValue(newValue, forKey: "updatedAt")
         }
       }
+
+      public var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
+        }
+      }
     }
   }
 }
 
 public final class GetTodoQuery: GraphQLQuery {
   public static let operationString =
-    "query GetTodo($id: ID!) {\n  getTodo(id: $id) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n  }\n}"
+    "query GetTodo($id: ID!) {\n  getTodo(id: $id) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n    owner\n  }\n}"
 
   public var id: GraphQLID
 
@@ -1762,6 +1819,7 @@ public final class GetTodoQuery: GraphQLQuery {
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -1770,8 +1828,8 @@ public final class GetTodoQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
       }
 
       public var __typename: String {
@@ -1827,13 +1885,22 @@ public final class GetTodoQuery: GraphQLQuery {
           snapshot.updateValue(newValue, forKey: "updatedAt")
         }
       }
+
+      public var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
+        }
+      }
     }
   }
 }
 
 public final class ListTodosQuery: GraphQLQuery {
   public static let operationString =
-    "query ListTodos($filter: ModelTodoFilterInput, $limit: Int, $nextToken: String) {\n  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n    nextToken\n  }\n}"
+    "query ListTodos($filter: ModelTodoFilterInput, $limit: Int, $nextToken: String) {\n  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      name\n      description\n      createdAt\n      updatedAt\n      owner\n    }\n    nextToken\n  }\n}"
 
   public var filter: ModelTodoFilterInput?
   public var limit: Int?
@@ -1931,6 +1998,7 @@ public final class ListTodosQuery: GraphQLQuery {
           GraphQLField("description", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+          GraphQLField("owner", type: .scalar(String.self)),
         ]
 
         public var snapshot: Snapshot
@@ -1939,8 +2007,8 @@ public final class ListTodosQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+          self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
         }
 
         public var __typename: String {
@@ -1996,6 +2064,15 @@ public final class ListTodosQuery: GraphQLQuery {
             snapshot.updateValue(newValue, forKey: "updatedAt")
           }
         }
+
+        public var owner: String? {
+          get {
+            return snapshot["owner"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "owner")
+          }
+        }
       }
     }
   }
@@ -2003,23 +2080,25 @@ public final class ListTodosQuery: GraphQLQuery {
 
 public final class OnCreateTodoSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {\n  onCreateTodo(filter: $filter) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput, $owner: String) {\n  onCreateTodo(filter: $filter, owner: $owner) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n    owner\n  }\n}"
 
   public var filter: ModelSubscriptionTodoFilterInput?
+  public var owner: String?
 
-  public init(filter: ModelSubscriptionTodoFilterInput? = nil) {
+  public init(filter: ModelSubscriptionTodoFilterInput? = nil, owner: String? = nil) {
     self.filter = filter
+    self.owner = owner
   }
 
   public var variables: GraphQLMap? {
-    return ["filter": filter]
+    return ["filter": filter, "owner": owner]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onCreateTodo", arguments: ["filter": GraphQLVariable("filter")], type: .object(OnCreateTodo.selections)),
+      GraphQLField("onCreateTodo", arguments: ["filter": GraphQLVariable("filter"), "owner": GraphQLVariable("owner")], type: .object(OnCreateTodo.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -2051,6 +2130,7 @@ public final class OnCreateTodoSubscription: GraphQLSubscription {
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -2059,8 +2139,8 @@ public final class OnCreateTodoSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
       }
 
       public var __typename: String {
@@ -2116,29 +2196,40 @@ public final class OnCreateTodoSubscription: GraphQLSubscription {
           snapshot.updateValue(newValue, forKey: "updatedAt")
         }
       }
+
+      public var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
+        }
+      }
     }
   }
 }
 
 public final class OnUpdateTodoSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {\n  onUpdateTodo(filter: $filter) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput, $owner: String) {\n  onUpdateTodo(filter: $filter, owner: $owner) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n    owner\n  }\n}"
 
   public var filter: ModelSubscriptionTodoFilterInput?
+  public var owner: String?
 
-  public init(filter: ModelSubscriptionTodoFilterInput? = nil) {
+  public init(filter: ModelSubscriptionTodoFilterInput? = nil, owner: String? = nil) {
     self.filter = filter
+    self.owner = owner
   }
 
   public var variables: GraphQLMap? {
-    return ["filter": filter]
+    return ["filter": filter, "owner": owner]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onUpdateTodo", arguments: ["filter": GraphQLVariable("filter")], type: .object(OnUpdateTodo.selections)),
+      GraphQLField("onUpdateTodo", arguments: ["filter": GraphQLVariable("filter"), "owner": GraphQLVariable("owner")], type: .object(OnUpdateTodo.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -2170,6 +2261,7 @@ public final class OnUpdateTodoSubscription: GraphQLSubscription {
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -2178,8 +2270,8 @@ public final class OnUpdateTodoSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
       }
 
       public var __typename: String {
@@ -2235,29 +2327,40 @@ public final class OnUpdateTodoSubscription: GraphQLSubscription {
           snapshot.updateValue(newValue, forKey: "updatedAt")
         }
       }
+
+      public var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
+        }
+      }
     }
   }
 }
 
 public final class OnDeleteTodoSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {\n  onDeleteTodo(filter: $filter) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput, $owner: String) {\n  onDeleteTodo(filter: $filter, owner: $owner) {\n    __typename\n    id\n    name\n    description\n    createdAt\n    updatedAt\n    owner\n  }\n}"
 
   public var filter: ModelSubscriptionTodoFilterInput?
+  public var owner: String?
 
-  public init(filter: ModelSubscriptionTodoFilterInput? = nil) {
+  public init(filter: ModelSubscriptionTodoFilterInput? = nil, owner: String? = nil) {
     self.filter = filter
+    self.owner = owner
   }
 
   public var variables: GraphQLMap? {
-    return ["filter": filter]
+    return ["filter": filter, "owner": owner]
   }
 
   public struct Data: GraphQLSelectionSet {
     public static let possibleTypes = ["Subscription"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("onDeleteTodo", arguments: ["filter": GraphQLVariable("filter")], type: .object(OnDeleteTodo.selections)),
+      GraphQLField("onDeleteTodo", arguments: ["filter": GraphQLVariable("filter"), "owner": GraphQLVariable("owner")], type: .object(OnDeleteTodo.selections)),
     ]
 
     public var snapshot: Snapshot
@@ -2289,6 +2392,7 @@ public final class OnDeleteTodoSubscription: GraphQLSubscription {
         GraphQLField("description", type: .scalar(String.self)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
+        GraphQLField("owner", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -2297,8 +2401,8 @@ public final class OnDeleteTodoSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, description: String? = nil, createdAt: String, updatedAt: String, owner: String? = nil) {
+        self.init(snapshot: ["__typename": "Todo", "id": id, "name": name, "description": description, "createdAt": createdAt, "updatedAt": updatedAt, "owner": owner])
       }
 
       public var __typename: String {
@@ -2352,6 +2456,15 @@ public final class OnDeleteTodoSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "updatedAt")
+        }
+      }
+
+      public var owner: String? {
+        get {
+          return snapshot["owner"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "owner")
         }
       }
     }
